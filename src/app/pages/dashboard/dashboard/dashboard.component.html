@@ -39,11 +39,11 @@
         </div>
     </div>
 
-    <div class="flex flex-col md:flex-row gap-4">
-        <div class="flex-1 p-4">
+    <div class="flex flex-col md:flex-row gap-4 my-3">
+        <div class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white">
             <!-- Recent Activity -->
-            <div class="flex-1 p-4 bg-white">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Activities</h2>
+            <div class="flex-1 p-4 bg-white rounded-lg shadow hover:shadow-lg transition">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Peer Activities</h2>
                 <ul class="divide-y divide-gray-200">
                     <li class="py-4 flex items-center justify-between">
                         <span>John updated profile</span>
@@ -60,9 +60,8 @@
                 </ul>
             </div>
         </div>
-        <div class="flex-1 p-4">
+        <div class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white">
             <app-transaction-table></app-transaction-table>
         </div>
     </div>
- <app-contact-us></app-contact-us>
 </div>

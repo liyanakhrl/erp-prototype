@@ -1,52 +1,66 @@
 <section class="bg-white py-16 px-6">
-    <div class="max-w-6xl mx-auto text-center">
-      <!-- Header -->
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">From the blog</h2>
-      <p class="text-gray-600 mb-12">
-        Learn how to grow your business with our expert advice.
-      </p>
-  
-      <!-- Categories -->
-      <div class="flex flex-wrap justify-center gap-4 mb-8">
-        <button class="px-4 py-2 text-sm font-medium text-indigo-600 bg-indigo-100 rounded-lg hover:bg-indigo-200">All</button>
-        <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-100 rounded-lg">Technology</button>
-        <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-100 rounded-lg">Design</button>
-        <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-100 rounded-lg">Marketing</button>
-        <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-100 rounded-lg">Development</button>
+  <div class="max-w-6xl mx-auto text-center">
+    <!-- Header -->
+    <h2 class="text-3xl font-bold text-gray-800 mb-4">From the blog</h2>
+    <p class="text-gray-600 mb-12">
+      Learn how to grow your business with our expert advice.
+    </p>
+
+    <!-- Categories -->
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <button
+        class="px-4 py-2 text-sm font-medium text-indigo-600 bg-indigo-100 rounded-lg hover:bg-indigo-200">All</button>
+      <button
+        class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-100 rounded-lg">Technology</button>
+      <button
+        class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-100 rounded-lg">Design</button>
+      <button
+        class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-100 rounded-lg">Marketing</button>
+      <button
+        class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-100 rounded-lg">Development</button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Blog Post 1 -->
+      <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer blog-item"
+        (click)="navigateTo('/general/article')">
+        <img src="assets/blog1.jpg" alt="Blog 1" class="w-full h-64 object-cover"  (click)="navigateTo('/general/article')"/>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 transition">
+        </div>
+        <div class="absolute bottom-0 p-6 text-left text-white">
+          <p class="text-sm text-gray-300">Mar 16, 2020 · Michael Foster</p>
+          <h4 class="text-lg font-bold mt-1">Boost your conversion rate</h4>
+        </div>
       </div>
-  
-      <!-- Blog Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Blog Post 1 -->
-        <div class="relative overflow-hidden rounded-lg shadow-lg group">
-          <img src="assets/blog1.jpg" alt="Blog 1" class="w-full h-64 object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 transition"></div>
-          <div class="absolute bottom-0 p-6 text-left text-white">
-            <p class="text-sm text-gray-300">Mar 16, 2020 · Michael Foster</p>
-            <h4 class="text-lg font-bold mt-1">Boost your conversion rate</h4>
-          </div>
+
+      <!-- Blog Post 2 -->
+      <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer blog-item"
+      (click)="navigateTo('/general/article')">
+        <img src="assets/blog1.jpg" alt="Blog 1" class="w-full h-64 object-cover"  (click)="navigateTo('/general/article')"/>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 transition">
         </div>
-  
-        <!-- Blog Post 2 -->
-        <div class="relative overflow-hidden rounded-lg shadow-lg group">
-          <img src="assets/blog2.jpg" alt="Blog 2" class="w-full h-64 object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 transition"></div>
-          <div class="absolute bottom-0 p-6 text-left text-white">
-            <p class="text-sm text-gray-300">Mar 10, 2020 · Lindsay Walton</p>
-            <h4 class="text-lg font-bold mt-1">How to use search engine optimization to drive sales</h4>
-          </div>
+        <div class="absolute bottom-0 p-6 text-left text-white">
+          <p class="text-sm text-gray-300">Mar 10, 2020 · Lindsay Walton</p>
+          <h4 class="text-lg font-bold mt-1">How to use search engine optimization to drive sales</h4>
         </div>
-  
-        <!-- Blog Post 3 -->
-        <div class="relative overflow-hidden rounded-lg shadow-lg group">
-          <img src="assets/blog3.jpg" alt="Blog 3" class="w-full h-64 object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 transition"></div>
-          <div class="absolute bottom-0 p-6 text-left text-white">
-            <p class="text-sm text-gray-300">Feb 12, 2020 · Tom Cook</p>
-            <h4 class="text-lg font-bold mt-1">Improve your customer experience</h4>
-          </div>
+      </div>
+
+      <!-- Blog Post 3 -->
+      <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer blog-item"
+      (click)="navigateTo('/general/article')">
+      <img src="assets/blog1.jpg" alt="Blog 1" class="w-full h-64 object-cover"  (click)="navigateTo('/general/article')"/>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 transition">
+        </div>
+        <div class="absolute bottom-0 p-6 text-left text-white">
+          <p class="text-sm text-gray-300">Feb 12, 2020 · Tom Cook</p>
+          <h4 class="text-lg font-bold mt-1">Improve your customer experience</h4>
         </div>
       </div>
     </div>
-  </section>
-  
+
+  </div>
+</section>

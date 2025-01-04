@@ -54,10 +54,10 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'analytics',
+    path: 'general',
     loadChildren: () =>
-      import('./pages/analytics/analytics.module').then(
-        (m) => m.AnalyticsModule
+      import('./pages/general/general.module').then(
+        (m) => m.GeneralModule
       ),
   },
   {

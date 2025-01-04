@@ -7,10 +7,8 @@ import { HighlightDirective } from './partial/directives/highlight.directive';
 import { TooltipDirective } from './partial/directives/tooltip.directive';
 import { DateFormatPipe } from './partial/pipes/date-format.pipe';
 import { CurrencyFormatPipe } from './partial/pipes/currency-format.pipe';
-import { SearchFilterPipe } from './partial/pipes/search-filter.pipe';
-import { ArticleComponent } from './pages/article/article.component';
-import { KnowledgeBasedComponent } from './pages/knowledge-based/knowledge-based.component';
-import { KnowledgeBasedModule } from './pages/knowledge-based/knowledge-based.module';
+import { SearchFilterPipe } from './partial/pipes/search-filter.pipe'; 
+import { PartialModule } from "./partial/partial.module";
 
 @NgModule({
   declarations: [
@@ -19,13 +17,13 @@ import { KnowledgeBasedModule } from './pages/knowledge-based/knowledge-based.mo
     TooltipDirective,
     DateFormatPipe,
     CurrencyFormatPipe,
-    SearchFilterPipe,
-    ArticleComponent,
+    SearchFilterPipe, 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-  ],
+    AppRoutingModule,
+    PartialModule
+],
   providers: [],
   bootstrap: [AppComponent]
 })

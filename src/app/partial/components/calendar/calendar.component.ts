@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventData } from '../../../interfaces/event.interface';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DayName } from '../../../interfaces/day.interface';
 
 @Component({
   selector: 'app-calendar',
@@ -14,7 +15,15 @@ export class CalendarComponent {
   currentView = 'Year';
   currentDate: Date = new Date();
 
-  dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  dayNames: DayName[] = [
+    { name: 'Sunday', shortName: 'Sun' },
+    { name: 'Monday', shortName: 'Mon' },
+    { name: 'Tuesday', shortName: 'Tue' },
+    { name: 'Wednesday', shortName: 'Wed' },
+    { name: 'Thursday', shortName: 'Thu' },
+    { name: 'Friday', shortName: 'Fri' },
+    { name: 'Saturday', shortName: 'Sat' },
+  ];
   months = [
     'January',
     'February',
@@ -42,9 +51,42 @@ export class CalendarComponent {
   ];
 
   get currentViewLabel(): string {
+    const startWeek = new Date(this.currentDate); // Copy current date
+    startWeek.setDate(startWeek.getDate() - 7); // Subtract 7 days
+
+    const endWeek = new Date(this.currentDate); // Keep the current date
+
+    // Format date as 'ddd dd MMMM yyyy'
+    const formatDate = (date: Date) => {
+      return date.toLocaleDateString('en-GB', {
+        weekday: 'short', // ddd - Short day name
+        day: '2-digit', // dd - Day number
+        month: 'long', // MMMM - Full month name
+        year: 'numeric', // yyyy - Full year
+      });
+    };
+
+    const startWeekStr = formatDate(startWeek);
+    const endWeekStr = formatDate(endWeek);
+
     return this.currentView === 'Year'
       ? this.currentDate.getFullYear().toString()
+      : this.currentView === 'Week'
+      ? `${startWeekStr} - ${endWeekStr}`
       : `${this.currentDate.toDateString()}`;
+  }
+
+  reformatDate(date: any) {
+    const formatDate = (date: Date) => {
+      return date.toLocaleDateString('en-GB', {
+        weekday: 'short', // ddd - Short day name
+        day: '2-digit', // dd - Day number
+        month: 'long', // MMMM - Full month name
+        year: 'numeric', // yyyy - Full year
+      });
+    };
+
+    return formatDate(new Date(date));
   }
 
   setView(view: string) {
@@ -69,14 +111,23 @@ export class CalendarComponent {
     this.monthDays = this.getDaysInMonth(this.currentDate.getMonth());
   }
 
-  getDaysInMonth(month: number): { date: number }[] {
-    const date = new Date(this.currentDate.getFullYear(), month, 1);
+  getDaysInMonth(month: number): { date: number; month: number; day: Date }[] {
+    const year = this.currentDate.getFullYear(); // Get the current year
+    const date = new Date(year, month, 1); // Start at the 1st of the month
     const days = [];
+
+    // Loop through all days in the given month
     while (date.getMonth() === month) {
-      days.push({ date: date.getDate() });
-      date.setDate(date.getDate() + 1);
+      days.push({
+        date: date.getDate(), // Day of the month
+        month: month, // Current month
+        day: new Date(date), // Copy the full date object
+      });
+
+      date.setDate(date.getDate() + 1); // Move to the next day
     }
-    return days;
+
+    return days; // Return the array of days
   }
 
   getWeekStart(date: Date): Date {
@@ -119,5 +170,30 @@ export class CalendarComponent {
   isToday(date: Date): boolean {
     const today = new Date();
     return today.toDateString() === date.toDateString();
+  }
+
+  isMonthToday(day: Date): boolean {
+    const today = new Date(); // Get today's date
+
+    // Compare the given Date object with today's date
+    return (
+      day.getDate() === today.getDate() && // Day matches
+      day.getMonth() === today.getMonth() && // Month matches
+      day.getFullYear() === today.getFullYear() // Year matches
+    );
+  }
+
+  isTodayYear(day: number, month: number): boolean {
+    const today = new Date();
+    const todayYear = today.getFullYear();
+    const todayMonth = today.getMonth(); // 0-indexed (Jan = 0)
+    const todayDate = today.getDate();
+
+    // Replace 'currentYear' with your actual year or dynamically pass it
+    const currentYear = new Date().getFullYear();
+
+    return (
+      todayYear === currentYear && todayMonth === month && todayDate === day
+    );
   }
 }

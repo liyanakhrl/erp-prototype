@@ -13,7 +13,7 @@ export class TransactionTableComponent {
     Today: [
       {
         date: 'Today',
-        amount: '$7,600.00 USD',
+        amount: '$7,600.00',
         status: 'Paid',
         details: 'Reform',
         description: 'Website redesign',
@@ -21,7 +21,7 @@ export class TransactionTableComponent {
       },
       {
         date: 'Today',
-        amount: '$10,000.00 USD',
+        amount: '$10,000.00',
         status: 'Withdraw',
         details: 'Tom Cook',
         description: 'Salary',
@@ -29,7 +29,7 @@ export class TransactionTableComponent {
       },
       {
         date: 'Today',
-        amount: '$2,000.00 USD',
+        amount: '$2,000.00',
         status: 'Overdue',
         details: 'Tuple',
         description: 'Logo design',
@@ -39,7 +39,7 @@ export class TransactionTableComponent {
     Yesterday: [
       {
         date: 'Yesterday',
-        amount: '$14,000.00 USD',
+        amount: '$14,000.00',
         status: 'Paid',
         details: 'SavvyCal',
         description: 'Website redesign',

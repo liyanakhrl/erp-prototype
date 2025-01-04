@@ -38,9 +38,9 @@ import { GanttChartComponent } from './components/widgets/gantt-chart/gantt-char
 import { KanbanBoardComponent } from './components/widgets/kanban-board/kanban-board.component';
 import { TableMultiLineContentComponent } from './components/table-multi-line-content/table-multi-line-content.component';
 import { TransactionTableComponent } from './components/transaction-table/transaction-table.component';
-import { HeroSectionComponent } from './components/hero-section/hero-section.component';
-import { FeatureSectionComponent } from './components/feature-section/feature-section.component';
-import { CtaSectionComponent } from './components/cta-section/cta-section.component';
+import { HeroSectionComponent } from './hero-section/hero-section.component';
+import { FeatureSectionComponent } from './feature-section/feature-section.component';
+import { CtaSectionComponent } from './cta-section/cta-section.component';
 import { BentoGridComponent } from './components/bento-grid/bento-grid.component';
 import { PricingSectionComponent } from './components/pricing-section/pricing-section.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
@@ -51,6 +51,8 @@ import { BlogSectionComponent } from './components/blog-section/blog-section.com
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FormsModule } from '@angular/forms';
+import { HierachicalChartComponent } from './components/charts/hierachical-chart/hierachical-chart.component';
+import { MasonryComponent } from './components/masonry/masonry.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +105,8 @@ import { FormsModule } from '@angular/forms';
     BlogSectionComponent,
     ContactUsComponent,
     CalendarComponent,
+    HierachicalChartComponent,
+    MasonryComponent
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -156,6 +160,8 @@ import { FormsModule } from '@angular/forms';
     BlogSectionComponent,
     ContactUsComponent,
     CalendarComponent,
+    HierachicalChartComponent,
+    MasonryComponent
   ],
 })
 export class PartialModule {}

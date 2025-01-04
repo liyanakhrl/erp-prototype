@@ -1,0 +1,8 @@
+.masonry {
+  column-count: 3; /* Adjust number of columns */
+  column-gap: 1rem; /* Space between columns */
+  .masonry-item {
+    break-inside: avoid; /* Prevent items from breaking inside columns */
+    margin-bottom: 1rem; /* Add spacing between rows */
+  }
+}

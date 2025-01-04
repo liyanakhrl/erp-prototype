@@ -1,0 +1,9 @@
+li.active a {
+  color: #3b82f6; /* Blue text */
+  background-color: #ebf8ff; /* Light blue background */
+  border-radius: 0.375rem; /* Rounded corners */
+}
+
+li a:hover {
+  background-color: #ebf8ff;
+}

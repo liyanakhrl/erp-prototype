@@ -1,0 +1,69 @@
+<div class="container mx-auto">
+    <!-- Founder -->
+    <div class="flex flex-col items-center text-black mx-5">
+        <img [src]="founder.image" alt="Founder" class="w-36 h-36 rounded-full mb-2">
+        <h2 class="text-xl font-bold">{{ founder.role }}</h2>
+        <p class="text-sm">{{ founder.name }}</p>
+    </div>
+
+    <!-- Co-Founder -->
+    <div class="flex flex-col items-center text-black mx-5">
+        <img [src]="cofounder.image" alt="Co-Founder" class="w-36 h-36 rounded-full mb-2">
+        <h2 class="text-xl font-bold">{{ cofounder.role }}</h2>
+        <p class="text-sm">{{ cofounder.name }}</p>
+    </div>
+
+    <!-- Board of Directors -->
+    <div class="m-5 p-4 rounded-lg shadow mb-6 bg-slate-300">
+        <p class="text-m text-center mx-3 py-2">Head of Department</p>
+        <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mb-6 mx-10">
+            <div *ngFor="let bod of bods" class="flex flex-col items-center">
+                <img [src]="bod.image" alt="BOD" class="w-24 h-24 rounded-full mb-2">
+                <h3 class="text-md font-semibold text-center">{{ bod.role }}</h3>
+                <p class="text-sm text-center">{{ bod.name }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Departments -->
+    <div class="flex flex-wrap gap-6">
+        <div *ngFor="let dept of departments"
+            class="flex flex-col bg-gray-300 text-black p-4 rounded-lg shadow w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+            <h3 class="text-lg font-semibold">{{ dept.name }}</h3>
+            <div class="flex flex-col gap-4 mt-4">
+                <!-- Manager -->
+                <div class="flex flex-col items-center bg-white text-black p-4 rounded-lg shadow">
+                    <img [src]="dept.manager.image" alt="Manager" class="w-24 h-24 rounded-full mb-2">
+                    <h4 class="text-md font-semibold">{{ dept.manager.role }}</h4>
+                    <p class="text-sm text-center">{{ dept.manager.name }}</p>
+                </div>
+
+                <!-- Executives -->
+                <div class="flex flex-col gap-4 mt-4">
+                    <div *ngFor="let exec of dept.executives"
+                        class="flex items-center bg-gray-200 p-4 rounded-lg shadow w-full">
+                        <!-- Small Item -->
+                        <div class="flex-shrink-0 w-24 h-24">
+                            <img [src]="exec.image" alt="Executive" class="w-24 h-24 rounded-full mb-2">
+                        </div>
+                        <!-- Remaining Content -->
+                        <div class="flex-grow ml-4">
+                            <p class="text-m font-semibold text-black">{{ exec.name }}</p>
+                            <p class="text-xs text-gray-600">{{ exec.role }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Non-Executives -->
+                <div class="grid gap-4 grid-cols-2 mt-4 auto-rows-min">
+                    <div *ngFor="let nonExec of dept.nonExecutives"
+                        class="flex flex-col items-center bg-gray-500 p-4 rounded-lg shadow">
+                        <img [src]="nonExec.image" alt="Non-Executive" class="w-24 h-24 rounded-full mb-2">
+                        <p class="text-sm text-center text-shadow-lg">{{ nonExec.name }}</p>
+                        <p class="text-xs text-white text-center">{{ nonExec.role }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

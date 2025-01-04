@@ -8,51 +8,18 @@
     </div>
     <nav class="p-4">
       <ul>
-        <li class="mb-4">
-          <a routerLink="/dashboard" routerLinkActive="text-blue-500"
+        <li *ngFor="let item of menuItems" class="mb-4" [class.active]="activeItem === item.path"
+          (click)="setActive(item.path)">
+          <a [routerLink]="item.path" routerLinkActive="text-blue-500"
             class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <i class="fas fa-home"></i>
-            <span class="ml-2 lg:block hidden">Dashboard</span>
-          </a>
-        </li>
-        <li class="mb-4">
-          <a routerLink="/customers" routerLinkActive="text-blue-500"
-            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <i class="fas fa-users"></i>
-            <span class="ml-2 lg:block hidden">Customers</span>
-          </a>
-        </li>
-        <li class="mb-4">
-          <a routerLink="/orders" routerLinkActive="text-blue-500"
-            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <i class="fas fa-box"></i>
-            <span class="ml-2 lg:block hidden">Orders</span>
-          </a>
-        </li>
-        <li class="mb-4">
-          <a routerLink="/calendar" routerLinkActive="text-blue-500"
-            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <i class="fas fa-calendar-alt"></i>
-            <span class="ml-2 lg:block hidden">Calendar</span>
-          </a>
-        </li>
-        <li class="mb-4">
-          <a routerLink="reports" routerLinkActive="text-blue-500"
-            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <i class="fas fa-chart-line"></i>
-            <span class="ml-2 lg:block hidden">Reports</span>
-          </a>
-        </li> 
-        
-        <li class="mb-4">
-          <a routerLink="/knowledge-based" routerLinkActive="text-blue-500"
-            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <i class="fas fa-book"></i>
-            <span class="ml-2 lg:block hidden">Knowledge Based</span>
+            <i [class]="item.icon"></i>
+            <span class="ml-2 lg:block hidden">{{ item.label }}</span>
           </a>
         </li>
       </ul>
     </nav>
+
+
   </aside>
 
   <!-- Main Content -->
@@ -67,6 +34,7 @@
         <div class="flex flex-row w-full justify-between items-center">
           <h2 class="text-lg font-semibold text-gray-700"></h2>
           <nav class="flex space-x-4 text-gray-700">
+            <a routerLink="/general" class="p-4 hover:text-blue-500">General</a>
             <a href="#" class="p-4 hover:text-blue-500">Finance</a>
             <a href="#" class="p-4 hover:text-blue-500">HR</a>
             <a href="#" class="p-4 hover:text-blue-500">IT</a>
