@@ -1,0 +1,20 @@
+<nav class="bg-gray-50 p-2 rounded-lg shadow-md">
+    <ol class="flex flex-wrap items-center space-x-2 text-sm text-gray-700">
+      <li *ngFor="let breadcrumb of breadcrumbs; let last = last" class="flex items-center">
+        <!-- Display link for non-last breadcrumbs -->
+        <a *ngIf="breadcrumb.link && !last" [href]="breadcrumb.link" class="text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200">
+          {{ breadcrumb.label }}
+        </a>
+        
+        <!-- Display the breadcrumb text for the last breadcrumb or when there's no link -->
+        <span *ngIf="!breadcrumb.link || last" class="text-gray-600 font-semibold">
+          {{ breadcrumb.label }}
+        </span>
+        
+        <!-- Separator (only between items, not after the last one) -->
+        <span *ngIf="!last" class="text-gray-400">/</span>
+      </li>
+    </ol>
+  </nav>
+
+  

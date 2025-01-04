@@ -67,7 +67,10 @@
 
     <!-- Router Outlet -->
     <main class="flex-1 overflow-y-auto p-6">
-      <router-outlet></router-outlet>
+      <div [@routeAnimations]="prepareRoute(outlet)">
+        <router-outlet #outlet="outlet"></router-outlet>
+      </div>
+      <!-- <router-outlet></router-outlet> -->
     </main>
   </div>
 </div>

@@ -201,18 +201,25 @@ export class HierachicalChartComponent {
         },
       ],
       nonExecutives: [
-        {
-          name: 'Amer Arshad',
-          image:
-            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/OPS%20-%20KLS/Riko%20-%20Senior%20Front%20Desk.png',
-          role: 'Assistant Outlet Manager',
-        },
+        
         {
           name: 'Nurul Idayu',
           image:
             'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/OPS%20-%20KLS/Nurulidayu%20-%20Senior%20Front%20Desk.png',
           role: 'Senior Front Desk',
         },
+        {
+          name: 'Nur Amirah',
+          image:
+            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/OPS%20-%20TTDI/Amirah%20-%20Assistant%20Outlet%20Manager.png',
+          role: 'Assistant Outlet Manager',
+        },
+        {
+          name: 'Amer Arshad',
+          image:
+            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/OPS%20-%20KLS/Riko%20-%20Senior%20Front%20Desk.png',
+          role: 'Assistant Outlet Manager',
+        }, 
         {
           name: 'Afrina Batrisyia',
           image:

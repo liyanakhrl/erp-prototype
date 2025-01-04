@@ -1,11 +1,33 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  query,
+} from '@angular/animations';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
   styleUrl: './app.component.scss',
+  animations: [
+    trigger('routeAnimations', [
+      transition('DashboardPage => *', [
+        style({ transform: 'translateX(100%)' }),
+        animate('0.5s ease-in-out', style({ transform: 'translateX(0)' })),
+      ]),
+      transition('CalendarPage => *', [
+        style({ opacity: 0 }),
+        animate('0.5s', style({ opacity: 1 })),
+      ]),
+      transition('* <=> *', [
+        style({ opacity: 0 }),
+        animate('0.5s', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class AppComponent {
   title = 'WORQ ERP';
@@ -20,7 +42,7 @@ export class AppComponent {
     { label: 'Calendar', path: '/calendar', icon: 'fas fa-calendar-alt' },
     { label: 'Reports', path: '/reports', icon: 'fas fa-chart-line' },
     { label: 'Knowledge Based', path: '/knowledge-based', icon: 'fas fa-book' },
-    { label: 'Wall', path: '/general/wall', icon: 'fas fa-book' },
+    { label: 'Recognition', path: '/general/wall', icon: 'fa fa-star' },
   ];
   constructor(private router: Router) {
     this.activeItem = this.router.url;
@@ -35,6 +57,15 @@ export class AppComponent {
   setActive(path: string) {
     this.activeItem = path;
   }
+
+  prepareRoute(outlet: any) {
+    return (
+      outlet &&
+      outlet.activatedRouteData &&
+      outlet.activatedRouteData['animation']
+    );
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.checkScreenSize();

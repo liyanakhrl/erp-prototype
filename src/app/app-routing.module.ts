@@ -8,36 +8,43 @@ const routes: Routes = [
       import('./pages/customers/customers.module').then(
         (m) => m.CustomersModule
       ),
+    data: { animation: 'CustomerPage' },
   },
   {
     path: 'orders',
     loadChildren: () =>
       import('./pages/orders/orders.module').then((m) => m.OrdersModule),
+    data: { animation: 'OrderPage' },
   }, // Lazy-loaded routes for Pages
   {
     path: 'forms',
     loadChildren: () =>
       import('./pages/forms/forms.module').then((m) => m.FormsModule),
+    data: { animation: 'FormPage' },
   },
   {
     path: 'workflow',
     loadChildren: () =>
       import('./pages/workflow/workflow.module').then((m) => m.WorkflowModule),
+    data: { animation: 'WorkflowPage' },
   },
   {
     path: 'calendar',
     loadChildren: () =>
       import('./pages/calendar/calendar.module').then((m) => m.CalendarModule),
+    data: { animation: 'CalendarPage' },
   },
   {
     path: 'media',
     loadChildren: () =>
       import('./pages/media/media.module').then((m) => m.MediaModule),
+    data: { animation: 'MediaPage' },
   },
   {
     path: 'reports',
     loadChildren: () =>
       import('./pages/reports/reports.module').then((m) => m.ReportsModule),
+    data: { animation: 'ReportPage' },
   },
   {
     path: 'integrations',
@@ -45,6 +52,7 @@ const routes: Routes = [
       import('./pages/integrations/integrations.module').then(
         (m) => m.IntegrationsModule
       ),
+    data: { animation: 'IntegrationPage' },
   },
   {
     path: 'analytics',
@@ -52,13 +60,13 @@ const routes: Routes = [
       import('./pages/analytics/analytics.module').then(
         (m) => m.AnalyticsModule
       ),
+    data: { animation: 'AnalyticsPage' },
   },
   {
     path: 'general',
     loadChildren: () =>
-      import('./pages/general/general.module').then(
-        (m) => m.GeneralModule
-      ),
+      import('./pages/general/general.module').then((m) => m.GeneralModule),
+    data: { animation: 'GeneralPage' },
   },
   {
     path: 'knowledge-based',
@@ -66,6 +74,7 @@ const routes: Routes = [
       import('./pages/knowledge-based/knowledge-based.module').then(
         (m) => m.KnowledgeBasedModule
       ),
+    data: { animation: 'KnowledgePage' },
   },
   {
     path: 'dashboard',
@@ -73,6 +82,7 @@ const routes: Routes = [
       import('./pages/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
+    data: { animation: 'DashboardPage' },
   },
   { path: '**', redirectTo: 'dashboard' },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },

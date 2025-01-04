@@ -1,51 +1,14 @@
 <div class="masonry">
-    <!-- Card 1 -->
-    <div class="masonry-item bg-orange-500 text-white p-4 rounded-lg shadow-md">
-      <h3 class="text-sm font-bold">CUSTOMER & COMMUNITY OBSESSED (FRIENDLY & HELPFUL)</h3>
-      <div class="bg-yellow-50 text-black p-4 mt-2 rounded-lg shadow-inner">
-        <p class="italic">Dear Fitri,</p>
-        <p>Thank you for your hard work during the network migration at Worq Bangsar.</p>
-        <p class="text-right mt-4 text-sm">From Syamil</p>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="masonry-item bg-orange-500 text-white p-4 rounded-lg shadow-md">
-      <h3 class="text-sm font-bold">CUSTOMER & COMMUNITY OBSESSED (FRIENDLY & HELPFUL)</h3>
-      <div class="bg-yellow-50 text-black p-4 mt-2 rounded-lg shadow-inner">
-        <p class="italic">Dear Fitri,</p>
-        <p>Hey Fitri, thank you so much for assisting the community team with our event sound system and going beyond to help ensure the sound system is working well during events. On a personal note, you have also been helpful to troubleshoot my laptop whenever I'm unable to solve it on my own.</p>
-        <p class="text-right mt-4 text-sm">From Cam</p>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="masonry-item bg-orange-500 text-white p-4 rounded-lg shadow-md">
-      <h3 class="text-sm font-bold">ACCOUNTABILITY & OWNERSHIP (OWNERSHIP & RESPECT)</h3>
-      <div class="bg-yellow-50 text-black p-4 mt-2 rounded-lg shadow-inner">
-        <p class="italic">Dear Michelle,</p>
-        <p>Michelle, thank you for consistently showcasing your incredible skills and dedication! Your presence at the space brings such a sense of confidence and reliability that we never have to worry about anything.</p>
-        <p class="text-right mt-4 text-sm">From Tharsha</p>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="masonry-item bg-orange-500 text-white p-4 rounded-lg shadow-md">
-      <h3 class="text-sm font-bold">CUSTOMER & COMMUNITY OBSESSED (FRIENDLY & HELPFUL)</h3>
-      <div class="bg-yellow-50 text-black p-4 mt-2 rounded-lg shadow-inner">
-        <p class="italic">Dear William,</p>
-        <p>Thanks for all the effort you’ve been putting in. It really shows! You’re doing an awesome job, so keep it up. You’ve got this!</p>
-        <p class="text-right mt-4 text-sm">From Michelle</p>
-      </div>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="masonry-item bg-orange-500 text-white p-4 rounded-lg shadow-md">
-      <h3 class="text-sm font-bold">MINDSET (AGILE & SCALABLE)</h3>
-      <div class="bg-yellow-50 text-black p-4 mt-2 rounded-lg shadow-inner">
-        <p class="italic">Dear Zamrina,</p>
-        <p>Zam, I am very happy that you joined Worq. I have a new Worq bestie. Keep up with your current enthusiasm to learn everything. I am very proud of you!</p>
-        <p class="text-right mt-4 text-sm">From Hafizah</p>
-      </div>
+  <div 
+    *ngFor="let card of cards; let i = index" 
+    class="masonry-item"
+    [ngClass]="{'stretch': i === cards.length - 1}" 
+  >
+    <h3 class="text-sm font-bold p-2 text-center">{{ card.title }}</h3>
+    <div class="content">
+      <p class="italic">Dear {{ card.receiver }},</p>
+      <p>{{ card.message }}</p>
+      <p class="text-right mt-4 text-sm">From {{ card.sender }}</p>
     </div>
   </div>
+</div>

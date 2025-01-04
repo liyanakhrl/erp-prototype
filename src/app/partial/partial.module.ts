@@ -106,7 +106,7 @@ import { MasonryComponent } from './components/masonry/masonry.component';
     ContactUsComponent,
     CalendarComponent,
     HierachicalChartComponent,
-    MasonryComponent
+    MasonryComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -161,7 +161,8 @@ import { MasonryComponent } from './components/masonry/masonry.component';
     ContactUsComponent,
     CalendarComponent,
     HierachicalChartComponent,
-    MasonryComponent
+    MasonryComponent,
+    BreadcrumbsComponent,
   ],
 })
 export class PartialModule {}
