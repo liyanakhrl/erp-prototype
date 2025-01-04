@@ -1,105 +1,82 @@
-<section class="flex flex-col lg:flex-row h-screen bg-white">
-  <!-- Sidebar - Calendar Views -->
-  <aside class="w-full lg:w-1/5 p-6 border-b lg:border-r lg:border-b-0 border-gray-200">
-    <h2 class="text-lg font-semibold mb-4">Calendar View</h2>
-    <ul class="space-y-4 flex lg:block overflow-x-auto whitespace-nowrap">
-      <li (click)="changeView('year')" [class.text-indigo-600]="currentView === 'year'"
-        class="cursor-pointer hover:text-indigo-600 font-medium px-4 py-2">Year View</li>
-      <li (click)="changeView('month')" [class.text-indigo-600]="currentView === 'month'"
-        class="cursor-pointer hover:text-indigo-600 font-medium px-4 py-2">Month View</li>
-      <li (click)="changeView('week')" [class.text-indigo-600]="currentView === 'week'"
-        class="cursor-pointer hover:text-indigo-600 font-medium px-4 py-2">Week View</li>
-      <li (click)="changeView('day')" [class.text-indigo-600]="currentView === 'day'"
-        class="cursor-pointer hover:text-indigo-600 font-medium px-4 py-2">Day View</li>
-    </ul>
-  </aside>
+<div class="p-4 space-y-6">
+  <!-- Navigator -->
+  <div class="flex items-center justify-between">
+    <button class="p-2 bg-gray-200 rounded hover:bg-gray-300" (click)="navigate(-1)">&lt;</button>
+    <h2 class="text-xl font-bold">{{ currentViewLabel }}</h2>
+    <button class="p-2 bg-gray-200 rounded hover:bg-gray-300" (click)="navigate(1)">&gt;</button>
+  </div>
 
-  <!-- Main Calendar Section -->
-  <div class="w-full lg:w-3/5 p-6">
-    <!-- Header -->
-    <div class="flex flex-col md:flex-row items-center justify-between mb-6 space-y-4 md:space-y-0">
-      <h2 class="text-2xl font-bold">{{ currentDate | date:'MMMM yyyy' }}</h2>
-      <div class="flex space-x-2">
-        <button (click)="goToToday()" class="px-4 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
-          Today
-        </button>
-        <select [(ngModel)]="currentView" (change)="changeView(currentView)"
-          class="px-4 py-2 bg-gray-100 rounded-md">
-          <option value="year">Year view</option>
-          <option value="month">Month view</option>
-          <option value="week">Week view</option>
-          <option value="day">Day view</option>
-        </select>
-        <button (click)="addEvent()" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500">
-          Add event
-        </button>
-      </div>
-    </div>
+  <!-- View Selector -->
+  <div class="flex space-x-2">
+    <button *ngFor="let view of views" (click)="setView(view)" class="p-2 rounded transition-all hover:bg-gray-300"
+      [class.bg-blue-500]="view === currentView" [class.text-white]="view === currentView">
+      {{ view }}
+    </button>
+  </div>
 
-    <!-- Calendar Grid -->
-    <div *ngIf="currentView === 'month'" class="grid grid-cols-7 gap-1 text-center text-sm text-gray-700">
-      <!-- Days of the Week -->
-      <div class="font-semibold">Mon</div>
-      <div class="font-semibold">Tue</div>
-      <div class="font-semibold">Wed</div>
-      <div class="font-semibold">Thu</div>
-      <div class="font-semibold">Fri</div>
-      <div class="font-semibold">Sat</div>
-      <div class="font-semibold">Sun</div>
-
-      <!-- Dates -->
-      <ng-container *ngFor="let day of calendarDays">
-        <div
-          *ngIf="day"
-          class="h-24 sm:h-20 p-2 border rounded-lg relative flex flex-col justify-between cursor-pointer"
-          [ngClass]="{
-            'bg-blue-50': isCurrentDay(day),
-            'bg-gray-50': !isCurrentDay(day),
-            'bg-green-50': isUpcomingDay(day)
-          }">
-          <span class="absolute top-2 left-2 text-xs font-semibold text-gray-500">{{ day.date | date: 'd' }}</span>
-          <p class="text-xs md:text-sm font-medium truncate">{{ day.title }}</p>
-          <p class="text-xs text-gray-500">{{ day.time }}</p>
+  <!-- Year View -->
+  <div *ngIf="currentView === 'Year'" class="grid grid-cols-4 gap-4">
+    <div *ngFor="let month of months; let i = index" class="border p-2 rounded shadow-sm">
+      <h3 class="text-center font-medium mb-2">{{ month }}</h3>
+      <div class="grid grid-cols-7 gap-1">
+        <div *ngFor="let dayName of dayNames" class="p-2">{{ dayName }}</div>
+        <div *ngFor="let day of getDaysInMonth(i)" class="p-1 text-center border rounded">
+          {{ day.date }}
         </div>
-      </ng-container>
-    </div>
-
-    <!-- Placeholder for Other Views -->
-    <div *ngIf="currentView !== 'month'" class="text-center text-gray-600 py-12">
-      {{ currentView | uppercase }} View Coming Soon...
+      </div>
     </div>
   </div>
 
-  <!-- RHS - Event List -->
-  <aside class="w-full lg:w-1/5 p-6 border-t lg:border-l lg:border-t-0 border-gray-200">
-    <!-- Upcoming Events -->
-    <h2 class="text-lg font-semibold mb-4">Upcoming Events</h2>
-    <ul class="space-y-4">
-      <li *ngFor="let event of upcomingEvents">
-        <p class="text-sm text-gray-500">{{ event.date | date: 'EEE, MMM d' }}</p>
-        <h4 class="text-md font-semibold">{{ event.title }}</h4>
-        <p class="text-sm text-gray-500">{{ event.time }}</p>
-      </li>
-    </ul>
+  <!-- Month View -->
+  <div *ngIf="currentView === 'Month'" class="border rounded shadow-sm">
+    <!-- Day Names -->
+    <div class="grid grid-cols-7 text-center font-bold py-2 bg-gray-100">
+      <div *ngFor="let dayName of dayNames" class="p-2">{{ dayName }}</div>
+    </div>
+    <!-- Dates -->
+    <div class="grid grid-cols-7 gap-1">
+      <div *ngFor="let day of monthDays" class="p-4 text-center border rounded shadow-sm relative">
+        <span class="text-xs text-gray-500">{{ day.date }}</span>
+        <div *ngFor="let event of getEventsForDay(day.date)" class="mt-2 p-1 text-xs bg-blue-100 text-blue-700 rounded shadow-sm">
+          {{ event.title }}
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Past Events -->
-    <h2 class="text-lg font-semibold mt-8 mb-4">Past Events</h2>
-    <ul class="space-y-4">
-      <li *ngFor="let event of pastEvents">
-        <p class="text-sm text-gray-500">{{ event.date | date: 'EEE, MMM d' }}</p>
-        <h4 class="text-md font-semibold">{{ event.title }}</h4>
-        <p class="text-sm text-gray-500">{{ event.time }}</p>
-      </li>
-    </ul>
+  <!-- Week View -->
+  <div *ngIf="currentView === 'Week'" class="overflow-y-auto h-100 border rounded shadow-sm">
+    <div class="grid grid-cols-7 gap-2">
+      <div *ngFor="let day of weekDays" class="border-r">
+        <div class="text-center font-bold py-2" [class.text-blue-500]="isToday(day.date)"
+          [class.bg-blue-100]="isToday(day.date)">
+          {{ day.date | date:'EEE d' }}
+        </div>
+        <div class="relative">
+          <div *ngFor="let hour of dayHours" class="h-16 border-b relative">
+            <span class="absolute text-xs top-1">{{ hour }}:00</span>
+            <div *ngFor="let event of getEventsForDayAndHour(day.date, hour)"
+              class="absolute left-1 w-11/12 rounded-lg text-xs p-2 bg-blue-100 border shadow-sm"
+              [style.height.px]="event.duration * 16">
+              <strong>{{ event.title }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Current Events -->
-    <h2 class="text-lg font-semibold mt-8 mb-4">Today's Events</h2>
-    <ul class="space-y-4">
-      <li *ngFor="let event of currentEvents">
-        <p class="text-sm text-gray-500">{{ event.date | date: 'EEE, MMM d' }}</p>
-        <h4 class="text-md font-semibold">{{ event.title }}</h4>
-        <p class="text-sm text-gray-500">{{ event.time }}</p>
-      </li>
-    </ul>
-  </aside>
-</section>
+  <!-- Day View -->
+  <div *ngIf="currentView === 'Day'" class="overflow-y-auto h-100 border rounded shadow-sm">
+    <div class="relative">
+      <div *ngFor="let hour of dayHours" class="h-16 border-b relative">
+        <span class="absolute text-xs top-1">{{ hour }}:00</span>
+        <div *ngFor="let event of getEventsForDayAndHour(currentDate, hour)"
+          class="absolute left-1 w-11/12 rounded-lg text-xs p-2 bg-blue-100 border shadow-sm"
+          [style.height.px]="event.duration * 16">
+          <strong>{{ event.title }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
