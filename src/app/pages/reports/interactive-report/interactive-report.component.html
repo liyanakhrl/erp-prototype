@@ -1,1 +1,78 @@
-<p>interactive-report works!</p>
+<!-- Interactive Report -->
+<div class="p-6 max-w-6xl mx-auto bg-white rounded-lg shadow-lg">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-gray-800">Interactive Report</h2>
+        <button class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-300">
+            Export Report
+        </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-4 mb-6">
+        <!-- Date Filter -->
+        <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Date Range</label>
+            <input type="date" class="p-2 border rounded-md focus:ring-indigo-400 focus:border-indigo-400">
+            <input type="date" class="p-2 border rounded-md focus:ring-indigo-400 focus:border-indigo-400 ml-2">
+        </div>
+        <!-- Status Filter -->
+        <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Status</label>
+            <select class="p-2 border rounded-md focus:ring-indigo-400 focus:border-indigo-400">
+                <option>All</option>
+                <option>Active</option>
+                <option>Inactive</option>
+            </select>
+        </div>
+        <!-- Search -->
+        <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Search</label>
+            <input type="text" placeholder="Search..." class="p-2 border rounded-md focus:ring-indigo-400 focus:border-indigo-400">
+        </div>
+    </div>
+
+    <!-- Report Table -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+            <!-- Table Head -->
+            <thead class="bg-gray-100 text-gray-600 uppercase text-sm font-semibold">
+                <tr>
+                    <th class="p-3 border border-gray-300">ID</th>
+                    <th class="p-3 border border-gray-300">Name</th>
+                    <th class="p-3 border border-gray-300">Email</th>
+                    <th class="p-3 border border-gray-300">Status</th>
+                    <th class="p-3 border border-gray-300">Date</th>
+                    <th class="p-3 border border-gray-300">Actions</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody class="text-gray-700 text-sm">
+                <tr *ngFor="let report of reports" class="hover:bg-gray-50">
+                    <td class="p-3 border border-gray-300">{{ report.id }}</td>
+                    <td class="p-3 border border-gray-300">{{ report.name }}</td>
+                    <td class="p-3 border border-gray-300">{{ report.email }}</td>
+                    <td class="p-3 border border-gray-300">
+                        <span [ngClass]="{'text-green-500': report.status === 'Active', 'text-red-500': report.status === 'Inactive'}">
+                            {{ report.status }}
+                        </span>
+                    </td>
+                    <td class="p-3 border border-gray-300">{{ report.date | date: 'shortDate' }}</td>
+                    <td class="p-3 border border-gray-300">
+                        <button class="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-sm mr-2">Edit</button>
+                        <button class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-md shadow-sm">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-between items-center mt-6">
+        <p class="text-gray-500 text-sm">Showing 1-10 of 50</p>
+        <div class="flex space-x-2">
+            <button class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">Prev</button>
+            <button class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">Next</button>
+        </div>
+    </div>
+</div>

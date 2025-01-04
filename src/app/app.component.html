@@ -1,28 +1,46 @@
 <div class="flex h-screen bg-gray-100">
 
   <!-- Sidebar -->
-  <aside class="w-64 bg-white shadow-md">
+  <aside class="bg-white shadow-md transition-transform transform lg:translate-x-0 -translate-x-full lg:w-64 w-20"
+    [ngClass]="{'-translate-x-full': isSidebarCollapsed}">
     <div class="h-16 flex items-center justify-center border-b">
-      <h1 class="text-xl font-bold text-gray-700">My App</h1>
+      <h1 class="text-xl font-bold text-gray-700 lg:block hidden">{{ title }}</h1>
     </div>
     <nav class="p-4">
       <ul>
         <li class="mb-4">
           <a routerLink="/dashboard" routerLinkActive="text-blue-500"
             class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <span class="mr-2"><i class="fas fa-home"></i></span> Dashboard
+            <i class="fas fa-home"></i>
+            <span class="ml-2 lg:block hidden">Dashboard</span>
           </a>
         </li>
         <li class="mb-4">
           <a routerLink="/customers" routerLinkActive="text-blue-500"
             class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <span class="mr-2"><i class="fas fa-users"></i></span> Customers
+            <i class="fas fa-users"></i>
+            <span class="ml-2 lg:block hidden">Customers</span>
           </a>
         </li>
         <li class="mb-4">
           <a routerLink="/orders" routerLinkActive="text-blue-500"
             class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <span class="mr-2"><i class="fas fa-box"></i></span> Orders
+            <i class="fas fa-box"></i>
+            <span class="ml-2 lg:block hidden">Orders</span>
+          </a>
+        </li>
+        <li class="mb-4">
+          <a routerLink="/calendar" routerLinkActive="text-blue-500"
+            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
+            <i class="fas fa-calendar-alt"></i>
+            <span class="ml-2 lg:block hidden">Calendar</span>
+          </a>
+        </li>
+        <li class="mb-4">
+          <a routerLink="reports" routerLinkActive="text-blue-500"
+            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
+            <i class="fas fa-chart-line"></i>
+            <span class="ml-2 lg:block hidden">Reports</span>
           </a>
         </li>
       </ul>
@@ -32,27 +50,44 @@
   <!-- Main Content -->
   <div class="flex flex-col flex-1 overflow-hidden">
     <!-- Header -->
-    <header class="flex items-center justify-between h-16 px-6 bg-white border-b shadow">
-      <div>
-        <h2 class="text-lg font-semibold text-gray-700">{{ title }}</h2>
-      </div>
-      <div class="flex items-center space-x-4">
-        <!-- Notifications Icon -->
-        <button class="relative focus:outline-none">
-          <i class="fas fa-bell text-gray-600"></i>
-          <span
-            class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">3</span>
-        </button>
 
-        <!-- User Avatar -->
-        <div class="relative">
-          <button class="flex items-center focus:outline-none">
-            <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/40" alt="User Avatar" />
-            <span class="ml-2 text-sm font-medium text-gray-700">Admin</span>
+    <header class="flex flex-col">
+      <div class="flex items-center justify-between h-16 px-6 bg-white border-b shadow">
+        <button class="lg:hidden p-2" (click)="toggleSidebar()">
+          <i class="fas fa-bars text-gray-700"></i>
+        </button>
+        <div class="flex flex-row w-full justify-between items-center">
+          <h2 class="text-lg font-semibold text-gray-700"></h2>
+          <nav class="flex space-x-4 text-gray-700">
+            <a href="#" class="p-4 hover:text-blue-500">Finance</a>
+            <a href="#" class="p-4 hover:text-blue-500">HR</a>
+            <a href="#" class="p-4 hover:text-blue-500">IT</a>
+            <a href="#" class="p-4 hover:text-blue-500">Operations</a>
+            <a href="#" class="p-4 hover:text-blue-500">Marketing</a>
+            <a href="#" class="p-4 hover:text-blue-500">Sales</a>
+          </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+          <!-- Notifications Icon -->
+          <button class="relative focus:outline-none">
+            <i class="fas fa-bell text-gray-600"></i>
+            <span
+              class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">3</span>
           </button>
+
+          <!-- User Avatar -->
+          <div class="relative">
+            <button class="flex items-center focus:outline-none">
+              <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/40" alt="User Avatar" />
+              <span class="ml-2 text-sm font-medium text-gray-700 lg:block hidden">Admin</span>
+            </button>
+          </div>
         </div>
       </div>
+
     </header>
+
+
 
     <!-- Router Outlet -->
     <main class="flex-1 overflow-y-auto p-6">

@@ -1,0 +1,24 @@
+<div class="overflow-x-auto p-8 bg-gray-100">
+    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+      <thead class="bg-gray-200 text-gray-600 uppercase text-sm font-semibold">
+        <tr>
+          <th class="px-6 py-4 text-left">Avatar</th>
+          <th class="px-6 py-4 text-left">Name</th>
+          <th class="px-6 py-4 text-left">Description</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700">
+        <tr *ngFor="let person of people" class="border-t">
+          <td class="px-6 py-4">
+            <img [src]="person.avatar" alt="Avatar" class="w-10 h-10 rounded-full">
+          </td>
+          <td class="px-6 py-4 font-semibold">{{ person.name }}</td>
+          <td class="px-6 py-4">
+            <p>{{ person.role }}</p>
+            <p class="text-sm text-gray-500">{{ person.description }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

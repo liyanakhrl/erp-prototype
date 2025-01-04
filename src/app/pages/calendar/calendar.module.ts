@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CalendarRoutingModule } from './calendar-routing.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarDayComponent } from './calendar-day/calendar-day.component';
+import { PartialModule } from '../../partial/partial.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { CalendarDayComponent } from './calendar-day/calendar-day.component';
   ],
   imports: [
     CommonModule,
-    CalendarRoutingModule
+    CalendarRoutingModule,
+    PartialModule
   ]
 })
 export class CalendarModule { }

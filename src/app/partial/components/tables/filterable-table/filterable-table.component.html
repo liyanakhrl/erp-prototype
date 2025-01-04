@@ -1,1 +1,78 @@
-<p>filterable-table works!</p>
+<!-- Filterable Table -->
+<div class="p-6 bg-white rounded-lg shadow-lg">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-gray-800">Filterable Table</h2>
+        <button
+            class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-300">
+            Export Data
+        </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-4 mb-6">
+        <!-- Search Filter -->
+        <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Search</label>
+            <input type="text" placeholder="Search..."
+                class="p-2 border rounded-md focus:ring-indigo-400 focus:border-indigo-400">
+            <!-- <input type="text" [(ngModel)]="searchQuery" placeholder="Search..."
+                class="p-2 border rounded-md focus:ring-indigo-400 focus:border-indigo-400"> -->
+        </div>
+
+        <!-- Status Filter -->
+        <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Status</label>
+            <!-- <select 
+            [(ngModel)]="statusFilter"
+                class="p-2 border rounded-md focus:ring-indigo-400 focus:border-indigo-400">
+                <option value="">All</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select> -->
+            <select class="p-2 border rounded-md focus:ring-indigo-400 focus:border-indigo-400">
+                <option value="">All</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+            <!-- Table Head -->
+            <thead class="bg-gray-100 text-gray-600 uppercase text-sm font-semibold">
+                <tr>
+                    <th class="p-3 border border-gray-300">ID</th>
+                    <th class="p-3 border border-gray-300">Name</th>
+                    <th class="p-3 border border-gray-300">Email</th>
+                    <th class="p-3 border border-gray-300">Status</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody class="text-gray-700 text-sm">
+                <tr *ngFor="let item of filteredData()" class="hover:bg-gray-50">
+                    <td class="p-3 border border-gray-300">{{ item.id }}</td>
+                    <td class="p-3 border border-gray-300">{{ item.name }}</td>
+                    <td class="p-3 border border-gray-300">{{ item.email }}</td>
+                    <td class="p-3 border border-gray-300">
+                        <span
+                            [ngClass]="{'text-green-500': item.status === 'Active', 'text-red-500': item.status === 'Inactive'}">
+                            {{ item.status }}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-between items-center mt-6">
+        <p class="text-gray-500 text-sm">Showing 1-10 of 50</p>
+        <div class="flex space-x-2">
+            <button class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">Prev</button>
+            <button class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">Next</button>
+        </div>
+    </div>
+</div>
