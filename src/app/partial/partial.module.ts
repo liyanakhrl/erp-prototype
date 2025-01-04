@@ -43,6 +43,14 @@ import { FeatureSectionComponent } from './components/feature-section/feature-se
 import { CtaSectionComponent } from './components/cta-section/cta-section.component';
 import { BentoGridComponent } from './components/bento-grid/bento-grid.component';
 import { PricingSectionComponent } from './components/pricing-section/pricing-section.component';
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { StatsTimelineComponent } from './components/stats-timeline/stats-timeline.component';
+import { TestimonialsComponent } from './components/testimonials/testimonials.component';
+import { BlogSectionComponent } from './components/blog-section/blog-section.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -68,7 +76,7 @@ import { PricingSectionComponent } from './components/pricing-section/pricing-se
     FooterComponent,
     HeaderComponent,
     SidePanelComponent,
-    ImageGalleryComponent, 
+    ImageGalleryComponent,
     VideoPlayerComponent,
     BreadcrumbsComponent,
     SideNavComponent,
@@ -88,10 +96,15 @@ import { PricingSectionComponent } from './components/pricing-section/pricing-se
     CtaSectionComponent,
     BentoGridComponent,
     PricingSectionComponent,
-
-    
+    NewsletterComponent,
+    StatsComponent,
+    StatsTimelineComponent,
+    TestimonialsComponent,
+    BlogSectionComponent,
+    ContactUsComponent,
+    CalendarComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   exports: [
     IconButtonComponent,
     FabComponent,
@@ -115,7 +128,7 @@ import { PricingSectionComponent } from './components/pricing-section/pricing-se
     FooterComponent,
     HeaderComponent,
     SidePanelComponent,
-    ImageGalleryComponent, 
+    ImageGalleryComponent,
     VideoPlayerComponent,
     BreadcrumbsComponent,
     SideNavComponent,
@@ -135,7 +148,14 @@ import { PricingSectionComponent } from './components/pricing-section/pricing-se
     CtaSectionComponent,
     BentoGridComponent,
     PricingSectionComponent,
-    HeaderComponent
+    HeaderComponent,
+    NewsletterComponent,
+    StatsComponent,
+    StatsTimelineComponent,
+    TestimonialsComponent,
+    BlogSectionComponent,
+    ContactUsComponent,
+    CalendarComponent,
   ],
 })
 export class PartialModule {}

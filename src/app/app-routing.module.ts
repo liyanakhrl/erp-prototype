@@ -54,6 +54,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'analytics',
+    loadChildren: () =>
+      import('./pages/analytics/analytics.module').then(
+        (m) => m.AnalyticsModule
+      ),
+  },
+  {
+    path: 'knowledge-based',
+    loadChildren: () =>
+      import('./pages/knowledge-based/knowledge-based.module').then(
+        (m) => m.KnowledgeBasedModule
+      ),
+  },
+  {
     path: 'dashboard',
     loadChildren: () =>
       import('./pages/dashboard/dashboard.module').then(
