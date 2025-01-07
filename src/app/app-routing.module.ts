@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component'; // Ensure correct import
 
 const routes: Routes = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Default redirect to 'dashboard',
   {
     path: 'customers',
     loadChildren: () =>
@@ -17,7 +18,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/orders/orders.module').then((m) => m.OrdersModule),
     data: { animation: 'OrderPage' },
-  }, // Lazy-loaded routes for Pages
+  },
   {
     path: 'forms',
     loadChildren: () =>
@@ -81,17 +82,13 @@ const routes: Routes = [
   {
     path: 'gallery',
     loadChildren: () =>
-      import('./pages/gallery/gallery.module').then(
-        (m) => m.GalleryModule
-      ),
+      import('./pages/gallery/gallery.module').then((m) => m.GalleryModule),
     data: { animation: 'KnowledgePage' },
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('./pages/login/login.module').then(
-        (m) => m.LoginModule
-      ),
+      import('./pages/login/login.module').then((m) => m.LoginModule),
     data: { animation: 'DashboardPage' },
   },
   {
@@ -102,9 +99,9 @@ const routes: Routes = [
       ),
     data: { animation: 'DashboardPage' },
   },
-  { path: '**', component: PageNotFoundComponent }, // Wildcard route for 404 
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }, // Wildcard route for 404
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

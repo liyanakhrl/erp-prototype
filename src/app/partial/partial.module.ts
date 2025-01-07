@@ -78,6 +78,8 @@ import { SimpleAlertSingleComponent } from './components/overlay/simple-alert-si
 import { SimpleNotificationComponent } from './components/notification/simple-notification/simple-notification.component';
 import { ActionNotificationComponent } from './components/notification/action-notification/action-notification.component';
 import { AvatarNotificationComponent } from './components/notification/avatar-notification/avatar-notification.component';
+import { OverlappingInputComponent } from './components/forms/input/overlapping-input/overlapping-input.component';
+import { SharedInputComponent } from './components/forms/input/shared-input/shared-input.component';
 // import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
@@ -158,6 +160,8 @@ import { AvatarNotificationComponent } from './components/notification/avatar-no
     SimpleNotificationComponent,
     ActionNotificationComponent,
     AvatarNotificationComponent,
+    OverlappingInputComponent,
+    SharedInputComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
