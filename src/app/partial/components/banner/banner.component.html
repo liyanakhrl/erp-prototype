@@ -1,0 +1,5 @@
+<div *ngIf="bannerVisible" class="bg-gradient-to-r from-pink-400 to-indigo-400 text-white py-3 px-6 flex justify-between items-center fixed top-0 left-0 right-0 shadow-lg opacity-90 z-50">
+    <span>{{ currentMessage }}</span>
+    <button (click)="closeBanner()" class="text-white text-lg font-semibold">&times;</button>
+  </div>
+  

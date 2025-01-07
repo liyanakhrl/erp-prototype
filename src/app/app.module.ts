@@ -9,8 +9,7 @@ import { DateFormatPipe } from './partial/pipes/date-format.pipe';
 import { CurrencyFormatPipe } from './partial/pipes/currency-format.pipe';
 import { SearchFilterPipe } from './partial/pipes/search-filter.pipe'; 
 import { PartialModule } from "./partial/partial.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 @NgModule({
   declarations: [
     AppComponent,

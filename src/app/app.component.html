@@ -1,5 +1,5 @@
 <div class="flex h-screen bg-gray-100">
-
+  <app-banner></app-banner>
   <!-- Sidebar -->
   <aside class="bg-white shadow-md transition-transform transform lg:translate-x-0 -translate-x-full lg:w-64 w-20"
     [ngClass]="{'-translate-x-full': isSidebarCollapsed}">
@@ -25,43 +25,67 @@
   <!-- Main Content -->
   <div class="flex flex-col flex-1 overflow-hidden">
     <!-- Header -->
-
     <header class="flex flex-col">
       <div class="flex items-center justify-between h-16 px-6 bg-white border-b shadow">
         <button class="lg:hidden p-2" (click)="toggleSidebar()">
           <i class="fas fa-bars text-gray-700"></i>
         </button>
-        <div class="flex flex-row w-full justify-between items-center">
-          <h2 class="text-lg font-semibold text-gray-700"></h2>
+
+        <div class="flex flex-row w-full justify-between items-center p-4">
+          <h2 class="text-lg font-semibold text-gray-700">{{currentDepartment}}</h2>
+
+          <!-- Navigation Menu -->
           <nav class="flex space-x-4 text-gray-700">
-            <a routerLink="/general" class="p-4 hover:text-blue-500">General</a>
-            <a href="#" class="p-4 hover:text-blue-500">Finance</a>
-            <a href="#" class="p-4 hover:text-blue-500">HR</a>
-            <a href="#" class="p-4 hover:text-blue-500">IT</a>
-            <a href="#" class="p-4 hover:text-blue-500">Operations</a>
-            <a href="#" class="p-4 hover:text-blue-500">Marketing</a>
-            <a href="#" class="p-4 hover:text-blue-500">Sales</a>
+            <ng-container *ngFor="let item of departmentItems">
+              <div class="relative" (click)="toggleSubMenu(item)">
+                <a routerLink="{{ item.path }}" class="p-4 hover:text-blue-500"
+                  [class.text-blue-600]="activeItem === item.path">
+                  <i class="{{ item.icon }}"></i> {{ item.label }}
+                </a>
+                <!-- Flyout Menu (Submenu) -->
+                <div *ngIf="item.isOpen" class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg text-gray-700">
+                  <ul class="py-2" style="display: none;">
+                    <li *ngFor="let subItem of item.subMenu">
+                      <a routerLink="{{ subItem.path }}" class="block px-4 py-2 text-sm hover:text-blue-600"
+                        [class.text-blue-600]="activeItem === subItem.path" (click)="setActive(subItem.path)">
+                        <i class="{{ subItem.icon }}"></i> {{ subItem.label }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </ng-container>
           </nav>
         </div>
+
         <div class="flex items-center space-x-4">
-          <!-- Notifications Icon -->
           <button class="relative focus:outline-none">
             <i class="fas fa-bell text-gray-600"></i>
             <span
               class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">3</span>
           </button>
 
-          <!-- User Avatar -->
-          <div class="relative">
-            <button class="flex items-center focus:outline-none">
-              <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/40" alt="User Avatar" />
-              <span class="ml-2 text-sm font-medium text-gray-700 lg:block hidden">Admin</span>
-            </button>
+        </div>
+        <div class="relative">
+          <button class="flex items-center focus:outline-none">
+            <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/40" alt="User Avatar" />
+            <span class="ml-2 text-sm font-medium text-gray-700 lg:block hidden">Admin</span>
+          </button>
+
+          <div class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg text-gray-700 hidden group-hover:block">
+            <ul class="py-2">
+              <li><a href="#" class="block px-4 py-2 text-sm">Profile</a></li>
+              <li><a href="#" class="block px-4 py-2 text-sm">Settings</a></li>
+              <li><a href="#" class="block px-4 py-2 text-sm">Logout</a></li>
+            </ul>
           </div>
         </div>
+
+
       </div>
 
     </header>
+
 
 
 

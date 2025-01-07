@@ -20,7 +20,6 @@ import { LoadingSpinnerComponent } from './components/indicators/loading-spinner
 import { PresenceIndicatorComponent } from './components/indicators/presence-indicator/presence-indicator.component';
 import { BottomSheetComponent } from './components/layouts/bottom-sheet/bottom-sheet.component';
 import { FooterComponent } from './components/layouts/footer/footer.component';
-import { HeaderComponent } from './components/layouts/header/header.component';
 import { SidePanelComponent } from './components/layouts/side-panel/side-panel.component';
 import { ImageGalleryComponent } from './components/multimedia/image-gallery/image-gallery.component';
 import { MediaUploadComponent } from '../pages/media/media-upload/media-upload.component';
@@ -38,9 +37,9 @@ import { GanttChartComponent } from './components/widgets/gantt-chart/gantt-char
 import { KanbanBoardComponent } from './components/widgets/kanban-board/kanban-board.component';
 import { TableMultiLineContentComponent } from './components/table-multi-line-content/table-multi-line-content.component';
 import { TransactionTableComponent } from './components/transaction-table/transaction-table.component';
-import { HeroSectionComponent } from './hero-section/hero-section.component';
-import { FeatureSectionComponent } from './feature-section/feature-section.component';
-import { CtaSectionComponent } from './cta-section/cta-section.component';
+import { HeroSectionComponent } from './components/hero-section/hero-section.component';
+import { FeatureSectionComponent } from './components/feature-section/feature-section.component';
+import { CtaSectionComponent } from './components/cta-section/cta-section.component';
 import { BentoGridComponent } from './components/bento-grid/bento-grid.component';
 import { PricingSectionComponent } from './components/pricing-section/pricing-section.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
@@ -53,6 +52,33 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { FormsModule } from '@angular/forms';
 import { HierachicalChartComponent } from './components/charts/hierachical-chart/hierachical-chart.component';
 import { MasonryComponent } from './components/masonry/masonry.component';
+import { ContactSectionComponent } from './components/contact-section/contact-section.component';
+import { MembersGroupComponent } from './components/members-group/members-group.component';
+import { ContentComponent } from './components/content/content.component';
+import { LogoCloudComponent } from './components/logo-cloud/logo-cloud.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { FlyoutMenuComponent } from './components/flyout-menu/flyout-menu.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { HierachyChartComponent } from './chart/d3/hierachy-chart/hierachy-chart.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { MasonryGridComponent } from './components/masonry-grid/masonry-grid.component';
+import { SpeedDialComponent } from './components/speed-dial/speed-dial.component';
+import { PageHeadingComponent } from './components/page-heading/page-heading.component';
+import { CardHeadingComponent } from './components/cards/card-heading/card-heading.component'; 
+import { DataDisplayComponent } from './components/data-display/data-display.component'; 
+import { SummaryTableComponent } from './components/tables/summary-table/summary-table.component';
+import { CheckboxTableComponent } from './components/tables/checkbox-table/checkbox-table.component';
+import { MultilineTableComponent } from './components/tables/multiline-table/multiline-table.component';
+import { ResponsiveTableComponent } from './components/tables/responsive-table/responsive-table.component';
+import { GridListActionsComponent } from './components/grid-list/grid-list-actions/grid-list-actions.component';
+import { GridListContactComponent } from './components/grid-list/grid-list-contact/grid-list-contact.component';
+import { SimpleAlertComponent } from './components/overlay/simple-alert/simple-alert.component';
+import { SimpleAlertSingleComponent } from './components/overlay/simple-alert-single/simple-alert-single.component';
+import { SimpleNotificationComponent } from './components/notification/simple-notification/simple-notification.component';
+import { ActionNotificationComponent } from './components/notification/action-notification/action-notification.component';
+import { AvatarNotificationComponent } from './components/notification/avatar-notification/avatar-notification.component';
+// import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +102,6 @@ import { MasonryComponent } from './components/masonry/masonry.component';
     PresenceIndicatorComponent,
     BottomSheetComponent,
     FooterComponent,
-    HeaderComponent,
     SidePanelComponent,
     ImageGalleryComponent,
     VideoPlayerComponent,
@@ -107,6 +132,32 @@ import { MasonryComponent } from './components/masonry/masonry.component';
     CalendarComponent,
     HierachicalChartComponent,
     MasonryComponent,
+    ContactSectionComponent,
+    MembersGroupComponent,
+    ContentComponent,
+    LogoCloudComponent,
+    FaqComponent,
+    FlyoutMenuComponent,
+    BannerComponent,
+    FeedComponent,
+    HierachyChartComponent,
+    CarouselComponent,
+    MasonryGridComponent,
+    SpeedDialComponent,
+    PageHeadingComponent,
+    CardHeadingComponent,
+    DataDisplayComponent,
+    SummaryTableComponent,
+    CheckboxTableComponent,
+    MultilineTableComponent,
+    ResponsiveTableComponent,
+    GridListActionsComponent,
+    GridListContactComponent,
+    SimpleAlertComponent,
+    SimpleAlertSingleComponent,
+    SimpleNotificationComponent,
+    ActionNotificationComponent,
+    AvatarNotificationComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -130,7 +181,6 @@ import { MasonryComponent } from './components/masonry/masonry.component';
     PresenceIndicatorComponent,
     BottomSheetComponent,
     FooterComponent,
-    HeaderComponent,
     SidePanelComponent,
     ImageGalleryComponent,
     VideoPlayerComponent,
@@ -152,7 +202,6 @@ import { MasonryComponent } from './components/masonry/masonry.component';
     CtaSectionComponent,
     BentoGridComponent,
     PricingSectionComponent,
-    HeaderComponent,
     NewsletterComponent,
     StatsComponent,
     StatsTimelineComponent,
@@ -163,6 +212,31 @@ import { MasonryComponent } from './components/masonry/masonry.component';
     HierachicalChartComponent,
     MasonryComponent,
     BreadcrumbsComponent,
+    ContactSectionComponent,
+    MembersGroupComponent,
+    ContentComponent,
+    LogoCloudComponent,
+    FaqComponent,
+    FooterComponent,
+    BannerComponent,
+    FeedComponent,
+    HierachyChartComponent,
+    MasonryGridComponent,
+    SpeedDialComponent,
+    PageHeadingComponent,
+    CardHeadingComponent,
+    DataDisplayComponent,
+    SummaryTableComponent,
+    CheckboxTableComponent,
+    MultilineTableComponent,
+    ResponsiveTableComponent,
+    GridListActionsComponent,
+    GridListContactComponent,
+    SimpleAlertComponent,
+    SimpleAlertSingleComponent,
+    SimpleNotificationComponent,
+    ActionNotificationComponent,
+    AvatarNotificationComponent
   ],
 })
 export class PartialModule {}

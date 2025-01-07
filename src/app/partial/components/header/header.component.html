@@ -1,48 +1,18 @@
-<section class="relative bg-cover bg-center h-screen text-white" style="background-image: url('assets/bg-image.jpg');">
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
-  
-    <!-- Content -->
-    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">Support Center</h1>
-      <p class="text-lg md:text-xl max-w-2xl mb-8">
-        Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
-        Elit sunt amet fugiat veniam occaecat fugiat.
-      </p>
-  
-      <!-- Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-        <!-- Card 1 -->
-        <div class="bg-white bg-opacity-10 p-6 rounded-lg shadow-lg backdrop-blur-sm">
-          <div class="flex items-center mb-3">
-            <i class="fas fa-phone-alt mr-3 text-lg"></i>
-            <h3 class="text-lg font-semibold">Sales</h3>
-          </div>
-          <p class="text-sm">
-            Consectetur vel non. Rerum ut consequatur nobis unde. Enim est quo corrupti consequatur.
-          </p>
-        </div>
-        <!-- Card 2 -->
-        <div class="bg-white bg-opacity-10 p-6 rounded-lg shadow-lg backdrop-blur-sm">
-          <div class="flex items-center mb-3">
-            <i class="fas fa-tools mr-3 text-lg"></i>
-            <h3 class="text-lg font-semibold">Technical Support</h3>
-          </div>
-          <p class="text-sm">
-            Quod possimus sit modi rerum exercitationem quaerat atque tenetur ullam.
-          </p>
-        </div>
-        <!-- Card 3 -->
-        <div class="bg-white bg-opacity-10 p-6 rounded-lg shadow-lg backdrop-blur-sm">
-          <div class="flex items-center mb-3">
-            <i class="fas fa-envelope mr-3 text-lg"></i>
-            <h3 class="text-lg font-semibold">Media Inquiries</h3>
-          </div>
-          <p class="text-sm">
-            Ratione et porro eligendi est sed ratione rerum itaque. Placeat accusantium impedit eum odit.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
+<!-- Mobile Menu Icon (Visible on mobile) -->
+<div class="md:hidden flex items-center space-x-3">
+  <button class="text-gray-900" (click)="toggleMobileMenu()">
+    <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+  </button>
+</div>
+
+<!-- Mobile Dropdown Menu (Visible when mobile menu is open) -->
+<div class="md:hidden" *ngIf="isMobileMenuOpen">
+  <div class="p-4 space-y-4">
+    <button class="w-full text-gray-900 font-medium hover:text-blue-600">Product</button>
+    <button class="w-full text-gray-900 font-medium hover:text-blue-600">Features</button>
+    <button class="w-full text-gray-900 font-medium hover:text-blue-600">Marketplace</button>
+    <button class="w-full text-gray-900 font-medium hover:text-blue-600">Company</button>
+    <button class="w-full text-gray-900 font-medium hover:text-blue-600">Log in</button>
+    <button class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">Sign up</button>
+  </div>
+</div>

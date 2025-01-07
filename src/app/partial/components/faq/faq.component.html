@@ -1,0 +1,19 @@
+<section class="py-16 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-extrabold text-gray-900">Frequently Asked Questions</h2>
+      <p class="mt-4 text-lg text-gray-600">Have a different question and can’t find the answer you’re looking for? Reach out to our support team by <a href="mailto:support@example.com" class="text-blue-600">sending us an email</a> and we’ll get back to you as soon as we can.</p>
+    </div>
+  
+    <!-- FAQ Grid Section -->
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let faq of faqs; let i = index" class="bg-white rounded-lg shadow-lg">
+        <button (click)="toggleAnswer(i)" class="w-full text-left p-3 text-lg font-semibold text-gray-900 focus:outline-none bg-gray-300">
+          {{ faq.question }}
+        </button>
+        <div *ngIf="faq.open" class="px-6 py-4 text-gray-600">
+          <p>{{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  

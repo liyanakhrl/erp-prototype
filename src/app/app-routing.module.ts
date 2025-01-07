@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -77,6 +79,22 @@ const routes: Routes = [
     data: { animation: 'KnowledgePage' },
   },
   {
+    path: 'gallery',
+    loadChildren: () =>
+      import('./pages/gallery/gallery.module').then(
+        (m) => m.GalleryModule
+      ),
+    data: { animation: 'KnowledgePage' },
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/login/login.module').then(
+        (m) => m.LoginModule
+      ),
+    data: { animation: 'DashboardPage' },
+  },
+  {
     path: 'dashboard',
     loadChildren: () =>
       import('./pages/dashboard/dashboard.module').then(
@@ -84,7 +102,7 @@ const routes: Routes = [
       ),
     data: { animation: 'DashboardPage' },
   },
-  { path: '**', redirectTo: 'dashboard' },
+  { path: '**', component: PageNotFoundComponent }, // Wildcard route for 404 
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({
