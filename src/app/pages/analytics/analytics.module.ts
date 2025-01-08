@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AnalyticsRoutingModule } from './analytics-routing.module';
 import { ActivityLogsComponent } from './activity-logs/activity-logs.component';
 import { UserMonitoringComponent } from './user-monitoring/user-monitoring.component';
+import { PartialModule } from "../../partial/partial.module";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { UserMonitoringComponent } from './user-monitoring/user-monitoring.compo
   ],
   imports: [
     CommonModule,
-    AnalyticsRoutingModule
-  ]
+    AnalyticsRoutingModule,
+    PartialModule
+]
 })
 export class AnalyticsModule { }

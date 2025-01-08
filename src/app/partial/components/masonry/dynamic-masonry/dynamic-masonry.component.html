@@ -1,0 +1,21 @@
+<div class="bg-gray-100 p-8 flex flex-col items-center">
+  <div class="flex flex-wrap gap-4 w-full">
+      <div *ngFor="let note of notes; let i = index" 
+          [ngClass]="[getColor(note), isLastInRow(i) ? 'flex-grow' : '', 'p-4 shadow rounded flex flex-col max-h-72 overflow-y-auto']">
+
+          <div class="flex items-center mb-4">
+              <img [src]="note.photo" alt="Profile" class="w-16 h-15 rounded-full mr-4 border"> 
+              <div>
+                  <p class="text-lg font-semibold text-orange-500">{{ note.receiverNickName }}</p>
+                  <p class="text-sm text-gray-500">{{ note.receiverDesignation }}</p>
+              </div>
+          </div>
+
+          <p class="text-gray-700 mb-4">{{ note.content }}</p>
+
+          <div class="text-sm text-gray-500">
+              WORQ <span class="font-semibold text-black bg-yellow-100 px-2 py-1 rounded">From {{ note.senderName }}</span>
+          </div>
+      </div>
+  </div>
+</div>

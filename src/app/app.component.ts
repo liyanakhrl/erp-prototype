@@ -60,6 +60,13 @@ export class AppComponent {
       isOpen: false,
     },
     {
+      label: 'Analytics',
+      path: '/analytics',
+      icon: 'fas fa-box',
+      subMenu: [],
+      isOpen: false,
+    },
+    {
       label: 'Calendar',
       path: '/calendar',
       icon: 'fas fa-calendar-alt',

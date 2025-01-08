@@ -59,9 +59,7 @@ import { LogoCloudComponent } from './components/logo-cloud/logo-cloud.component
 import { FaqComponent } from './components/faq/faq.component';
 import { FlyoutMenuComponent } from './components/flyout-menu/flyout-menu.component';
 import { BannerComponent } from './components/banner/banner.component';
-import { FeedComponent } from './components/feed/feed.component';
-import { HierachyChartComponent } from './chart/d3/hierachy-chart/hierachy-chart.component';
-import { CarouselComponent } from './carousel/carousel.component';
+import { FeedComponent } from './components/feed/feed.component'; 
 import { MasonryGridComponent } from './components/masonry-grid/masonry-grid.component';
 import { SpeedDialComponent } from './components/speed-dial/speed-dial.component';
 import { PageHeadingComponent } from './components/page-heading/page-heading.component';
@@ -80,6 +78,11 @@ import { ActionNotificationComponent } from './components/notification/action-no
 import { AvatarNotificationComponent } from './components/notification/avatar-notification/avatar-notification.component';
 import { OverlappingInputComponent } from './components/forms/input/overlapping-input/overlapping-input.component';
 import { SharedInputComponent } from './components/forms/input/shared-input/shared-input.component';
+import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
+import { ScatterChartComponent } from './components/charts/scatter-chart/scatter-chart.component';
+import { MultiChartComponent } from './components/charts/multi-chart/multi-chart.component';
+import { OrganizationChartComponent } from './components/charts/organization-chart/organization-chart.component';
+import { DynamicMasonryComponent } from './components/masonry/dynamic-masonry/dynamic-masonry.component';
 // import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
@@ -142,8 +145,6 @@ import { SharedInputComponent } from './components/forms/input/shared-input/shar
     FlyoutMenuComponent,
     BannerComponent,
     FeedComponent,
-    HierachyChartComponent,
-    CarouselComponent,
     MasonryGridComponent,
     SpeedDialComponent,
     PageHeadingComponent,
@@ -162,6 +163,11 @@ import { SharedInputComponent } from './components/forms/input/shared-input/shar
     AvatarNotificationComponent,
     OverlappingInputComponent,
     SharedInputComponent,
+    PieChartComponent,
+    ScatterChartComponent,
+    MultiChartComponent,
+    OrganizationChartComponent,
+    DynamicMasonryComponent
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -223,9 +229,9 @@ import { SharedInputComponent } from './components/forms/input/shared-input/shar
     FaqComponent,
     FooterComponent,
     BannerComponent,
-    FeedComponent,
-    HierachyChartComponent,
+    FeedComponent, 
     MasonryGridComponent,
+    DynamicMasonryComponent,
     SpeedDialComponent,
     PageHeadingComponent,
     CardHeadingComponent,
@@ -240,7 +246,12 @@ import { SharedInputComponent } from './components/forms/input/shared-input/shar
     SimpleAlertSingleComponent,
     SimpleNotificationComponent,
     ActionNotificationComponent,
-    AvatarNotificationComponent
+    AvatarNotificationComponent,
+    BarChartComponent,
+    PieChartComponent,
+    ScatterChartComponent,
+    MultiChartComponent,
+    OrganizationChartComponent
   ],
 })
 export class PartialModule {}

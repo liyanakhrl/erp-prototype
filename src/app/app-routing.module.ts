@@ -63,7 +63,7 @@ const routes: Routes = [
       import('./pages/analytics/analytics.module').then(
         (m) => m.AnalyticsModule
       ),
-    data: { animation: 'AnalyticsPage' },
+    data: { animation: 'GeneralPage' },
   },
   {
     path: 'general',
