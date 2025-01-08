@@ -1,10 +1,11 @@
-<div>Link Selected: {{ hasSelectedLink }} <button *ngIf="hasSelectedLink" (click)="deleteSelectedLink()">Delete</button>
-</div>
-<div>Node Selected: {{ hasSelectedNode }} <button *ngIf="hasSelectedNode" (click)="cancelSelectedNode()">Cancel</button>
-</div>
 <div #chartContainer class="chart-container">
-    <svg id="{{ this.id }}-svg">
-    </svg>
-</div>
+    <svg
+      [id]="id + '-svg'"
+      width="100%"
+      height="100%"
+      preserveAspectRatio="xMidYMid meet"
+    ></svg>
+  </div>
+  
 
 <!-- Reference https://stackblitz.com/edit/d3-tree-angular11?file=src%2Fapp%2Fshared%2Ftree%2Ftree.component.ts -->

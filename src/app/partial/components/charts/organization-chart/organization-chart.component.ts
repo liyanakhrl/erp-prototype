@@ -56,6 +56,18 @@ export class OrganizationChartComponent implements AfterViewInit {
   createChart() {
     const root: any = this.tree(treeData);
 
+    // Zoom and Pan
+    const svg = d3.select(`#${this.id}-svg`);
+    const g = svg.append('g');
+    const zoom = d3
+      .zoom<SVGSVGElement, unknown>()
+      .scaleExtent([0.5, 2])
+      .on('zoom', (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
+        g.attr('transform', event.transform.toString()); // Fix: Convert transform to string
+      });
+
+    svg.call(zoom as any);
+
     // sets color array for backgrounds
     const colors = this.convertRgbArrayToHex(
       d3.quantize((t) => d3.interpolateRdYlGn(t * 0.6 + 0.2), this.levels)
@@ -72,307 +84,107 @@ export class OrganizationChartComponent implements AfterViewInit {
       if (d.y > y1) y1 = d.y; // gets max bottom
     });
 
-    const svg = d3.select(`#${this.id}-svg`);
     svg.attr('viewBox', [
       x0 - root.dx - this.margin.left,
-      0,
-      0 - x0 + x1 + root.dx * 3 + this.margin.left + this.margin.right,
-      (this.levels - 1) * (root.dy / 2) + this.margin.top + this.margin.bottom,
+      y0 - root.dy,
+      x1 - x0 + this.margin.left + this.margin.right,
+      y1 - y0 + this.margin.top + this.margin.bottom,
     ]);
 
     // Adds container for appended objects
-    const g = svg
-      .on('click', () => {
-        this.selectedLink = null;
-        this.selectedNode = null;
-        this.hasSelectedNode = false;
-        this.hasSelectedLink = false;
-        this.changeDetectorRef.detectChanges();
-      })
-      .append('g')
+    g.on('click', () => {
+      this.resetSelections();
+    })
       .attr('class', 'tree-container')
-      .attr('transform', `translate(${root.dx / 3}, ${this.margin.top})`);
+      .attr('transform', `translate(${root.dx * 15}, ${this.margin.top})`);
+    // .attr('transform', `translate(${root.dx / 3}, ${this.margin.top})`);
 
-    // Adds background grid, 7 steps
+    // Adds background grid
     g.append('g')
       .attr('fill', 'none')
       .selectAll('rect')
-      .data([0, 1, 2, 3, 4, 5, 6])
+      .data(d3.range(this.levels))
       .join('rect')
       .attr('x', x0 - root.dx / 2 - this.margin.left)
       .attr('y', (d) => (d * root.dy) / 2 - root.dy / 4)
-      .attr(
-        'width',
-        0 - x0 + x1 + root.dx + this.margin.left + this.margin.right
-      )
+      .attr('width', x1 - x0 + root.dx + this.margin.left + this.margin.right)
       .attr('height', root.dy / 2 - 1)
       .attr('fill', (d: number) => colors[d]);
 
-    // Simplify the data coming from root.links(), to easily understand what data is used to create links
+    this.initializeLinks(root);
+    this.initializeNodes(g);
+  }
+
+  convertRgbArrayToHex(rgbs: string[]): string[] {
+    return rgbs.map((rgb) => {
+      const result = /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/.exec(rgb);
+      return result
+        ? `#${(+result[1]).toString(16).padStart(2, '0')}${(+result[2])
+            .toString(16)
+            .padStart(2, '0')}${(+result[3]).toString(16).padStart(2, '0')}`
+        : rgb;
+    });
+  }
+
+  initializeLinks(root: any) {
     this.links = root.links().map((data: any) => ({
       source: { x: data.source.x, y: data.source.y, depth: data.source.depth },
       target: { x: data.target.x, y: data.target.y, depth: data.target.depth },
       color: '#999999',
     }));
-
-    // Add more link relationships
-    this.links.push({
-      source: {
-        x: this.links[3].target.x,
-        y: this.links[3].target.y,
-        depth: this.links[3].target.depth,
-      },
-      target: {
-        x: this.links[23].target.x,
-        y: this.links[23].target.y,
-        depth: this.links[23].target.depth,
-      },
-      color: '#fcc101', // green link
-    });
-    this.links.push({
-      source: {
-        x: this.links[1].target.x,
-        y: this.links[1].target.y,
-        depth: this.links[1].target.depth,
-      },
-      target: {
-        x: this.links[19].target.x,
-        y: this.links[19].target.y,
-        depth: this.links[19].target.depth,
-      },
-      color: '#e85000', // red link
-    });
-
-    // Simplify the data coming from root.descendants(), to easily understand what data is used to create chart
-    this.descendants = root.descendants().map((data: any) => ({
-      children: !!data.children,
-      data: { name: data.data.name },
-      depth: data.depth,
-      x: data.x,
-      y: data.y,
-    }));
-
-    g.append('g').attr('class', 'node-links').attr('fill', 'none');
-
-    const completed = this.updateChartLinks();
-
-    // Link strokes
-    const node = g
-      .append('g')
-      .attr('stroke-linejoin', 'round')
-      .attr('stroke-width', 3)
-      .selectAll('g')
-      .data(this.descendants)
-      .join('g')
-      .attr('transform', (d: any) => `translate(${d.x},${d.y / 2})`);
-
-    // Adds nodes
-    node
-      .append('circle')
-      .attr('class', 'chart-node')
-      .attr('fill', (d: any) => (d.children ? '#0070bd' : '#3fa142'))
-      .attr('r', 2.5)
-      .on('mouseover', (event: MouseEvent) => {
-        d3.select(event.currentTarget as HTMLElement) // Cast to HTMLElement
-          .attr('r', 3.5);
-      })
-
-      .on('mouseout', (event: MouseEvent) => {
-        d3.select(event.currentTarget as HTMLElement).attr('r', 2.5);
-      })
-      .on('click', (event: MouseEvent, d: any) => {
-        event.preventDefault();
-        event.stopPropagation();
-        this.nodeClickedEvent(event, d);
-      });
-
-    // Adds text labels for nodes
-    node
-      .append('text')
-      .attr('font-family', 'sans-serif')
-      .attr('font-size', 5)
-      .attr('dy', '0.31em')
-      .attr('x', -4)
-      .attr('text-anchor', 'end')
-      .attr('transform', 'rotate(-35)')
-      .text((d: any) => d.data.name)
-      .clone(true)
-      .lower()
-      .attr('stroke', (d: any) => colors[d.depth])
-      .attr('stroke-opacity', '0.3');
+    this.updateChartLinks();
   }
 
-  updateChartLinks(): boolean {
-    const nl = d3.select('.node-links');
+  initializeNodes(g: any) {
+    const nodes = g.append('g').attr('class', 'nodes');
 
-    nl.selectAll('.node-link').remove();
+    nodes
+      .selectAll('circle')
+      .data(this.descendants)
+      .join('circle')
+      .attr('class', 'node')
+      .attr('cx', (d: any) => d.x)
+      .attr('cy', (d: any) => d.y / 2)
+      .attr('r', 5)
+      .attr('fill', (d: any) => (d.children ? '#0070bd' : '#3fa142'))
+      .on('click', (event: MouseEvent, d: any) =>
+        this.nodeClickedEvent(event, d)
+      );
+  }
 
-    // Creates links between nodes
-    nl.append('g')
-      .attr('class', 'node-links')
-      .attr('fill', 'none')
+  updateChartLinks() {
+    const linkGroup = d3
+      .select('.tree-container')
+      .append('g')
+      .attr('class', 'links');
+
+    linkGroup
       .selectAll('path')
       .data(this.links)
       .join('path')
-      .attr('class', 'node-link')
+      .attr('fill', 'none')
       .attr('stroke', (d: any) => d.color)
-      .attr('stroke-width', 1)
+      .attr('stroke-width', 1.5)
       .attr(
         'd',
-        (d: any) =>
-          d3
-            .linkVertical() // Generate link function
-            .x((d: any) => d.x) // Define x-coordinate
-            .y((d: any) => d.y / 2)(
-            // Define y-coordinate
-            d
-          ) // Pass the data point to generate the path
-      )
-      .on('mouseover', (event: MouseEvent) => {
-        d3.select(event.currentTarget as HTMLElement).attr('stroke-width', 2);
-      })
-      .on('mouseout', (event: MouseEvent) => {
-        d3.select(event.currentTarget as HTMLElement).attr('stroke-width', 1);
-      })
-      .on('click', (event: MouseEvent, d: any) => {
-        event.preventDefault();
-        event.stopPropagation();
-        this.linkClickedEvent(event, d);
-      });
-
-    return true;
+        d3
+          .linkVertical<any, any>()
+          .x((d: any) => d.x)
+          .y((d: any) => d.y / 2)
+      );
   }
 
-  // Converts RGB Array to Hex Array
-  convertRgbArrayToHex(rgbs: string[]): string[] {
-    if (!rgbs) {
-      return [];
-    }
-    const hexValues: string[] = [];
-
-    rgbs.forEach((rgb) => {
-      if (rgb.slice(0, 3) === 'rgb') {
-        const rgbValues = rgb.slice(4, rgb.length - 1).split(',');
-
-        hexValues.push(
-          `#${this.convertRGBToHex(rgbValues[0])}${this.convertRGBToHex(
-            rgbValues[1]
-          )}${this.convertRGBToHex(rgbValues[2])}`
-        );
-      } else {
-        hexValues.push(rgb);
-      }
-    });
-
-    return hexValues;
+  nodeClickedEvent(event: MouseEvent, d: any) {
+    this.selectedNode = d;
+    this.hasSelectedNode = true;
+    this.changeDetectorRef.detectChanges();
   }
 
-  // Converts RGB Value to HEX
-  convertRGBToHex(value: string): string {
-    const hex = parseInt(value).toString(16);
-    return hex.length == 1 ? '0' + hex : hex;
-  }
-
-  // Process clicked node event
-  nodeClickedEvent(event: MouseEvent, data: any) {
+  resetSelections() {
     this.selectedLink = null;
+    this.selectedNode = null;
+    this.hasSelectedNode = false;
     this.hasSelectedLink = false;
-
-    if (!this.hasSelectedNode && !this.selectedNode) {
-      this.selectedNode = data;
-      this.hasSelectedNode = true;
-    } else if (this.hasSelectedNode && this.selectedNode) {
-      this.addLink(this.selectedNode, data, '#000000');
-      this.selectedNode = null;
-      this.hasSelectedNode = false;
-    }
     this.changeDetectorRef.detectChanges();
-  }
-
-  addLink(node1: any, node2: any, linkColor: string) {
-    const dupeLinks = this.links.filter(
-      (link: any) =>
-        (link.source.x === node1.x &&
-          link.source.y === node1.y &&
-          link.target.x === node2.x &&
-          link.target.y === node2.y) ||
-        (link.source.x === node2.x &&
-          link.source.y === node2.y &&
-          link.target.x === node1.x &&
-          link.target.y === node1.y)
-    );
-    if (dupeLinks.length === 0) {
-      const newLink = {
-        source: {
-          x: node1.x,
-          y: node1.y,
-          depth: node1.depth,
-        },
-        target: {
-          x: node2.x,
-          y: node2.y,
-          depth: node2.depth,
-        },
-        color: linkColor,
-      };
-
-      this.links.push(newLink);
-      this.updateChartLinks();
-    } else {
-      console.log('Duplicate Link found, not adding', dupeLinks);
-    }
-  }
-
-  // Process clicked link event
-  linkClickedEvent(event: MouseEvent, data: any) {
-    this.selectedNode = null;
-    this.hasSelectedNode = false;
-
-    if (
-      !this.hasSelectedLink ||
-      (this.hasSelectedLink && this.selectedLink !== data)
-    ) {
-      this.selectedLink = data;
-      this.hasSelectedLink = true;
-    } else {
-      this.selectedLink = null;
-      this.hasSelectedLink = false;
-    }
-    this.changeDetectorRef.detectChanges();
-  }
-
-  deleteSelectedLink() {
-    if (this.hasSelectedLink && this.selectedLink) {
-      this.links.splice(this.links.indexOf(this.selectedLink), 1);
-      this.selectedLink = null;
-      this.hasSelectedLink = false;
-      this.updateChartLinks();
-    }
-  }
-  cancelSelectedNode() {
-    this.hasSelectedNode = false;
-    this.selectedNode = null;
-  }
-
-  // Returns all links for given node
-  getNodeLinks(data: any): [] {
-    const linkArray = this.links.filter(
-      (link: any) =>
-        (link.source.x === data.x && link.source.y === data.y) ||
-        (link.target.x === data.x && link.target.y === data.y)
-    );
-
-    return linkArray;
-  }
-
-  // Returns connected nodes for a given link
-  getNodes(data: any): [] {
-    const descendantArray = this.descendants.filter(
-      (descendant: any) =>
-        (descendant.x === data.source.x && descendant.y === data.source.y) ||
-        (descendant.x === data.target.x && descendant.y === data.target.y)
-    );
-
-    return descendantArray;
   }
 }
