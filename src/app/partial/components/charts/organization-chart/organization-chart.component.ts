@@ -25,8 +25,8 @@ export class OrganizationChartComponent implements AfterViewInit {
   private _uniqueId: string = `vdl-chart-bar-${++nextUniqueId}`;
   id = this._uniqueId;
 
-  height: number = 300;
-  width: number = 500;
+  height: number = 800; //300;
+  width: number = 1900; //500;
   levels = 7;
   selectedNode: any;
   hasSelectedNode!: boolean;
@@ -59,14 +59,14 @@ export class OrganizationChartComponent implements AfterViewInit {
     // Zoom and Pan
     const svg = d3.select(`#${this.id}-svg`);
     const g = svg.append('g');
-    const zoom = d3
-      .zoom<SVGSVGElement, unknown>()
-      .scaleExtent([0.5, 2])
-      .on('zoom', (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
-        g.attr('transform', event.transform.toString()); // Fix: Convert transform to string
-      });
+    // const zoom = d3
+    //   .zoom<SVGSVGElement, unknown>()
+    //   .scaleExtent([0.5, 2])
+    //   .on('zoom', (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
+    //     g.attr('transform', event.transform.toString()); // Fix: Convert transform to string
+    //   });
 
-    svg.call(zoom as any);
+    // svg.call(zoom as any);
 
     // sets color array for backgrounds
     const colors = this.convertRgbArrayToHex(
@@ -97,7 +97,6 @@ export class OrganizationChartComponent implements AfterViewInit {
     })
       .attr('class', 'tree-container')
       .attr('transform', `translate(${root.dx * 15}, ${this.margin.top})`);
-    // .attr('transform', `translate(${root.dx / 3}, ${this.margin.top})`);
 
     // Adds background grid
     g.append('g')
@@ -110,6 +109,13 @@ export class OrganizationChartComponent implements AfterViewInit {
       .attr('width', x1 - x0 + root.dx + this.margin.left + this.margin.right)
       .attr('height', root.dy / 2 - 1)
       .attr('fill', (d: number) => colors[d]);
+
+    this.descendants = root.descendants().map((d: any) => ({
+      ...d,
+      x: d.x,
+      y: d.y,
+      data: d.data,
+    }));
 
     this.initializeLinks(root);
     this.initializeNodes(g);
@@ -150,6 +156,17 @@ export class OrganizationChartComponent implements AfterViewInit {
       .on('click', (event: MouseEvent, d: any) =>
         this.nodeClickedEvent(event, d)
       );
+
+    nodes
+      .selectAll('text')
+      .data(this.descendants)
+      .join('text')
+      .attr('x', (d: any) => d.x + 10)
+      .attr('y', (d: any) => d.y / 2)
+      .attr('dy', '0.35em')
+      .text((d: any) => d.data.name)
+      .style('font-size', '12px')
+      .style('fill', '#333');
   }
 
   updateChartLinks() {
