@@ -1,0 +1,113 @@
+<!-- multi-step-form.component.html -->
+<div class="w-full max-w-3xl bg-white shadow-lg rounded-lg p-8 space-y-6 mx-auto">
+    <!-- Stepper -->
+    <div class="flex items-center justify-between">
+      <div class="flex space-x-4">
+        <div
+          *ngFor="let step of steps; let i = index"
+          [ngClass]="{
+            'bg-blue-600 text-white': isCurrentStep(i),
+            'bg-gray-200 text-gray-600': !isCurrentStep(i)
+          }"
+          class="step w-10 h-10 flex items-center justify-center rounded-full font-medium"
+        >
+          {{ i + 1 }}
+        </div>
+      </div>
+      <p class="text-sm text-gray-500">Step {{ currentStep + 1 }} of {{ steps.length }}</p>
+    </div>
+  
+    <!-- Form Sections -->
+    <form>
+      <!-- Section 1 -->
+      <div *ngIf="isCurrentStep(0)" class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Basic Information</h2>
+        <div>
+          <label for="short-para" class="block text-sm text-gray-600">Short Answer</label>
+          <input
+            type="text"
+            id="short-para"
+            placeholder="Enter your answer..."
+            class="mt-1 w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+        <div>
+          <label for="long-para" class="block text-sm text-gray-600">Long Paragraph</label>
+          <textarea
+            id="long-para"
+            rows="4"
+            placeholder="Write your response..."
+            class="mt-1 w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          ></textarea>
+        </div>
+      </div>
+  
+      <!-- Section 2 -->
+      <div *ngIf="isCurrentStep(1)" class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Additional Details</h2>
+        <div>
+          <label for="dropdown" class="block text-sm text-gray-600">Select an Option</label>
+          <select
+            id="dropdown"
+            class="mt-1 w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          >
+            <option value="" disabled selected>Select...</option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm text-gray-600">Multiple Choice</label>
+          <div class="flex items-center space-x-4 mt-2">
+            <label class="flex items-center">
+              <input type="radio" name="choice" value="1" class="text-blue-500 focus:ring-blue-500" />
+              <span class="ml-2 text-gray-600">Option 1</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="choice" value="2" class="text-blue-500 focus:ring-blue-500" />
+              <span class="ml-2 text-gray-600">Option 2</span>
+            </label>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Section 3 -->
+      <div *ngIf="isCurrentStep(2)" class="space-y-4">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Preferences</h2>
+        <div>
+          <label for="range" class="block text-sm text-gray-600">Rate Yourself</label>
+          <input type="range" id="range" min="0" max="10" step="1" class="mt-1 w-full" />
+        </div>
+        <div>
+          <label for="file-upload" class="block text-sm text-gray-600">Upload a File</label>
+          <input
+            type="file"
+            id="file-upload"
+            class="mt-1 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
+          />
+        </div>
+      </div>
+  
+      <!-- Navigation Buttons -->
+      <div class="flex justify-between mt-6">
+        <button
+          type="button"
+          (click)="prevStep()"
+          [disabled]="currentStep === 0"
+          class="bg-gray-200 text-gray-600 py-2 px-4 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          (click)="nextStep()"
+          [disabled]="currentStep === steps.length - 1"
+          class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
+    </form>
+  </div>
+  

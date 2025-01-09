@@ -83,6 +83,7 @@ import { ScatterChartComponent } from './components/charts/scatter-chart/scatter
 import { MultiChartComponent } from './components/charts/multi-chart/multi-chart.component';
 import { OrganizationChartComponent } from './components/charts/organization-chart/organization-chart.component';
 import { DynamicMasonryComponent } from './components/masonry/dynamic-masonry/dynamic-masonry.component';
+import { StepperFormComponent } from './components/forms/stepper-form/stepper-form.component';
 // import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
@@ -167,7 +168,8 @@ import { DynamicMasonryComponent } from './components/masonry/dynamic-masonry/dy
     ScatterChartComponent,
     MultiChartComponent,
     OrganizationChartComponent,
-    DynamicMasonryComponent
+    DynamicMasonryComponent,
+    StepperFormComponent
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -251,7 +253,8 @@ import { DynamicMasonryComponent } from './components/masonry/dynamic-masonry/dy
     PieChartComponent,
     ScatterChartComponent,
     MultiChartComponent,
-    OrganizationChartComponent
+    OrganizationChartComponent,
+    StepperFormComponent
   ],
 })
 export class PartialModule {}
