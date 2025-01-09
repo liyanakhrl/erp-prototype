@@ -1,14 +1,6 @@
-.chart-container {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.node-image {
-  border-radius: 50%;
-}
-
-.info-box {
-  font-size: 12px;
-  fill: #555;
+@media (max-width: 768px) {
+  svg {
+    width: 100%;
+    height: auto;
+  }
 }

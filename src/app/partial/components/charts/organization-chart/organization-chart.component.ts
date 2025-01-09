@@ -4,6 +4,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  OnInit,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -21,187 +22,201 @@ let nextUniqueId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class OrganizationChartComponent implements AfterViewInit {
-  private _uniqueId: string = `vdl-chart-bar-${++nextUniqueId}`;
-  id = this._uniqueId;
+export class OrganizationChartComponent implements OnInit {
+  @ViewChild('treeSvg', { static: true }) treeSvg!: ElementRef<SVGElement>;
+  private counter: number = 0;
+  private margin = { top: 20, right: 120, bottom: 30, left: 120 };
+  private width = 1000 - this.margin.left - this.margin.right;
+  private height = 600 - this.margin.top - this.margin.bottom;
 
-  height: number = 800; //300;
-  width: number = 1900; //500;
-  levels = 7;
-  selectedNode: any;
-  hasSelectedNode!: boolean;
-  selectedLink: any;
-  hasSelectedLink!: boolean;
+  private svg: any;
+  private tree: any;
+  private root: any;
 
-  links: any;
-  descendants: any;
-
-  tree = (data: any) => {
-    const root: any = d3.hierarchy(data);
-    root.dx = 10;
-    root.dy = this.width / (root.height + 1);
-    return d3.tree().nodeSize([root.dx, root.dy])(root);
-  };
-  margin = { top: 10, right: 40, bottom: 10, left: 40 };
-
-  @ViewChild('chartContainer', { static: false })
-  chartContainer!: ElementRef<HTMLElement>;
-
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
-
-  ngAfterViewInit() {
-    this.createChart();
+  ngOnInit(): void {
+    this.createSvg();
+    this.createTree(treeData); 
   }
 
-  createChart() {
-    const root: any = this.tree(treeData);
-
-    // Zoom and Pan
-    const svg = d3.select(`#${this.id}-svg`);
-    const g = svg.append('g');
-    // const zoom = d3
-    //   .zoom<SVGSVGElement, unknown>()
-    //   .scaleExtent([0.5, 2])
-    //   .on('zoom', (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
-    //     g.attr('transform', event.transform.toString()); // Fix: Convert transform to string
-    //   });
-
-    // svg.call(zoom as any);
-
-    // sets color array for backgrounds
-    const colors = this.convertRgbArrayToHex(
-      d3.quantize((t) => d3.interpolateRdYlGn(t * 0.6 + 0.2), this.levels)
-    ).reverse();
-
-    let y0 = Infinity;
-    let y1 = -y0;
-    let x0 = Infinity;
-    let x1 = -x0;
-
-    root.each((d: any) => {
-      if (d.x > x1) x1 = d.x; // gets max right
-      if (d.x < x0) x0 = d.x; // gets max left
-      if (d.y > y1) y1 = d.y; // gets max bottom
-    });
-
-    svg.attr('viewBox', [
-      x0 - root.dx - this.margin.left,
-      y0 - root.dy,
-      x1 - x0 + this.margin.left + this.margin.right,
-      y1 - y0 + this.margin.top + this.margin.bottom,
-    ]);
-
-    // Adds container for appended objects
-    g.on('click', () => {
-      this.resetSelections();
-    })
-      .attr('class', 'tree-container')
-      .attr('transform', `translate(${root.dx * 15}, ${this.margin.top})`);
-
-    // Adds background grid
-    g.append('g')
-      .attr('fill', 'none')
-      .selectAll('rect')
-      .data(d3.range(this.levels))
-      .join('rect')
-      .attr('x', x0 - root.dx / 2 - this.margin.left)
-      .attr('y', (d) => (d * root.dy) / 2 - root.dy / 4)
-      .attr('width', x1 - x0 + root.dx + this.margin.left + this.margin.right)
-      .attr('height', root.dy / 2 - 1)
-      .attr('fill', (d: number) => colors[d]);
-
-    this.descendants = root.descendants().map((d: any) => ({
-      ...d,
-      x: d.x,
-      y: d.y,
-      data: d.data,
-    }));
-
-    this.initializeLinks(root);
-    this.initializeNodes(g);
-  }
-
-  convertRgbArrayToHex(rgbs: string[]): string[] {
-    return rgbs.map((rgb) => {
-      const result = /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/.exec(rgb);
-      return result
-        ? `#${(+result[1]).toString(16).padStart(2, '0')}${(+result[2])
-            .toString(16)
-            .padStart(2, '0')}${(+result[3]).toString(16).padStart(2, '0')}`
-        : rgb;
-    });
-  }
-
-  initializeLinks(root: any) {
-    this.links = root.links().map((data: any) => ({
-      source: { x: data.source.x, y: data.source.y, depth: data.source.depth },
-      target: { x: data.target.x, y: data.target.y, depth: data.target.depth },
-      color: '#999999',
-    }));
-    this.updateChartLinks();
-  }
-
-  initializeNodes(g: any) {
-    const nodes = g.append('g').attr('class', 'nodes');
-
-    nodes
-      .selectAll('circle')
-      .data(this.descendants)
-      .join('circle')
-      .attr('class', 'node')
-      .attr('cx', (d: any) => d.x)
-      .attr('cy', (d: any) => d.y / 2)
-      .attr('r', 5)
-      .attr('fill', (d: any) => (d.children ? '#0070bd' : '#3fa142'))
-      .on('click', (event: MouseEvent, d: any) =>
-        this.nodeClickedEvent(event, d)
-      );
-
-    nodes
-      .selectAll('text')
-      .data(this.descendants)
-      .join('text')
-      .attr('x', (d: any) => d.x + 10)
-      .attr('y', (d: any) => d.y / 2)
-      .attr('dy', '0.35em')
-      .text((d: any) => d.data.name)
-      .style('font-size', '12px')
-      .style('fill', '#333');
-  }
-
-  updateChartLinks() {
-    const linkGroup = d3
-      .select('.tree-container')
+  private createSvg(): void {
+    this.svg = d3
+      .select(this.treeSvg.nativeElement)
+      .attr('width', '100%')
+      .attr('height', this.height + this.margin.top + this.margin.bottom)
       .append('g')
-      .attr('class', 'links');
+      .attr('transform', `translate(${this.margin.left},${this.margin.top})`);
+  }
 
-    linkGroup
-      .selectAll('path')
-      .data(this.links)
-      .join('path')
-      .attr('fill', 'none')
-      .attr('stroke', (d: any) => d.color)
-      .attr('stroke-width', 1.5)
-      .attr(
-        'd',
-        d3
-          .linkVertical<any, any>()
-          .x((d: any) => d.x)
-          .y((d: any) => d.y / 2)
+  private createTree(data: any): void {
+    this.tree = d3.tree().size([this.height, this.width]);
+
+    this.root = d3.hierarchy(data, (d: any) => d.children);
+    this.root.x0 = this.height / 2;
+    this.root.y0 = 0;
+
+    this.update(this.root);
+  }
+
+  update = (source: any) => {
+    const treeData = this.tree(this.root);
+    const nodes = treeData.descendants();
+    const links = treeData.links();
+
+    // Adjust node spacing
+    nodes.forEach((d: any) => (d.y = d.depth * 180));
+
+    // Bind data for nodes
+    const node = this.svg
+      .selectAll('g.node')
+      .data(nodes, (d: any) => d.id || (d.id = ++this.counter));
+
+    // Enter new nodes
+    const nodeEnter = node
+      .enter()
+      .append('g')
+      .attr('class', 'node')
+      .attr('transform', (d: any) => `translate(${source.y0},${source.x0})`)
+      .on('click', (event: any, d: any) => {
+        if (d.children || d._children) {
+          this.toggleChildren(d); // Toggle direct children and grandchildren
+        } else if (!d.parent) {
+          this.toggleAll(this.root); // Toggle the entire tree for the root node
+        }
+        this.update(d); // Update visualization
+      });
+
+    nodeEnter
+      .append('circle')
+      .attr('class', 'node-circle')
+      .attr('r', 10)
+      .style('fill', (d: any) => (d._children ? '#555' : '#fff'));
+
+    nodeEnter
+      .append('text')
+      .attr('dy', '.35em')
+      .attr('x', (d: any) => (d.children || d._children ? -13 : 13))
+      .attr('text-anchor', (d: any) =>
+        d.children || d._children ? 'end' : 'start'
+      )
+      .text((d: any) => d.data.name);
+
+    const nodeUpdate = nodeEnter.merge(node);
+
+    nodeUpdate
+      .transition()
+      .duration(200)
+      .attr('transform', (d: any) => `translate(${d.y},${d.x})`);
+
+    nodeUpdate
+      .select('circle.node-circle')
+      .attr('r', 10)
+      .style('fill', (d: any) => (d._children ? '#555' : '#fff'))
+      .attr('cursor', 'pointer');
+
+    const nodeExit = node
+      .exit()
+      .transition()
+      .duration(200)
+      .attr('transform', (d: any) => `translate(${source.y},${source.x})`)
+      .remove();
+
+    nodeExit.select('circle').attr('r', 0);
+
+    // Bind data for links
+    const link = this.svg
+      .selectAll('path.link')
+      .data(links, (d: any) => d.target.id);
+
+    // Enter new links with curved paths
+    const linkEnter = link
+      .enter()
+      .insert('path', 'g')
+      .attr('class', 'link')
+      .attr('stroke', '#ccc') // Line color
+      .attr('stroke-width', 2) // Line thickness
+      .attr('fill', 'none') // No fill for the path
+      .attr('d', (d: any) => {
+        const o = { x: source.x0, y: source.y0 };
+        return `M${o.y},${o.x}C${o.y + (d.target.y - o.y) / 2},${o.x} ${
+          d.target.y - (d.target.y - o.y) / 2
+        },${d.target.x} ${d.target.y},${d.target.x}`;
+      });
+
+    // Update links with curved paths
+    link
+      .merge(linkEnter)
+      .transition()
+      .duration(200)
+      .attr('d', (d: any) => {
+        return `M${d.source.y},${d.source.x}C${
+          d.source.y + (d.target.y - d.source.y) / 2
+        },${d.source.x} ${d.target.y - (d.target.y - d.source.y) / 2},${
+          d.target.x
+        } ${d.target.y},${d.target.x}`;
+      });
+
+    // Remove exiting links
+    link
+      .exit()
+      .transition()
+      .duration(200)
+      .attr('d', (d: any) => {
+        const o = { x: source.x, y: source.y };
+        return `M${o.y},${o.x}L${o.y},${o.x}`;
+      })
+      .remove();
+
+    // Save positions for transitions
+    nodes.forEach((d: any) => {
+      d.x0 = d.x;
+      d.y0 = d.y;
+    });
+  };
+
+  private diagonal(source: any, target: any): string { // Weird lines
+    // const midY = (source.y + target.y) / 2; // Midpoint for curvature
+    // return `M ${source.y} ${source.x}
+    //       C ${midY} ${source.x},
+    //         ${midY} ${target.x},
+    //         ${target.y} ${target.x}`;
+    return `M ${source.y} ${source.x} L ${target.y} ${target.x}`; // straight line
+    // return `M ${source.y} ${source.x} // weird line
+    //   C ${(source.y + target.y) / 2} ${source.x},
+    //     ${(source.y + target.y) / 2} ${target.x},
+    //     ${target.y} ${target.x}`;
+  }
+
+  private toggleAll(node: any): void {
+    if (node.children) {
+      node._children = node.children;
+      node.children = null;
+    } else if (node._children) {
+      node.children = node._children;
+      node._children = null;
+    }
+    if (node.children || node._children) {
+      (node.children || node._children).forEach((child: any) =>
+        this.toggleAll(child)
       );
+    }
   }
 
-  nodeClickedEvent(event: MouseEvent, d: any) {
-    this.selectedNode = d;
-    this.hasSelectedNode = true;
-    this.changeDetectorRef.detectChanges();
-  }
+  toggleChildren(node: any) {
+    if (node.children) {
+      // Collapse all children and store them in _children
+      node._children = node.children;
+      node.children = null;
+    } else if (node._children) {
+      // Expand children from _children
+      node.children = node._children;
+      node._children = null;
 
-  resetSelections() {
-    this.selectedLink = null;
-    this.selectedNode = null;
-    this.hasSelectedNode = false;
-    this.hasSelectedLink = false;
-    this.changeDetectorRef.detectChanges();
+      // Optionally expand grandchildren
+      node.children.forEach((child: any) => {
+        if (child._children) {
+          this.toggleChildren(child); // Recursively expand grandchildren
+        }
+      });
+    }
   }
 }
