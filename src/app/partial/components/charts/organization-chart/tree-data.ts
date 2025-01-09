@@ -1,74 +1,3 @@
-// export const treeData = {
-//   name: 'flare',
-//   children: [
-//     {
-//       name: 'analytics',
-//       children: [
-//         {
-//           name: 'cluster',
-//           children: [
-//             { name: 'AgglomerativeCluster', value: 3938 },
-//             { name: 'CommunityStructure', value: 3812 },
-//             { name: 'HierarchicalCluster', value: 6714 },
-//             { name: 'MergeEdge', value: 743 },
-//           ],
-//         },
-//         {
-//           name: 'graph',
-//           children: [
-//             { name: 'BetweennessCentrality', value: 3534 },
-//             { name: 'LinkDistance', value: 5731 },
-//             { name: 'MaxFlowMinCut', value: 7840 },
-//             { name: 'ShortestPaths', value: 5914 },
-//             { name: 'SpanningTree', value: 3416 },
-//           ],
-//         },
-//         {
-//           name: 'optimization',
-//           children: [{ name: 'AspectRatioBanker', value: 7074 }],
-//         },
-//       ],
-//     },
-//     {
-//       name: 'animate',
-//     },
-//     {
-//       name: 'data',
-//       children: [
-//         {
-//           name: 'converters',
-//           children: [
-//             { name: 'Converters', value: 721 },
-//             { name: 'DelimitedTextConverter', value: 4294 },
-//             { name: 'GraphMLConverter', value: 9800 },
-//             { name: 'IDataConverter', value: 1314 },
-//             { name: 'JSONConverter', value: 2220 },
-//           ],
-//         },
-//         { name: 'DataField', value: 1759 },
-//         { name: 'DataSchema', value: 2165 },
-//         { name: 'DataSet', value: 586 },
-//         { name: 'DataSource', value: 3331 },
-//         { name: 'DataTable', value: 772 },
-//         { name: 'DataUtil', value: 3322 },
-//       ],
-//     },
-//     {
-//       name: 'display',
-//       children: [
-//         { name: 'DirtySprite', value: 8833 },
-//         { name: 'LineSprite', value: 1732 },
-//         { name: 'RectSprite', value: 3623 },
-//         { name: 'TextSprite', value: 10066 },
-//       ],
-//     },
-//     {
-//       name: 'flex',
-//       children: [{ name: 'FlareVis', value: 4116 }],
-//     },
-//   ],
-// };
-
 export const treeData = {
   name: 'Stephanie Ping',
   image:
@@ -80,7 +9,7 @@ export const treeData = {
     {
       name: 'Andrew Yeow',
       image:
-        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Andrew%20-%20Founder%20_%20CFO.png',
       department: ['Finance', 'Tech', 'Operations', 'Business Development'],
       designation: ['CFO', 'Co-founder'],
       description: 'Handles human resources and recruitment.',
@@ -88,7 +17,7 @@ export const treeData = {
         {
           name: 'Nicholas Yap',
           image:
-            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/HR/Nicholas%20-%20Head%20of%20HR%20_%20Finance.png',
           department: ['HR', 'Finance'],
           designation: 'Head of HR and Finance',
           description: 'Handles human resources and recruitment.',
@@ -158,7 +87,7 @@ export const treeData = {
         {
           name: 'Chea Wong',
           image:
-            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/SALES/Chea%20Hao%20-%20Head%20of%20Real%20Estate%20and%20Product%20Development.png',
           department: ['Marketing', 'Sales', 'Enterprise'],
           designation: 'Head of Real Estate and Product Development',
           description: 'Handles human resources and recruitment.',
@@ -174,7 +103,7 @@ export const treeData = {
                 {
                   name: 'Usha',
                   image:
-                    'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                    'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MARCOMM/Usha%20-%20Senior%20Marketing%20Executive%20-%20Community%20_%20Event.png',
                   department: 'Marketing',
                   designation: 'Senior Marketing Executive - Community & Event',
                   description: 'Handles human resources and recruitment.',
@@ -288,7 +217,7 @@ export const treeData = {
         {
           name: 'Afdhal Shabli',
           image:
-            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/TECH/Afdhal%20-%20Head%20of%20Outlets.png',
           department: 'Operation',
           designation: 'Head of Operations',
           description: 'Handles human resources and recruitment.',
@@ -319,6 +248,295 @@ export const treeData = {
             },
             {
               name: 'Muhammad Syamil',
+              image:
+                'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+              department: 'Operation',
+              designation: 'Network Engineer',
+              description: 'Handles human resources and recruitment.',
+            },
+            {
+              name: 'Majorie Hon',
+              image:
+                'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+              department: 'Operation',
+              designation: 'Network Engineer',
+              description: 'Handles human resources and recruitment.',
+              children: [
+                {
+                  name: 'Norwanme',
+                  image:
+                    'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                  department: 'Operation',
+                  designation: 'Network Engineer',
+                  description: 'Handles human resources and recruitment.',
+                  children: [
+                    {
+                      name: 'Nuramirah',
+                      image:
+                        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                      department: 'Operation',
+                      designation: 'Network Engineer',
+                      description: 'Handles human resources and recruitment.',
+                      children: [
+                        {
+                          name: 'Ting Ting',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                      ],
+                    },
+                    {
+                      name: 'Nurulidayu',
+                      image:
+                        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                      department: 'Operation',
+                      designation: 'Network Engineer',
+                      description: 'Handles human resources and recruitment.',
+                      children: [
+                        {
+                          name: 'Afrina Batrisyia',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                        {
+                          name: 'Cristel Denise',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                      ],
+                    },
+                    {
+                      name: 'Amer Arshad',
+                      image:
+                        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                      department: 'Operation',
+                      designation: 'Network Engineer',
+                      description: 'Handles human resources and recruitment.',
+                      children: [
+                        {
+                          name: 'Muhammad Naqib',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                        {
+                          name: 'Syazwana Razak',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'Tharshana Chandran',
+                  image:
+                    'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                  department: 'Operation',
+                  designation: 'Network Engineer',
+                  description: 'Handles human resources and recruitment.',
+                  children: [
+                    {
+                      name: 'Summer Agnes',
+                      image:
+                        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                      department: 'Operation',
+                      designation: 'Network Engineer',
+                      description: 'Handles human resources and recruitment.',
+                      children: [
+                        {
+                          name: 'Norfatin Nabila',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                        {
+                          name: 'Christ Rose',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                        {
+                          name: 'Wan Nur Ain',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                      ],
+                    },
+                    {
+                      name: 'William Chua',
+                      image:
+                        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                      department: 'Operation',
+                      designation: 'Network Engineer',
+                      description: 'Handles human resources and recruitment.',
+                      children: [
+                        {
+                          name: 'Afifah Salim',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                      ],
+                    },
+                    {
+                      name: 'Leonard Lim',
+                      image:
+                        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                      department: 'Operation',
+                      designation: 'Network Engineer',
+                      description: 'Handles human resources and recruitment.',
+                      children: [
+                        {
+                          name: 'Norfarah Nadirah',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                        {
+                          name: 'Michelle Tan',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                        {
+                          name: 'Qiara Arissa',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'Ken Lim',
+                  image:
+                    'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                  department: 'Operation',
+                  designation: 'Network Engineer',
+                  description: 'Handles human resources and recruitment.',
+                  children: [
+                    {
+                      name: 'Lavaneswary',
+                      image:
+                        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                      department: 'Operation',
+                      designation: 'Network Engineer',
+                      description: 'Handles human resources and recruitment.',
+                      children: [
+                        {
+                          name: 'Lavaneswary',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                        {
+                          name: 'Shahrul Ameerul',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                        {
+                          name: 'Izyan Laila',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                        {
+                          name: 'Wan Nur Husna',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                      ],
+                    },
+                    {
+                      name: 'Lim Zhou Han',
+                      image:
+                        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                      department: 'Operation',
+                      designation: 'Network Engineer',
+                      description: 'Handles human resources and recruitment.',
+                      children: [
+                        {
+                          name: 'Hafizah',
+                          image:
+                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                          department: 'Operation',
+                          designation: 'Network Engineer',
+                          description:
+                            'Handles human resources and recruitment.',
+                        },
+                      ],
+                    },
+                    {
+                      name: 'Zamrina Zamri',
+                      image:
+                        'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
+                      department: 'Operation',
+                      designation: 'Network Engineer',
+                      description: 'Handles human resources and recruitment.',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'Abdul Harith',
               image:
                 'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
               department: 'Operation',

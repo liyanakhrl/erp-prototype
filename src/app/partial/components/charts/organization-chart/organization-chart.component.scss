@@ -4,3 +4,13 @@
     height: auto;
   }
 }
+.node-image {
+  transition: all 0.3s ease; /* Smooth resizing */
+}
+
+.node-image:hover {
+  x: -25px; /* Adjust position */
+  y: -25px; /* Adjust position */
+  width: 50px; /* Enlarged width */
+  height: 50px; /* Enlarged height */
+}
