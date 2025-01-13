@@ -261,9 +261,11 @@ export const treeData = {
               department: 'Operation',
               designation: 'Network Engineer',
               description: 'Handles human resources and recruitment.',
+              // OUTLET MANAGERS
               children: [
                 {
                   name: 'Norwanme',
+                  outlets: ['KLS', 'ITG', 'STO'],
                   image:
                     'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
                   department: 'Operation',
@@ -349,6 +351,7 @@ export const treeData = {
                 },
                 {
                   name: 'Tharshana Chandran',
+                  outlets: ['KLG', 'UBP', 'MUB'],
                   image:
                     'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
                   department: 'Operation',
@@ -452,6 +455,7 @@ export const treeData = {
                 },
                 {
                   name: 'Ken Lim',
+                  outlets: ['TTDI', 'SPM', 'SVT'],
                   image:
                     'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
                   department: 'Operation',
@@ -466,15 +470,6 @@ export const treeData = {
                       designation: 'Network Engineer',
                       description: 'Handles human resources and recruitment.',
                       children: [
-                        {
-                          name: 'Lavaneswary',
-                          image:
-                            'https://storage.googleapis.com/hr_internal/asset/Staff%20Photos/MANAGEMENT/Stephanie%20-%20Founder%20_%20CEO.png',
-                          department: 'Operation',
-                          designation: 'Network Engineer',
-                          description:
-                            'Handles human resources and recruitment.',
-                        },
                         {
                           name: 'Shahrul Ameerul',
                           image:

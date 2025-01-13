@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 export class StepperFormComponent {
   steps = [1, 2, 3];
   currentStep = 0;
+  selectedOptions: string[] = [];
 
   // Navigate to the next step
   nextStep(): void {
@@ -28,5 +29,16 @@ export class StepperFormComponent {
   // Check if current step matches the step index
   isCurrentStep(stepIndex: number): boolean {
     return this.currentStep === stepIndex;
+  }
+
+  // Toggle selection for multi-select checkboxes
+  toggleSelection(option: string): void {
+    if (this.selectedOptions.includes(option)) {
+      this.selectedOptions = this.selectedOptions.filter(
+        (opt) => opt !== option
+      );
+    } else {
+      this.selectedOptions.push(option);
+    }
   }
 }

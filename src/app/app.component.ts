@@ -62,7 +62,7 @@ export class AppComponent {
     {
       label: 'Analytics',
       path: '/analytics',
-      icon: 'fas fa-box',
+      icon: 'fa-solid fa-chart-simple',
       subMenu: [],
       isOpen: false,
     },
