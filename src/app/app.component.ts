@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   trigger,
@@ -7,6 +7,7 @@ import {
   animate,
   query,
 } from '@angular/animations';
+import { ApiService } from './services/api.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,13 +30,13 @@ import {
     ]),
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'WORQ ERP';
   isSidebarCollapsed = false;
   isMobileView = false;
   activeItem: string = '/dashboard'; // Default active item set to 'dashboard'
   currentDepartment = 'General'
-
+  greeting: string = '';
   // Menu items with flyout (nested items)
   menuItems = [
     {
@@ -243,7 +244,7 @@ export class AppComponent {
     },
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private apiService: ApiService) {
     this.activeItem = this.router.url;
 
     // Subscribe to route changes to dynamically update the active item
@@ -252,6 +253,13 @@ export class AppComponent {
     });
 
     this.checkScreenSize(); // Check screen size on initialization
+  }
+
+  ngOnInit(): void {
+    this.apiService.getGreeting().subscribe({
+      next: (response) => (this.greeting = response),
+      error: (err) => console.error('Error fetching greeting:', err)
+    });
   }
 
   setActive(path: string) {

@@ -10,6 +10,8 @@ import { CurrencyFormatPipe } from './partial/pipes/currency-format.pipe';
 import { SearchFilterPipe } from './partial/pipes/search-filter.pipe'; 
 import { PartialModule } from "./partial/partial.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     PartialModule,
     BrowserAnimationsModule,
+    HttpClientModule
 ],
   providers: [],
   bootstrap: [AppComponent]
