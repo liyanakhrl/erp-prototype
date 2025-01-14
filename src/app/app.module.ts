@@ -11,6 +11,7 @@ import { SearchFilterPipe } from './partial/pipes/search-filter.pipe';
 import { PartialModule } from "./partial/partial.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { HttpClientModule } from '@angular/common/http';
+import { ApiModule } from './services/api.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     PartialModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    ApiModule
 ],
   providers: [],
   bootstrap: [AppComponent]
