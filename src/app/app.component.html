@@ -1,9 +1,10 @@
 <div class="flex h-screen bg-gray-100 bg-white dark:bg-gray-900 text-black dark:text-white">
   <app-banner></app-banner>
   <!-- Sidebar -->
-  <aside class="bg-white shadow-md transition-transform transform lg:translate-x-0 -translate-x-full lg:w-64 w-20"
+  <aside
+    class="bg-white shadow-md transition-transform transform lg:translate-x-0 -translate-x-full lg:w-64 w-20 dark:bg-gray-900 text-black dark:text-white"
     [ngClass]="{'-translate-x-full': isSidebarCollapsed}">
-    <div class="h-16 flex items-center justify-center border-b">
+    <div class="h-16 flex items-center justify-center border-b dark:bg-gray-900 text-black dark:text-white">
       <h1 class="text-xl font-bold text-gray-700 lg:block hidden">{{ title }}</h1>
     </div>
     <nav class="p-4">
@@ -13,7 +14,7 @@
           <a [routerLink]="item.path" routerLinkActive="text-blue-500"
             class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
             <i [class]="item.icon"></i>
-            <span class="ml-2 lg:block hidden">{{ item.label }}</span>
+            <span class="ml-2 lg:block text-sm hidden">{{ item.label }}</span>
           </a>
         </li>
       </ul>
@@ -23,22 +24,22 @@
   </aside>
 
   <!-- Main Content -->
-  <div class="flex flex-col flex-1 overflow-hidden">
+  <div class="flex flex-col flex-1 overflow-hidden dark:bg-gray-900 text-black dark:text-white">
     <!-- Header -->
     <header class="flex flex-col">
-      <div class="flex items-center justify-between h-16 px-6 bg-white border-b shadow">
+      <div class="flex items-center justify-between h-16 px-6 bg-white border-b shadow dark:bg-gray-900 text-black dark:text-white">
         <button class="lg:hidden p-2" (click)="toggleSidebar()">
           <i class="fas fa-bars text-gray-700"></i>
         </button>
 
-        <div class="flex flex-row w-full justify-between items-center p-4">
+        <div class="flex flex-row w-full justify-between items-center p-4 dark:bg-gray-900 text-black dark:text-white">
           <h2 class="text-lg font-semibold text-gray-700">{{currentDepartment}}</h2>
 
           <!-- Navigation Menu -->
           <!-- Navbar Component -->
           <nav class="relative bg-white text-gray-700">
             <!-- Burger Menu for Small Screens -->
-            <div class="sm:hidden flex justify-between items-center p-4">
+            <div class="sm:hidden flex justify-between items-center p-4 dark:bg-gray-900 text-black dark:text-white">
               <span class="text-l bold ml-2">Department</span>
               <button (click)="toggleBurgerMenu()" class="focus:outline-none">
                 <i class="fas fa-bars text-xl m-2"></i>
@@ -46,25 +47,27 @@
             </div>
 
             <!-- Dropdown for Small Screens -->
-            <div *ngIf="isBurgerMenuOpen" class="sm:hidden bg-gray-50 shadow-lg rounded-lg">
+            <div *ngIf="isBurgerMenuOpen"
+              class="sm:hidden bg-gray-50 shadow-lg rounded-lg dark:bg-gray-900 text-black dark:text-white ">
               <ul>
-                <li *ngFor="let item of departmentItems" class="border-b border-gray-200">
+                <li *ngFor="let item of departmentItems" class="border-b border-gray-200 dark:bg-gray-900 text-black dark:text-white">
                   <a routerLink="{{ item.path }}" class="block px-4 py-2 hover:bg-blue-100 flex items-center"
                     [class.text-blue-600]="activeItem === item.path" (click)="setActive(item.path)">
-                    <i class="{{ item.icon }} mr-2"></i> {{ item.label }}
+                    <i class="{{ item.icon }} mr-2"></i> <span class="hidden sm:inline mx-2 text-sm">{{ item.label
+                      }}</span>
                   </a>
                 </li>
               </ul>
             </div>
 
             <!-- Normal Navigation for Larger Screens -->
-            <div class="hidden sm:flex space-x-4">
+            <div class="hidden sm:flex space-x-4 dark:bg-gray-900 text-black dark:text-white">
               <ng-container *ngFor="let item of departmentItems">
                 <div class="relative">
                   <a routerLink="{{ item.path }}" class="p-4 hover:text-blue-500 flex items-center"
                     [class.text-blue-600]="activeItem === item.path">
                     <i class="{{ item.icon }} block sm:hidden"></i>
-                    <span class="hidden sm:inline mx-2">{{ item.label }}</span>
+                    <span class="hidden sm:inline mx-2 text-sm">{{ item.label }}</span>
                   </a>
                 </div>
               </ng-container>
@@ -75,16 +78,17 @@
         </div>
 
         <div class="flex items-center space-x-4">
-          
+
           <div class="toggle-container">
             <label for="toggle" class="flex items-center cursor-pointer">
               <div class="relative">
-                <input type="checkbox" id="toggle" [(ngModel)]="toggleState" class="hidden" (change)="toggleDarkMode()" />
+                <input type="checkbox" id="toggle" [(ngModel)]="toggleState" class="hidden"
+                  (change)="toggleDarkMode()" />
                 <div class="toggle-bg">
                   <div class="toggle-dot"></div>
                 </div>
               </div>
-              <span>{{ toggleState ? 'On' : 'Off' }}</span>
+              <span>{{ toggleState ? 'Dark' : 'Light' }}</span>
             </label>
           </div>
 
