@@ -10,7 +10,10 @@ import { DayName } from '../../../interfaces/day.interface';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
 })
-export class CalendarComponent {
+export class CalendarComponent implements OnInit {
+  ngOnInit(): void {
+    console.log("monthDays", this.monthDays)
+  }
   views = ['Year', 'Month', 'Week', 'Day'];
   currentView = 'Year';
   currentDate: Date = new Date();
@@ -111,7 +114,7 @@ export class CalendarComponent {
     this.monthDays = this.getDaysInMonth(this.currentDate.getMonth());
   }
 
-  getDaysInMonth(month: number): { date: number; month: number; day: Date; weekday: number }[] {
+  getDaysInMonth(month: number): { date: number; month: number; day: Date; weekday: number, monthState: string }[] {
     const year = this.currentDate.getFullYear();
     const date = new Date(year, month, 1);
     const days = [];
@@ -126,12 +129,13 @@ export class CalendarComponent {
     // Add previous month's last few days to fill the start of the grid
     const prevMonthStartDay = prevMonthDays - startWeekday + 1;
     for (let i = prevMonthStartDay; i <= prevMonthDays; i++) {
-      // days.push({
-      //   date: i,
-      //   month: (month === 0 ? 11 : month - 1),  // If it's January, we get December of the previous year
-      //   day: new Date(year, month - 1, i),  // Use the previous month
-      //   weekday: (prevMonthDate.getDay() + 1) % 7, // Wrap the weekday correctly
-      // });
+      days.push({
+        date: i,
+        month: (month === 0 ? 11 : month - 1),  // If it's January, we get December of the previous year
+        day: new Date(year, month - 1, i),  // Use the previous month
+        weekday: (prevMonthDate.getDay() + 1) % 7, // Wrap the weekday correctly,
+        monthState: 'previous'
+      });
     }
 
     // Loop through all days of the current month
@@ -141,6 +145,7 @@ export class CalendarComponent {
         month: month,
         day: new Date(date),
         weekday: date.getDay(),
+        monthState: 'current'
       });
       date.setDate(date.getDate() + 1);
     }
@@ -151,12 +156,13 @@ export class CalendarComponent {
 
     // Add next month's first few days (to fill the last row)
     for (let i = 1; i <= nextMonthDays; i++) {
-      // days.push({
-      //   date: i,
-      //   month: (month + 1) % 12,  // If it's December, we go to January of next year
-      //   day: new Date(year, month + 1, i),
-      //   weekday: (date.getDay() + i) % 7, // Wrap the weekday correctly
-      // });
+      days.push({
+        date: i,
+        month: (month + 1) % 12,  // If it's December, we go to January of next year
+        day: new Date(year, month + 1, i),
+        weekday: (date.getDay() + i) % 7, // Wrap the weekday correctly
+        monthState: 'next'
+      });
     }
 
     return days;

@@ -45,8 +45,9 @@
       <div *ngFor="let day of monthDays"
         class="p-4 text-center border rounded shadow-sm relative sm:aspect-square aspect-square"
         [class.bg-blue-100]="isToday(day.day)" [class.bg-white]="!isToday(day.day)" [class.text-black]="true"
-        [style.gridColumn]="day.weekday + 1" 
-        [class.text-gray-400]="day.month !== currentDate.getMonth()"> <!-- Style for previous/next month days -->
+        [class.text-gray-400]="day.month !== currentDate.getMonth()" 
+        [style.gridColumn]="day.monthState === 'current' ? day.weekday + 1 : day.weekday">
+        <!-- Conditional grid column -->
 
         <!-- Date -->
         <span class="text-xs">
@@ -61,6 +62,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
 
