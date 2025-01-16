@@ -1,13 +1,13 @@
-<div class="p-4 space-y-6">
+<div class="p-4 space-y-6 dark:bg-gray-900 text-black dark:text-white">
   <!-- Navigator -->
-  <div class="flex items-center justify-between">
+  <div class="flex items-center justify-between dark:bg-gray-900 text-black dark:text-white">
     <button class="p-2 bg-gray-200 rounded hover:bg-gray-300" (click)="navigate(-1)">&lt;</button>
     <h2 class="text-xl font-bold">{{ currentViewLabel }}</h2>
     <button class="p-2 bg-gray-200 rounded hover:bg-gray-300" (click)="navigate(1)">&gt;</button>
   </div>
 
   <!-- View Selector -->
-  <div class="flex space-x-2">
+  <div class="flex space-x-2 dark:bg-gray-900 text-black dark:text-white">
     <button *ngFor="let view of views" (click)="setView(view)" class="p-2 rounded transition-all hover:bg-gray-300"
       [class.bg-blue-500]="view === currentView" [class.text-white]="view === currentView">
       {{ view }}
@@ -15,17 +15,21 @@
   </div>
 
   <!-- Year View -->
-  <div *ngIf="currentView === 'Year'" class="grid grid-cols-4 gap-4">
-    <div *ngFor="let month of months; let i = index" class="border p-2 shadow-sm bg-white rounded-xl">
-      <h3 class="text-center font-medium mb-2">{{ month }}</h3>
+  <div *ngIf="currentView === 'Year'" class="grid grid-cols-4 gap-4 dark:bg-gray-900 text-black dark:text-white">
+    <div *ngFor="let month of months; let i = index" class="border p-2 shadow-sm bg-white rounded-xl dark:bg-gray-900 text-black dark:text-white">
+      <h3 class="text-center font-medium mb-2 dark:bg-gray-900 text-black dark:text-white">{{ month }}</h3>
       <div class="grid grid-cols-7 gap-1">
         <!-- Day Names -->
-        <div *ngFor="let dayName of dayNames" class="p-2">{{ dayName.shortName}}</div>
+        <div *ngFor="let dayName of dayNames" class="p-2 dark:bg-gray-900 text-black dark:text-white">{{ dayName.shortName}}</div>
 
         <!-- Dates -->
         <div *ngFor="let day of getDaysInMonth(i)"
-          class="p-1 text-center border rounded shadow-sm relative sm:aspect-square aspect-square"
+          class="p-1 text-center border rounded shadow-sm relative sm:aspect-square aspect-square dark:bg-gray-900 text-black dark:text-white"
           [class.bg-blue-100]="isToday(day.day)" [class.bg-white]="!isToday(day.day)" [class.text-black]="true"
+          [class.text-gray-300]="day.month !== currentDate.getMonth()"
+          [class.dark:bg-gray-300]="day.month === currentDate.getMonth()"
+          [class.dark:bg-white-300]="isToday(day.day)"
+          [class.text-black]="day.month === currentDate.getMonth()"
           >
           <!-- Ensure each date is placed in the correct weekday column -->
           {{ day.date }}
@@ -36,15 +40,15 @@
 
 
   <!-- Month View -->
-  <div *ngIf="currentView === 'Month'" class="border rounded shadow-sm">
+  <div *ngIf="currentView === 'Month'" class="border rounded shadow-sm dark:bg-gray-900 text-black dark:text-white">
     <!-- Day Names -->
-    <div class="grid grid-cols-7 text-center font-bold py-2 bg-gray-100">
+    <div class="grid grid-cols-7 text-center font-bold py-2 bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
       <div *ngFor="let dayName of dayNames" class="p-2">{{ dayName.name }}</div>
     </div>
     <!-- Dates -->
-    <div class="grid grid-cols-7 gap-1 sm:grid-cols-7 sm:gap-1">
+    <div class="grid grid-cols-7 gap-1 sm:grid-cols-7 sm:gap-1 dark:bg-gray-900 text-black dark:text-white">
       <div *ngFor="let day of monthDays"
-        class="p-4 text-center border rounded shadow-sm relative sm:aspect-square aspect-square"
+        class="p-4 text-center border rounded shadow-sm relative sm:aspect-square aspect-square dark:bg-gray-900 text-black dark:text-white"
         [class.bg-blue-100]="isToday(day.day)" [class.bg-white]="!isToday(day.day)" [class.text-black]="true"
         [class.text-gray-400]="day.month !== currentDate.getMonth()">
         <!-- Date -->
@@ -53,7 +57,7 @@
         </span>
 
         <!-- Events -->
-        <div *ngFor="let event of getEventsForDay(day.date)" class="mt-2 p-1 text-xs rounded shadow-sm"
+        <div *ngFor="let event of getEventsForDay(day.date)" class="mt-2 p-1 text-xs rounded shadow-sm dark:bg-gray-900 text-black dark:text-white dark:border-white border"
           [class.bg-blue-300]="isToday(day.day)" [class.bg-white]="!isToday(day.day)"
           [class.text-white]="isToday(day.day)" [class.text-black]="!isToday(day.day)">
           {{ event.title }}
@@ -65,18 +69,18 @@
   </div>
 
   <!-- Week View -->
-  <div *ngIf="currentView === 'Week'" class="overflow-y-auto h-100 border rounded shadow-sm">
-    <div class="grid grid-cols-7 gap-2">
-      <div *ngFor="let day of weekDays" class="border-r bg-slate-400 rounded-l">
+  <div *ngIf="currentView === 'Week'" class="overflow-y-auto h-100 border rounded shadow-sm dark:bg-gray-900 text-black dark:text-white">
+    <div class="grid grid-cols-7 gap-2 dark:bg-gray-900 text-black dark:text-white">
+      <div *ngFor="let day of weekDays" class="border-r bg-slate-400 rounded-l dark:bg-gray-900 text-black dark:text-white">
         <div class="text-center font-bold py-2" [class.text-blue-500]="isToday(day.date)"
           [class.bg-blue-100]="isToday(day.date)">
           {{ reformatDate(day.date) }}
         </div>
-        <div class="relative bg-white">
-          <div *ngFor="let hour of dayHours" class="h-16 border-b relative bg-white p-2">
-            <span class="absolute text-xs top-1">{{ hour }}:00</span>
+        <div class="relative bg-white dark:bg-gray-900 text-black dark:text-white ">
+          <div *ngFor="let hour of dayHours" class="h-16 border-b relative bg-white p-2 dark:bg-gray-900 text-black dark:text-white">
+            <span class="absolute text-xs top-1 dark:bg-gray-900 text-black dark:text-white">{{ hour }}:00</span>
             <div *ngFor="let event of getEventsForDayAndHour(day.date, hour)"
-              class="absolute left-1 w-11/12 rounded-lg text-xs p-2 bg-blue-100 border shadow-sm"
+              class="absolute left-1 w-11/12 rounded-lg text-xs p-2 bg-blue-100 border shadow-sm dark:bg-gray-900 text-black dark:text-white"
               [style.height.px]="event.duration * 16">
               <strong>{{ event.title }}</strong>
             </div>
@@ -87,12 +91,12 @@
   </div>
 
   <!-- Day View -->
-  <div *ngIf="currentView === 'Day'" class="overflow-y-auto h-100 border shadow-sm rounded-xl">
-    <div class="relative bg-white">
-      <div *ngFor="let hour of dayHours" class="h-16 border-b relative bg-white mx-5">
-        <span class="absolute text-xs top-1">{{ hour }}:00</span>
+  <div *ngIf="currentView === 'Day'" class="overflow-y-auto h-100 border shadow-sm rounded-xl dark:bg-gray-900 text-black dark:text-white">
+    <div class="relative bg-white dark:bg-gray-900 text-black dark:text-white">
+      <div *ngFor="let hour of dayHours" class="h-16 border-b relative bg-white mx-5 dark:bg-gray-900 text-black dark:text-white">
+        <span class="absolute text-xs top-1 dark:bg-gray-900 text-black dark:text-white">{{ hour }}:00</span>
         <div *ngFor="let event of getEventsForDayAndHour(currentDate, hour)"
-          class="absolute left-1 w-11/12 rounded-lg text-xs p-2 bg-blue-100 border shadow-sm"
+          class="absolute left-1 w-11/12 rounded-lg text-xs p-2 bg-blue-100 border shadow-sm dark:bg-gray-200 text-black dark:text-gray-400"
           [style.height.px]="event.duration * 16">
           <strong>{{ event.title }}</strong>
         </div>
