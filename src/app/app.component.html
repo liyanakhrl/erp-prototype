@@ -35,27 +35,43 @@
           <h2 class="text-lg font-semibold text-gray-700">{{currentDepartment}}</h2>
 
           <!-- Navigation Menu -->
-          <nav class="flex space-x-4 text-gray-700">
-            <ng-container *ngFor="let item of departmentItems">
-              <div class="relative" (click)="toggleSubMenu(item)">
-                <a routerLink="{{ item.path }}" class="p-4 hover:text-blue-500"
-                  [class.text-blue-600]="activeItem === item.path">
-                  <i class="{{ item.icon }}"></i> {{ item.label }}
-                </a>
-                <!-- Flyout Menu (Submenu) -->
-                <div *ngIf="item.isOpen" class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg text-gray-700">
-                  <ul class="py-2" style="display: none;">
-                    <li *ngFor="let subItem of item.subMenu">
-                      <a routerLink="{{ subItem.path }}" class="block px-4 py-2 text-sm hover:text-blue-600"
-                        [class.text-blue-600]="activeItem === subItem.path" (click)="setActive(subItem.path)">
-                        <i class="{{ subItem.icon }}"></i> {{ subItem.label }}
-                      </a>
-                    </li>
-                  </ul>
+          <!-- Navbar Component -->
+          <nav class="relative bg-white text-gray-700">
+            <!-- Burger Menu for Small Screens -->
+            <div class="sm:hidden flex justify-between items-center p-4">
+              <span class="text-l bold ml-2">Department</span>
+              <button (click)="toggleBurgerMenu()" class="focus:outline-none">
+                <i class="fas fa-bars text-xl m-2"></i>
+              </button>
+            </div>
+
+            <!-- Dropdown for Small Screens -->
+            <div *ngIf="isBurgerMenuOpen" class="sm:hidden bg-gray-50 shadow-lg rounded-lg">
+              <ul>
+                <li *ngFor="let item of departmentItems" class="border-b border-gray-200">
+                  <a routerLink="{{ item.path }}" class="block px-4 py-2 hover:bg-blue-100 flex items-center"
+                    [class.text-blue-600]="activeItem === item.path" (click)="setActive(item.path)">
+                    <i class="{{ item.icon }} mr-2"></i> {{ item.label }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Normal Navigation for Larger Screens -->
+            <div class="hidden sm:flex space-x-4">
+              <ng-container *ngFor="let item of departmentItems">
+                <div class="relative">
+                  <a routerLink="{{ item.path }}" class="p-4 hover:text-blue-500 flex items-center"
+                    [class.text-blue-600]="activeItem === item.path">
+                    <i class="{{ item.icon }} block sm:hidden"></i>
+                    <span class="hidden sm:inline mx-2">{{ item.label }}</span>
+                  </a>
                 </div>
-              </div>
-            </ng-container>
+              </ng-container>
+            </div>
           </nav>
+
+
         </div>
 
         <div class="flex items-center space-x-4">

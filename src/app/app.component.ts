@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   isSidebarCollapsed = false;
   isMobileView = false;
   activeItem: string = '/dashboard'; // Default active item set to 'dashboard'
+  isBurgerMenuOpen = false; // To track the burger menu state
   currentDepartment = 'General'
   greeting: string = '';
   // Menu items with flyout (nested items)
@@ -264,6 +265,7 @@ export class AppComponent implements OnInit {
 
   setActive(path: string) {
     this.activeItem = path;
+    this.isBurgerMenuOpen = false; // Close menu after selection
   }
 
   prepareRoute(outlet: any) {
@@ -295,5 +297,9 @@ export class AppComponent implements OnInit {
       this.currentDepartment = menuItem.label;
       menuItem.isOpen = !menuItem.isOpen; // Toggle the visibility of sub-menu
     }
+  }
+
+  toggleBurgerMenu(): void {
+    this.isBurgerMenuOpen = !this.isBurgerMenuOpen;
   }
 }

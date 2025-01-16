@@ -72,8 +72,8 @@ export class CalendarComponent {
     return this.currentView === 'Year'
       ? this.currentDate.getFullYear().toString()
       : this.currentView === 'Week'
-      ? `${startWeekStr} - ${endWeekStr}`
-      : `${this.currentDate.toDateString()}`;
+        ? `${startWeekStr} - ${endWeekStr}`
+        : `${this.currentDate.toDateString()}`;
   }
 
   reformatDate(date: any) {
@@ -111,24 +111,60 @@ export class CalendarComponent {
     this.monthDays = this.getDaysInMonth(this.currentDate.getMonth());
   }
 
-  getDaysInMonth(month: number): { date: number; month: number; day: Date }[] {
-    const year = this.currentDate.getFullYear(); // Get the current year
-    const date = new Date(year, month, 1); // Start at the 1st of the month
+  getDaysInMonth(month: number): { date: number; month: number; day: Date; weekday: number }[] {
+    const year = this.currentDate.getFullYear();
+    const date = new Date(year, month, 1);
     const days = [];
 
-    // Loop through all days in the given month
-    while (date.getMonth() === month) {
-      days.push({
-        date: date.getDate(), // Day of the month
-        month: month, // Current month
-        day: new Date(date), // Copy the full date object
-      });
+    // Get the starting weekday for the month (0 = Sunday, 6 = Saturday)
+    const startWeekday = date.getDay();
 
-      date.setDate(date.getDate() + 1); // Move to the next day
+    // Get the last date of the previous month
+    const prevMonthDate = new Date(year, month, 0); // This will give us the last day of the previous month
+    const prevMonthDays = prevMonthDate.getDate();
+
+    // Add previous month's last few days to fill the start of the grid
+    const prevMonthStartDay = prevMonthDays - startWeekday + 1;
+    for (let i = prevMonthStartDay; i <= prevMonthDays; i++) {
+      // days.push({
+      //   date: i,
+      //   month: (month === 0 ? 11 : month - 1),  // If it's January, we get December of the previous year
+      //   day: new Date(year, month - 1, i),  // Use the previous month
+      //   weekday: (prevMonthDate.getDay() + 1) % 7, // Wrap the weekday correctly
+      // });
     }
 
-    return days; // Return the array of days
+    // Loop through all days of the current month
+    while (date.getMonth() === month) {
+      days.push({
+        date: date.getDate(),
+        month: month,
+        day: new Date(date),
+        weekday: date.getDay(),
+      });
+      date.setDate(date.getDate() + 1);
+    }
+
+    // Get the number of days in the next month to fill the grid
+    const nextMonthStartDate = new Date(year, month + 1, 1); // First day of next month
+    const nextMonthDays = 6 - date.getDay(); // Number of days to fill from next month to complete the grid
+
+    // Add next month's first few days (to fill the last row)
+    for (let i = 1; i <= nextMonthDays; i++) {
+      // days.push({
+      //   date: i,
+      //   month: (month + 1) % 12,  // If it's December, we go to January of next year
+      //   day: new Date(year, month + 1, i),
+      //   weekday: (date.getDay() + i) % 7, // Wrap the weekday correctly
+      // });
+    }
+
+    return days;
   }
+
+
+
+
 
   getWeekStart(date: Date): Date {
     const start = new Date(date);
