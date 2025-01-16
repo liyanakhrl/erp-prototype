@@ -12,6 +12,7 @@ import { PartialModule } from "./partial/partial.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { HttpClientModule } from '@angular/common/http';
 import { ApiModule } from './services/api.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,13 +22,15 @@ import { ApiModule } from './services/api.module';
     DateFormatPipe,
     CurrencyFormatPipe,
     SearchFilterPipe, 
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PartialModule,
     BrowserAnimationsModule,
-    ApiModule
+    ApiModule,
+    FormsModule
 ],
   providers: [],
   bootstrap: [AppComponent]

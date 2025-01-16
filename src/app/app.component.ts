@@ -31,13 +31,14 @@ import { ApiService } from './services/api.service';
   ],
 })
 export class AppComponent implements OnInit {
-  title = 'WORQ ERP';
+  title = 'WORQ ERP'; 
   isSidebarCollapsed = false;
   isMobileView = false;
   activeItem: string = '/dashboard'; // Default active item set to 'dashboard'
   isBurgerMenuOpen = false; // To track the burger menu state
   currentDepartment = 'General'
   greeting: string = '';
+  currentMode = localStorage.getItem('theme') || 'light';
   // Menu items with flyout (nested items)
   menuItems = [
     {
@@ -246,7 +247,7 @@ export class AppComponent implements OnInit {
   ];
 
   constructor(private router: Router, private apiService: ApiService) {
-    this.activeItem = this.router.url;
+    this.activeItem = this.router.url; 
 
     // Subscribe to route changes to dynamically update the active item
     this.router.events.subscribe(() => {
@@ -301,5 +302,16 @@ export class AppComponent implements OnInit {
 
   toggleBurgerMenu(): void {
     this.isBurgerMenuOpen = !this.isBurgerMenuOpen;
+  }
+
+  toggleState: boolean = false;  // Initial state of the toggle button
+
+  // Function that toggles dark mode
+  toggleDarkMode() {
+    if (this.toggleState) {
+      document.body.classList.add('dark');  // Add dark mode class to the body
+    } else {
+      document.body.classList.remove('dark');  // Remove dark mode class from the body
+    }
   }
 }

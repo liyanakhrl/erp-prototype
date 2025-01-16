@@ -7,3 +7,66 @@ li.active a {
 li a:hover {
   background-color: #ebf8ff;
 }
+
+// SCSS for toggle button
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  
+  label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    space-x: 0.5rem;
+
+    .toggle-bg {
+      width: 3rem; // Equivalent to w-12
+      height: 1.5rem; // Equivalent to h-6
+      background-color: #d1d5db; // bg-gray-300
+      border-radius: 9999px; // rounded-full
+      transition: background-color 0.3s ease;
+
+      .toggle-dot {
+        position: absolute;
+        top: 0.25rem; // Top of the container
+        left: 0.25rem; // Left of the container
+        width: 1rem; // Equivalent to w-4
+        height: 1rem; // Equivalent to h-4
+        background-color: white; // bg-white
+        border-radius: 9999px; // rounded-full
+        transition: transform 0.3s ease;
+      }
+    }
+
+    input:checked + .toggle-bg {
+      background-color: #34D399; // bg-green-500 when checked
+    }
+
+    input:checked + .toggle-bg .toggle-dot {
+      transform: translateX(1.5rem); // Moves the dot to the right
+    }
+  }
+
+  span {
+    font-size: 1rem; // Adjust text size as per requirement
+    color: #4b5563; // Equivalent to text-gray-700
+    margin-left: 0.5rem;
+  }
+}
+
+/* Global dark mode styles */
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Additional styles for dark mode */
+body.dark .toggle-bg {
+  background-color: #4b5563; /* Change background color when dark mode is enabled */
+}
+
+body.dark .toggle-dot {
+  background-color: #ffffff; /* Change dot color when dark mode is enabled */
+}

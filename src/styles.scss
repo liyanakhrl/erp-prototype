@@ -1,3 +1,10 @@
 @use 'tailwindcss/base';
 @use 'tailwindcss/components';
 @use 'tailwindcss/utilities';
+
+/* Optional: Additional global styles for dark mode */
+body.dark {
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text */
+  }
+  
