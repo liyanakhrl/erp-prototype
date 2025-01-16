@@ -23,15 +23,17 @@
         <div *ngFor="let dayName of dayNames" class="p-2">{{ dayName.shortName}}</div>
 
         <!-- Dates -->
-        <div *ngFor="let day of getDaysInMonth(i)" class="p-1 text-center border rounded"
-          [class.bg-blue-100]="isTodayYear(day.date, i)" [class.text-blue-500]="isTodayYear(day.date, i)"
-          [class.bg-white-100]="!isTodayYear(day.date, i)" [class.text-white-500]="!isTodayYear(day.date, i)"
-          [style.gridColumn]="day.weekday + 1"> <!-- Ensure each date is placed in the correct weekday column -->
+        <div *ngFor="let day of getDaysInMonth(i)"
+          class="p-1 text-center border rounded shadow-sm relative sm:aspect-square aspect-square"
+          [class.bg-blue-100]="isToday(day.day)" [class.bg-white]="!isToday(day.day)" [class.text-black]="true"
+          >
+          <!-- Ensure each date is placed in the correct weekday column -->
           {{ day.date }}
         </div>
       </div>
     </div>
   </div>
+
 
   <!-- Month View -->
   <div *ngIf="currentView === 'Month'" class="border rounded shadow-sm">
@@ -39,16 +41,12 @@
     <div class="grid grid-cols-7 text-center font-bold py-2 bg-gray-100">
       <div *ngFor="let dayName of dayNames" class="p-2">{{ dayName.name }}</div>
     </div>
-
     <!-- Dates -->
     <div class="grid grid-cols-7 gap-1 sm:grid-cols-7 sm:gap-1">
       <div *ngFor="let day of monthDays"
         class="p-4 text-center border rounded shadow-sm relative sm:aspect-square aspect-square"
         [class.bg-blue-100]="isToday(day.day)" [class.bg-white]="!isToday(day.day)" [class.text-black]="true"
-        [class.text-gray-400]="day.month !== currentDate.getMonth()" 
-        [style.gridColumn]="day.monthState === 'current' ? day.weekday + 1 : day.weekday">
-        <!-- Conditional grid column -->
-
+        [class.text-gray-400]="day.month !== currentDate.getMonth()">
         <!-- Date -->
         <span class="text-xs">
           {{ day.date }}
@@ -63,9 +61,8 @@
       </div>
     </div>
 
+
   </div>
-
-
 
   <!-- Week View -->
   <div *ngIf="currentView === 'Week'" class="overflow-y-auto h-100 border rounded shadow-sm">
