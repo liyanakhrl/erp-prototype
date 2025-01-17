@@ -1,0 +1,89 @@
+<div class="col-span-1 md:col-span-2 lg:col-span-3 p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+  <h2 class="text-xl font-semibold mb-4 text-center">Advanced WYSIWYG Editor</h2>
+
+  <!-- Toolbar -->
+  <div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 xl:grid-cols-24 gap-1 p-4">
+    <!-- Font Weight -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('bold')"><i class="fas fa-bold"></i></button>
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('italic')"><i
+        class="fas fa-italic"></i></button>
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('underline')"><i
+        class="fas fa-underline"></i></button>
+
+    <!-- Text Size -->
+    <select class="w-1/5 sm:w-auto p-2 border rounded" [(ngModel)]="textSize" (change)="onTextSizeChange()">
+      <option value="1">Small</option>
+      <option value="3" selected>Normal</option>
+      <option value="5">Large</option>
+    </select>
+
+    <!-- Text Color -->
+    <button class="toolbar-button w-1/5 sm:w-auto">
+      <i class="fa-solid fa-palette"></i>
+      <!-- Color Picker Input -->
+      <input type="color" class="w-1/5 sm:w-auto p-2 border rounded" [(ngModel)]="textColor"
+        (input)="onTextColorChange()" [value]="textColor" />
+    </button>
+
+
+
+
+    <!-- Font Family -->
+    <select class="w-1/5 sm:w-auto p-2 border rounded" [(ngModel)]="fontFamily" (change)="onFontFamilyChange()">
+      <option value="Arial, sans-serif" selected>Arial</option>
+      <option value="'Times New Roman', serif">Times New Roman</option>
+      <option value="Courier, monospace">Courier</option>
+    </select>
+
+    <!-- Alignment -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('justifyLeft')"><i
+        class="fas fa-align-left"></i></button>
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('justifyCenter')"><i
+        class="fas fa-align-center"></i></button>
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('justifyRight')"><i
+        class="fas fa-align-right"></i></button>
+
+    <!-- Paragraph Format -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('formatBlock', 'h1')"><i class="fa-solid fa-heading"></i><span style="font-size: 12px; font-weight: bold;">1</span></button>
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('formatBlock', 'h2')"><i class="fa-solid fa-heading"></i><span style="font-size: 12px; font-weight: bold;">2</span></button>
+
+    <!-- Insert Link -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="insertLink()"><i class="fas fa-link"></i></button>
+
+    <!-- Insert Image -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="insertImage()"><i class="fa-regular fa-image"></i></button>
+
+    <!-- Insert Video -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="insertVideo()"><i class="fa-solid fa-video"></i></button>
+
+    <!-- List and Formatting -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('insertUnorderedList')"><i
+        class="fa-solid fa-list"></i></button>
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('insertOrderedList')"><i
+        class="fa-solid fa-list-ol"></i></button>
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('formatBlock', 'blockquote')"><i
+        class="fa-solid fa-quote-right"></i></button>
+
+    <!-- Horizontal Rule -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('insertHorizontalRule')"><i
+        class="fa-solid fa-ruler-horizontal"></i></button>
+
+    <!-- Table -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="insertTable()"><i class="fa-solid fa-table"></i></button>
+
+    <!-- Undo / Redo -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('undo')"><i
+        class="fa-solid fa-rotate-left"></i></button>
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('redo')"><i
+        class="fa-solid fa-rotate-right"></i></button>
+
+    <!-- Code Block -->
+    <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('formatBlock', 'pre')"><i
+        class="fa-solid fa-code"></i></button>
+  </div>
+
+  <!-- Editor Area -->
+  <div #editor contenteditable="true"
+    class="border-2 border-gray-300 p-6 rounded-lg focus:outline-none min-h-[200px] bg-gray-50"
+    placeholder="Start typing..."></div>
+</div>

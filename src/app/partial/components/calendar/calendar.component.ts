@@ -10,13 +10,11 @@ import { DayName } from '../../../interfaces/day.interface';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
 })
-export class CalendarComponent implements OnInit {
-  ngOnInit(): void {
-    console.log("monthDays", this.monthDays)
-  }
+export class CalendarComponent {
   views = ['Year', 'Month', 'Week', 'Day'];
   currentView = 'Year';
   currentDate: Date = new Date();
+  currentYear: number = this.currentDate.getFullYear()
 
   dayNames: DayName[] = [
     { name: 'Sunday', shortName: 'Sun' },
@@ -114,7 +112,7 @@ export class CalendarComponent implements OnInit {
     this.monthDays = this.getDaysInMonth(this.currentDate.getMonth());
   }
 
-  getDaysInMonth(month: number): { date: number; month: number; day: Date; weekday: number, monthState: string }[] {
+  getDaysInMonth(month: number): { date: number; month: number; day: Date; year: number, weekday: number, monthState: string }[] {
     const year = this.currentDate.getFullYear();
     const date = new Date(year, month, 1);
     const days = [];
@@ -134,6 +132,7 @@ export class CalendarComponent implements OnInit {
         month: (month === 0 ? 11 : month - 1),  // If it's January, we get December of the previous year
         day: new Date(year, month - 1, i),  // Use the previous month
         weekday: (prevMonthDate.getDay() + 1) % 7, // Wrap the weekday correctly,
+        year: new Date(year, month - 1, i).getFullYear(),
         monthState: 'previous'
       });
     }
@@ -145,6 +144,7 @@ export class CalendarComponent implements OnInit {
         month: month,
         day: new Date(date),
         weekday: date.getDay(),
+        year: new Date(date).getFullYear(),
         monthState: 'current'
       });
       date.setDate(date.getDate() + 1);
@@ -161,6 +161,7 @@ export class CalendarComponent implements OnInit {
         month: (month + 1) % 12,  // If it's December, we go to January of next year
         day: new Date(year, month + 1, i),
         weekday: (date.getDay() + i) % 7, // Wrap the weekday correctly
+        year: new Date(year, month + 1, i).getFullYear(),
         monthState: 'next'
       });
     }

@@ -9,12 +9,12 @@
     </div>
     <nav class="p-4">
       <ul>
-        <li *ngFor="let item of menuItems" class="mb-4" [class.active]="activeItem === item.path"
+        <li *ngFor="let item of menuItems" class="mb-4 dark:hover:text-black" [class.active]="activeItem === item.path"
           (click)="setActive(item.path)">
           <a [routerLink]="item.path" routerLinkActive="text-blue-500"
-            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md">
-            <i [class]="item.icon dark:text-white"></i>
-            <span class="ml-2 lg:block text-sm hidden dark:text-white">{{ item.label }}</span>
+            class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md dark:hover:text-black">
+            <i [class]="item.icon"></i>
+            <span class="ml-2 lg:block text-sm hidden dark:text-white dark:hover:text-black">{{ item.label }}</span>
           </a>
         </li>
       </ul>
@@ -51,9 +51,9 @@
               class="sm:hidden bg-gray-50 shadow-lg rounded-lg dark:bg-gray-900 text-black dark:text-white ">
               <ul>
                 <li *ngFor="let item of departmentItems" class="border-b dark:border-0 border-gray-200 dark:bg-gray-900 text-black dark:text-white">
-                  <a routerLink="{{ item.path }}" class="block px-4 py-2 hover:bg-blue-100 flex items-center"
+                  <a routerLink="{{ item.path }}" class="block px-4 py-2 hover:bg-blue-100 flex items-center dark:hover:text-black"
                     [class.text-blue-600]="activeItem === item.path" (click)="setActive(item.path)">
-                    <i class="{{ item.icon }} mr-2"></i> <span class="hidden sm:inline mx-2 text-sm dark:text-white">{{ item.label
+                    <i class="{{ item.icon }} mr-2"></i> <span class="hidden sm:inline mx-2 text-sm dark:text-white dark:hover:text-black">{{ item.label
                       }}</span>
                   </a>
                 </li>
@@ -64,7 +64,7 @@
             <div class="hidden sm:flex space-x-4 dark:bg-gray-900 text-black dark:text-white">
               <ng-container *ngFor="let item of departmentItems">
                 <div class="relative">
-                  <a routerLink="{{ item.path }}" class="p-4 hover:text-blue-500 flex items-center"
+                  <a routerLink="{{ item.path }}" class="p-4 flex items-center hover:text-blue-500 dark:hover:text-black"
                     [class.text-blue-600]="activeItem === item.path">
                     <i class="{{ item.icon }} block sm:hidden"></i>
                     <span class="hidden sm:inline mx-2 text-sm dark:text-white">{{ item.label }}</span>
@@ -107,7 +107,7 @@
             <span class="ml-2 text-sm font-medium text-gray-700 lg:block hidden">Admin</span>
           </button>
 
-          <div class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg text-gray-700 hidden group-hover:block">
+          <div class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg text-gray-700 hidden group-hover:block dark:hover:text-black">
             <ul class="py-2">
               <li><a href="#" class="block px-4 py-2 text-sm">Profile</a></li>
               <li><a href="#" class="block px-4 py-2 text-sm">Settings</a></li>

@@ -26,7 +26,7 @@
         <div *ngFor="let day of getDaysInMonth(i)"
           class="p-1 text-center border rounded shadow-sm relative sm:aspect-square aspect-square dark:bg-gray-900 text-black dark:text-white"
           [class.bg-blue-100]="isToday(day.day)" [class.bg-white]="!isToday(day.day)" [class.text-black]="true"
-          [class.text-gray-300]="day.month !== currentDate.getMonth()"
+          [class.text-gray-300]="day.month !== currentDate.getMonth() || day.year > currentYear"
           [class.dark:bg-gray-300]="day.month === currentDate.getMonth()"
           [class.dark:bg-white-300]="isToday(day.day)"
           [class.text-black]="day.month === currentDate.getMonth()"

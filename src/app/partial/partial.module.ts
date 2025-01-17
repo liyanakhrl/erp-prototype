@@ -84,6 +84,8 @@ import { MultiChartComponent } from './components/charts/multi-chart/multi-chart
 import { OrganizationChartComponent } from './components/charts/organization-chart/organization-chart.component';
 import { DynamicMasonryComponent } from './components/masonry/dynamic-masonry/dynamic-masonry.component';
 import { StepperFormComponent } from './components/forms/stepper-form/stepper-form.component';
+import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
+
 // import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
@@ -169,9 +171,10 @@ import { StepperFormComponent } from './components/forms/stepper-form/stepper-fo
     MultiChartComponent,
     OrganizationChartComponent,
     DynamicMasonryComponent,
-    StepperFormComponent
+    StepperFormComponent,
+    WysiwygComponent
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule ],
   exports: [
     IconButtonComponent,
     FabComponent,
@@ -254,7 +257,8 @@ import { StepperFormComponent } from './components/forms/stepper-form/stepper-fo
     ScatterChartComponent,
     MultiChartComponent,
     OrganizationChartComponent,
-    StepperFormComponent
+    StepperFormComponent,
+    WysiwygComponent
   ],
 })
 export class PartialModule {}
