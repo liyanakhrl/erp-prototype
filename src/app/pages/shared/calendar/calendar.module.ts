@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CalendarRoutingModule } from './calendar-routing.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarDayComponent } from './calendar-day/calendar-day.component';
-import { PartialModule } from '../../partial/partial.module';
+import { PartialModule } from '../../../partial/partial.module';
 
 
 @NgModule({

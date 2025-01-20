@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './pages/shared/page-not-found/page-not-found.component';
 import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component'; // Ensure correct import
 
 const routes: Routes = [
@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'customers',
     loadChildren: () =>
-      import('./pages/customers/customers.module').then(
+      import('./pages/shared/customers/customers.module').then(
         (m) => m.CustomersModule
       ),
     data: { animation: 'CustomerPage' },
@@ -16,13 +16,13 @@ const routes: Routes = [
   {
     path: 'orders',
     loadChildren: () =>
-      import('./pages/orders/orders.module').then((m) => m.OrdersModule),
+      import('./pages/shared/orders/orders.module').then((m) => m.OrdersModule),
     data: { animation: 'OrderPage' },
   },
   {
     path: 'forms',
     loadChildren: () =>
-      import('./pages/forms/forms.module').then((m) => m.FormsModule),
+      import('./pages/shared/forms/forms.module').then((m) => m.FormsModule),
     data: { animation: 'FormPage' },
   },
   {
@@ -34,19 +34,19 @@ const routes: Routes = [
   {
     path: 'calendar',
     loadChildren: () =>
-      import('./pages/calendar/calendar.module').then((m) => m.CalendarModule),
+      import('./pages/shared/calendar/calendar.module').then((m) => m.CalendarModule),
     data: { animation: 'CalendarPage' },
   },
   {
     path: 'media',
     loadChildren: () =>
-      import('./pages/media/media.module').then((m) => m.MediaModule),
+      import('./pages/shared/media/media.module').then((m) => m.MediaModule),
     data: { animation: 'MediaPage' },
   },
   {
     path: 'reports',
     loadChildren: () =>
-      import('./pages/reports/reports.module').then((m) => m.ReportsModule),
+      import('./pages/shared/reports/reports.module').then((m) => m.ReportsModule),
     data: { animation: 'ReportPage' },
   },
   {
@@ -60,7 +60,7 @@ const routes: Routes = [
   {
     path: 'analytics',
     loadChildren: () =>
-      import('./pages/analytics/analytics.module').then(
+      import('./pages/shared/analytics/analytics.module').then(
         (m) => m.AnalyticsModule
       ),
     data: { animation: 'GeneralPage' },
@@ -74,7 +74,7 @@ const routes: Routes = [
   {
     path: 'knowledge-based',
     loadChildren: () =>
-      import('./pages/knowledge-based/knowledge-based.module').then(
+      import('./pages/shared/knowledge-based/knowledge-based.module').then(
         (m) => m.KnowledgeBasedModule
       ),
     data: { animation: 'KnowledgePage' },
@@ -82,7 +82,49 @@ const routes: Routes = [
   {
     path: 'gallery',
     loadChildren: () =>
-      import('./pages/gallery/gallery.module').then((m) => m.GalleryModule),
+      import('./pages/shared/gallery/gallery.module').then((m) => m.GalleryModule),
+    data: { animation: 'KnowledgePage' },
+  },
+  {
+    path: 'sales',
+    loadChildren: () =>
+      import('./pages/sales/sales.module').then((m) => m.SalesModule),
+    data: { animation: 'KnowledgePage' },
+  },
+  {
+    path: 'hr',
+    loadChildren: () =>
+      import('./pages/hr/hr.module').then((m) => m.HrModule),
+    data: { animation: 'KnowledgePage' },
+  },
+  {
+    path: 'it',
+    loadChildren: () =>
+      import('./pages/it/it.module').then((m) => m.ItModule),
+    data: { animation: 'KnowledgePage' },
+  },
+  {
+    path: 'finance',
+    loadChildren: () =>
+      import('./pages/finance/finance.module').then((m) => m.FinanceModule),
+    data: { animation: 'KnowledgePage' },
+  },
+  {
+    path: 'marketing',
+    loadChildren: () =>
+      import('./pages/marketing/marketing.module').then((m) => m.MarketingModule),
+    data: { animation: 'KnowledgePage' },
+  },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then((m) => m.ProfileModule),
+    data: { animation: 'KnowledgePage' },
+  },
+  {
+    path: 'it',
+    loadChildren: () =>
+      import('./pages/it/it.module').then((m) => m.ItModule),
     data: { animation: 'KnowledgePage' },
   },
   {

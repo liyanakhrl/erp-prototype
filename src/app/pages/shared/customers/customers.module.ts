@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CustomersRoutingModule } from './customers-routing.module';
 import { CustomersComponent } from './customers.component';
-import { PartialModule } from '../../partial/partial.module';
+import { PartialModule } from '../../../partial/partial.module';
 
 
 @NgModule({

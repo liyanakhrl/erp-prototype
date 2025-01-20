@@ -22,7 +22,7 @@ import { BottomSheetComponent } from './components/layouts/bottom-sheet/bottom-s
 import { FooterComponent } from './components/layouts/footer/footer.component';
 import { SidePanelComponent } from './components/layouts/side-panel/side-panel.component';
 import { ImageGalleryComponent } from './components/multimedia/image-gallery/image-gallery.component';
-import { MediaUploadComponent } from '../pages/media/media-upload/media-upload.component';
+import { MediaUploadComponent } from '../pages/shared/media/media-upload/media-upload.component';
 import { VideoPlayerComponent } from './components/multimedia/video-player/video-player.component';
 import { BreadcrumbsComponent } from './components/navigation/breadcrumbs/breadcrumbs.component';
 import { SideNavComponent } from './components/navigation/side-nav/side-nav.component';
@@ -85,6 +85,7 @@ import { OrganizationChartComponent } from './components/charts/organization-cha
 import { DynamicMasonryComponent } from './components/masonry/dynamic-masonry/dynamic-masonry.component';
 import { StepperFormComponent } from './components/forms/stepper-form/stepper-form.component';
 import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
+import { ItineraryComponent } from './components/itinerary/itinerary.component';
 
 // import { HeaderComponent } from './components/header/header.component';
 
@@ -172,7 +173,8 @@ import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
     OrganizationChartComponent,
     DynamicMasonryComponent,
     StepperFormComponent,
-    WysiwygComponent
+    WysiwygComponent,
+    ItineraryComponent
   ],
   imports: [CommonModule, FormsModule ],
   exports: [
@@ -258,7 +260,8 @@ import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
     MultiChartComponent,
     OrganizationChartComponent,
     StepperFormComponent,
-    WysiwygComponent
+    WysiwygComponent,
+    ItineraryComponent
   ],
 })
 export class PartialModule {}

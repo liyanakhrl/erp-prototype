@@ -138,7 +138,7 @@ export class AppComponent implements OnInit {
     },
     {
       label: 'Sales',
-      path: '/general',
+      path: '/sales',
       icon: 'fa-solid fa-handshake',
       subMenu: [
         {
@@ -156,7 +156,7 @@ export class AppComponent implements OnInit {
     },
     {
       label: 'HR',
-      path: '/general',
+      path: '/hr',
       icon: 'fa-solid fa-users',
       subMenu: [
         {
@@ -174,7 +174,7 @@ export class AppComponent implements OnInit {
     },
     {
       label: 'IT',
-      path: '/general',
+      path: '/it',
       icon: 'fa fa-laptop',
       subMenu: [
         {
@@ -192,7 +192,7 @@ export class AppComponent implements OnInit {
     },
     {
       label: 'Finance',
-      path: '/general',
+      path: '/finance',
       icon: 'fas fa-wallet',
       subMenu: [
         {
@@ -210,7 +210,7 @@ export class AppComponent implements OnInit {
     },
     {
       label: 'Marketing',
-      path: '/general',
+      path: '/marketing',
       icon: 'fa-solid fa-bullseye',
       subMenu: [
         {
@@ -228,7 +228,7 @@ export class AppComponent implements OnInit {
     },
     {
       label: 'Profile',
-      path: '/general',
+      path: '/profile',
       icon: 'fa-solid fa-user',
       subMenu: [
         {

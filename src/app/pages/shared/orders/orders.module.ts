@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
-import { PartialModule } from '../../partial/partial.module';
+import { PartialModule } from '../../../partial/partial.module';
 
 
 @NgModule({

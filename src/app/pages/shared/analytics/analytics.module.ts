@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AnalyticsRoutingModule } from './analytics-routing.module';
 import { ActivityLogsComponent } from './activity-logs/activity-logs.component';
 import { UserMonitoringComponent } from './user-monitoring/user-monitoring.component';
-import { PartialModule } from "../../partial/partial.module";
+import { PartialModule } from "../../../partial/partial.module";
 
 
 @NgModule({
