@@ -183,7 +183,7 @@ export class CalendarComponent {
           monthState: 'next'
         });
       }
-      console.log("end loop")
+      
     }
 
     return days;

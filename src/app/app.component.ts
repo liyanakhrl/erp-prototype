@@ -314,4 +314,6 @@ export class AppComponent implements OnInit {
       document.body.classList.remove('dark');  // Remove dark mode class from the body
     }
   }
+
+  
 }

@@ -10,19 +10,19 @@ import { Component } from '@angular/core';
 export class TableMultiLineContentComponent {
   people = [
     {
-      avatar: 'https://via.placeholder.com/40',
+      avatar: 'https://cdn-icons-png.flaticon.com/512/147/147144.png',
       name: 'John Doe',
       role: 'Web Developer',
       description: 'Specializes in frontend frameworks like Angular and React.',
     },
     {
-      avatar: 'https://via.placeholder.com/40',
+      avatar: 'https://cdn-icons-png.flaticon.com/512/147/147144.png',
       name: 'Jane Smith',
       role: 'UX Designer',
       description: 'Focuses on creating intuitive and accessible designs.',
     },
     {
-      avatar: 'https://via.placeholder.com/40',
+      avatar: 'https://cdn-icons-png.flaticon.com/512/147/147144.png',
       name: 'Michael Lee',
       role: 'Backend Engineer',
       description: 'Experienced with databases and server-side frameworks.',

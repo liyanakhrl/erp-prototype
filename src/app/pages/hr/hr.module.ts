@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { HrRoutingModule } from './hr-routing.module';
 import { HrComponent } from './hr/hr.component';
+import { CompensationComponent } from './hr/compensation/compensation.component';
+import { HrGeneralComponent } from './hr/hr-general/hr-general.component';
 
 
 @NgModule({
   declarations: [
-    HrComponent
+    HrComponent,
+    CompensationComponent,
+    HrGeneralComponent
   ],
   imports: [
     CommonModule,
