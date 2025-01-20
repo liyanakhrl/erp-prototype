@@ -127,18 +127,20 @@ export class OrganizationChartComponent implements OnInit {
       .attr('height', (d: any) => (d.depth > -1 ? 18 : 25))  // Set height of the background
       .attr('rx', '5') // Rounded corners
       .attr('ry', '5') // Rounded corners
-      .style('fill', '#c2c2c2') // Grey background color
-      .style('stroke', 'black') // Optional: black border color
+      .style('fill', '#303030') // Grey background color
+      .style('stroke', '#303030') // Optional: black border color
       .style('stroke-width', '1'); // Optional: border width
 
     nameText
       .append('text') // Appending text element
       .attr('class', 'node-name')
-      .attr('x', (d: any) => (d.depth > -1 ? 20 : 0)) // Move text to the right for depth > 2
-      .attr('y', (d: any) => (d.depth > -1 ? 0 : 25)) // Align vertically for depth > 2
-      .attr('text-anchor', (d: any) => (d.depth > -1 ? 'start' : 'middle')) // Align text to the right for depth > 2
+      .attr('x', (d: any) => (d.depth > -1 ? 20 : 0)) // Move text to the right for depth > -1
+      .attr('y', (d: any) => (d.depth > -1 ? 0 : 25)) // Align vertically for depth > -1
+      .attr('text-anchor', (d: any) => (d.depth > -1 ? 'start' : 'middle')) // Align text to the right for depth > -1
       .text((d: any) => `  ${d.data.name}`) // Display the name
       .style('font-size', '12px') // Font size for text
+      .style('fill', 'black'); // Set font color to black
+
     // Append role text
     const roleText = nodeEnter
       .append('text')

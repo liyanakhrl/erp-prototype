@@ -155,15 +155,35 @@ export class CalendarComponent {
     const nextMonthDays = 6 - date.getDay(); // Number of days to fill from next month to complete the grid
 
     // Add next month's first few days (to fill the last row)
-    for (let i = 1; i <= nextMonthDays; i++) {
-      days.push({
-        date: i,
-        month: (month + 1) % 12,  // If it's December, we go to January of next year
-        day: new Date(year, month + 1, i),
-        weekday: (date.getDay() + i) % 7, // Wrap the weekday correctly
-        year: new Date(year, month + 1, i).getFullYear(),
-        monthState: 'next'
-      });
+    // for (let i = 1; i <= nextMonthDays; i++) {
+    //   days.push({
+    //     date: i,
+    //     month: (month + 1) % 12,  // If it's December, we go to January of next year
+    //     day: new Date(year, month + 1, i),
+    //     weekday: (date.getDay() + i) % 7, // Wrap the weekday correctly
+    //     year: new Date(year, month + 1, i).getFullYear(),
+    //     monthState: 'next'
+    //   });
+    // }
+
+    // Ensure that we have 6 rows (7 columns per row)
+    const totalCellsNeeded = 6 * 7; // 6 rows x 7 columns
+    const totalDaysInGrid = days.length;
+
+    // Fill empty cells at the end if there are fewer than 42 days
+    if (totalDaysInGrid < totalCellsNeeded) {
+      const emptyCellsCount = totalCellsNeeded - totalDaysInGrid;
+      for (let i = 1; i < emptyCellsCount + 1; i++) {
+        days.push({
+          date: i,
+          month: (month + 1) % 12,  // If it's December, we go to January of next year
+          day: new Date(year, month + 1, i + 1),
+          weekday: (date.getDay() + i) % 7, // Wrap the weekday correctly
+          year: new Date(year, month + 1, i).getFullYear(),
+          monthState: 'next'
+        });
+      }
+      console.log("end loop")
     }
 
     return days;
