@@ -91,48 +91,66 @@ export class OrganizationChartComponent implements OnInit {
       });
 
     // Append image to the node
-    nodeEnter
+    const image = nodeEnter
       .append('image')
       .attr('xlink:href', (d: any) => d.data.image) // Image URL from data
-      .attr('x', (d: any) => (d.depth > 2 ? -20 : -15)) // Adjust for side-by-side for depth > 2
-      .attr('y', (d: any) => (d.depth > 2 ? -10 : -15)) // Adjust for side-by-side for depth > 2
+      .attr('x', (d: any) => (d.depth > -1 ? -20 : -15)) // Adjust for side-by-side for depth > 2
+      .attr('y', (d: any) => (d.depth > -1 ? -10 : -15)) // Adjust for side-by-side for depth > 2
       .attr('width', 30) // Default width
       .attr('height', 30) // Default height
       .on('mouseover', function (this: SVGImageElement, event: MouseEvent) {
         d3.select(this)
           .attr('width', 50)
           .attr('height', 50)
-          .attr('x', (d: any) => (d.depth > 2 ? -25 : -15))
-          .attr('y', (d: any) => (d.depth > 2 ? -25 : -15));
+          .attr('x', (d: any) => (d.depth > -1 ? -25 : -15))
+          .attr('y', (d: any) => (d.depth > -1 ? -25 : -15));
       })
       .on('mouseout', function (this: SVGImageElement, event: MouseEvent) {
         d3.select(this)
           .attr('width', 30)
           .attr('height', 30)
-          .attr('x', (d: any) => (d.depth > 2 ? -20 : -15))
-          .attr('y', (d: any) => (d.depth > 2 ? -10 : -15));
+          .attr('x', (d: any) => (d.depth > -1 ? -20 : -15))
+          .attr('y', (d: any) => (d.depth > -1 ? -10 : -15));
       });
 
-    // Append name text
-    nodeEnter
-      .append('text')
-      .attr('class', 'node-name')
-      .attr('x', (d: any) => (d.depth > 2 ? 20 : 0)) // Move text to the right for depth > 2
-      .attr('y', (d: any) => (d.depth > 2 ? 0 : 25)) // Align vertically for depth > 2
-      .attr('text-anchor', (d: any) => (d.depth > 2 ? 'start' : 'middle')) // Align text to the right for depth > 2
-      .text((d: any) => d.data.name) // Display the name
-      .style('font-size', '12px');
+    const nameText = nodeEnter
+      .append('g') // Grouping to combine rect and text
+      .attr('class', 'node-name-group')
 
+
+
+    nameText
+      .append('rect') // Adding the rectangle as the background
+      .attr('x', (d: any) => (d.depth > -1 ? 20 : -d.data.name.length * 3)) // Adjust X based on the text length for padding
+      .attr('y', (d: any) => (d.depth > -1 ? -15 : 5)) // Adjust Y for vertical padding
+      .attr('width', (d: any) => d.data.name.length * 7) // Set width according to the name length
+      .attr('height', (d: any) => (d.depth > -1 ? 18 : 25))  // Set height of the background
+      .attr('rx', '5') // Rounded corners
+      .attr('ry', '5') // Rounded corners
+      .style('fill', '#c2c2c2') // Grey background color
+      .style('stroke', 'black') // Optional: black border color
+      .style('stroke-width', '1'); // Optional: border width
+
+    nameText
+      .append('text') // Appending text element
+      .attr('class', 'node-name')
+      .attr('x', (d: any) => (d.depth > -1 ? 20 : 0)) // Move text to the right for depth > 2
+      .attr('y', (d: any) => (d.depth > -1 ? 0 : 25)) // Align vertically for depth > 2
+      .attr('text-anchor', (d: any) => (d.depth > -1 ? 'start' : 'middle')) // Align text to the right for depth > 2
+      .text((d: any) => `  ${d.data.name}`) // Display the name
+      .style('font-size', '12px') // Font size for text
     // Append role text
-    nodeEnter
+    const roleText = nodeEnter
       .append('text')
       .attr('class', 'node-role')
-      .attr('x', (d: any) => (d.depth > 2 ? 20 : 0)) // Move role text to the right for depth > 2
-      .attr('y', (d: any) => (d.depth > 2 ? 15 : 55)) // Position below the name for depth > 2
-      .attr('text-anchor', (d: any) => (d.depth > 2 ? 'start' : 'middle')) // Align text to the right for depth > 2
+      .attr('x', (d: any) => (d.depth > -1 ? 20 : 0)) // Move role text to the right for depth > 2
+      .attr('y', (d: any) => (d.depth > -1 ? 15 : 55)) // Position below the name for depth > 2
+      .attr('text-anchor', (d: any) => (d.depth > -1 ? 'start' : 'middle')) // Align text to the right for depth > 2
       .text((d: any) => d.data.role) // Display the role
       .style('font-size', '10px')
       .style('fill', '#666'); // Optional: lighter color for roles
+
+
 
     // Transition nodes to their new positions
     const nodeUpdate = nodeEnter.merge(node);
@@ -167,9 +185,8 @@ export class OrganizationChartComponent implements OnInit {
       .attr('fill', 'none')
       .attr('d', (d: any) => {
         const o = { x: source.x0, y: source.y0 };
-        return `M${o.y},${o.x}C${o.y + (d.target.y - o.y) / 2},${o.x} ${
-          d.target.y - (d.target.y - o.y) / 2
-        },${d.target.x} ${d.target.y},${d.target.x}`;
+        return `M${o.y},${o.x}C${o.y + (d.target.y - o.y) / 2},${o.x} ${d.target.y - (d.target.y - o.y) / 2
+          },${d.target.x} ${d.target.y},${d.target.x}`;
       });
 
     // Update links
@@ -178,11 +195,9 @@ export class OrganizationChartComponent implements OnInit {
       .transition()
       .duration(200)
       .attr('d', (d: any) => {
-        return `M${d.source.y},${d.source.x}C${
-          d.source.y + (d.target.y - d.source.y) / 2
-        },${d.source.x} ${d.target.y - (d.target.y - d.source.y) / 2},${
-          d.target.x
-        } ${d.target.y},${d.target.x}`;
+        return `M${d.source.y},${d.source.x}C${d.source.y + (d.target.y - d.source.y) / 2
+          },${d.source.x} ${d.target.y - (d.target.y - d.source.y) / 2},${d.target.x
+          } ${d.target.y},${d.target.x}`;
       });
 
     // Remove exiting links

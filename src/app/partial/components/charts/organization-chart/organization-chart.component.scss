@@ -14,3 +14,16 @@
   width: 50px; /* Enlarged width */
   height: 50px; /* Enlarged height */
 }
+
+.node-name {
+  font-size: 12px;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+.dark .node-name {
+  background-color: white; /* White background in dark mode */
+  color: black; /* Text color in dark mode */
+}
+
+
