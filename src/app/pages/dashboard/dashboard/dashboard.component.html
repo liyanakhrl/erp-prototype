@@ -1,8 +1,8 @@
 <!-- Dashboard Container -->
-<div class="min-h-screen bg-gray-100 p-6">
+<div class="min-h-screen bg-gray-100 p-6 text-black dark:bg-gray-900 text-black dark:text-white">
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
-        <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+        <h1 class="text-2xl font-bold text-gray-800 text-black dark:text-gray-300">Dashboard</h1>
         <button
             class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-300">
             Export Data
@@ -12,48 +12,48 @@
     <!-- Grid Layout -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- KPI Card 1 -->
-        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Total Users</h2>
+        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Total Users</h2>
             <p class="text-3xl font-bold text-indigo-500">1,240</p>
         </div>
 
         <!-- KPI Card 2 -->
-        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Active Users</h2>
+        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Active Users</h2>
             <p class="text-3xl font-bold text-green-500">940</p>
         </div>
 
         <!-- KPI Card 3 -->
-        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Pending Tasks</h2>
+        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Pending Tasks</h2>
             <p class="text-3xl font-bold text-yellow-500">35</p>
         </div>
 
         <!-- Chart Card -->
-        <div class="col-span-1 md:col-span-2 lg:col-span-3 p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Performance Overview</h2>
+        <div class="col-span-1 md:col-span-2 lg:col-span-3 p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Performance Overview</h2>
             <!-- Placeholder for Chart -->
-            <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+            <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center dark:bg-gray-900 dark:text-white">
                 <span class="text-gray-500">Chart Placeholder</span>
             </div>
         </div>
     </div>
 
-    <div class="flex flex-col md:flex-row gap-4 my-3">
-        <div class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white">
+    <div class="flex flex-col md:flex-row gap-4 my-3 dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+        <div class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
             <!-- Recent Activity -->
-            <div class="flex-1 p-4 bg-white rounded-lg shadow hover:shadow-lg transition">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Peer Activities</h2>
+            <div class="flex-1 p-4 bg-white rounded-lg shadow hover:shadow-lg transition mb-2 dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Recent Peer Activities</h2>
                 <ul class="divide-y divide-gray-200">
-                    <li class="py-4 flex items-center justify-between">
+                    <li class="py-4 flex items-center justify-between dark:text-white">
                         <span>John updated profile</span>
                         <span class="text-sm text-gray-500">2 hours ago</span>
                     </li>
-                    <li class="py-4 flex items-center justify-between">
+                    <li class="py-4 flex items-center justify-between dark:text-white">
                         <span>Jane submitted report</span>
                         <span class="text-sm text-gray-500">1 day ago</span>
                     </li>
-                    <li class="py-4 flex items-center justify-between">
+                    <li class="py-4 flex items-center justify-between dark:text-white">
                         <span>Emily created new task</span>
                         <span class="text-sm text-gray-500">3 days ago</span>
                     </li>
@@ -61,7 +61,7 @@
             </div>
             <app-feed></app-feed>
         </div>
-        <div class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white">
+        <div class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
             <app-transaction-table></app-transaction-table>
         </div>
     </div>

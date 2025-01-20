@@ -1,5 +1,5 @@
 <div class="flex h-screen bg-gray-100 bg-white dark:bg-gray-900 text-black dark:text-white">
-  <app-banner></app-banner>
+  <!-- <app-banner></app-banner> -->
   <!-- Sidebar -->
   <aside
     class="bg-white shadow-md transition-transform transform lg:translate-x-0 -translate-x-full lg:w-64 w-20 dark:bg-gray-900 text-black dark:text-white"
@@ -50,7 +50,7 @@
             <div *ngIf="isBurgerMenuOpen"
               class="sm:hidden bg-gray-50 shadow-lg rounded-lg dark:bg-gray-900 text-black dark:text-white ">
               <ul>
-                <li *ngFor="let item of departmentItems" class="border-b dark:border-0 border-gray-200 dark:bg-gray-900 text-black dark:text-white">
+                <li *ngFor="let item of departmentItems" class="border-b dark:border-0 border-gray-200 dark:bg-gray-900 text-black dark:text-white" [class.active]="activeItem === item.path">
                   <a routerLink="{{ item.path }}" class="block px-4 py-2 hover:bg-blue-100 flex items-center dark:hover:text-black"
                     [class.text-blue-600]="activeItem === item.path" (click)="setActive(item.path)">
                     <i class="{{ item.icon }} mr-2"></i> <span class="hidden sm:inline mx-2 text-sm dark:text-white dark:hover:text-black">{{ item.label

@@ -1,8 +1,8 @@
-<div class="col-span-1 md:col-span-2 lg:col-span-3 p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+<div class="col-span-1 md:col-span-2 lg:col-span-3 p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
   <h2 class="text-xl font-semibold mb-4 text-center">Advanced WYSIWYG Editor</h2>
 
   <!-- Toolbar -->
-  <div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 xl:grid-cols-24 gap-1 p-4">
+  <div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 xl:grid-cols-24 gap-1 p-4 dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
     <!-- Font Weight -->
     <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('bold')"><i class="fas fa-bold"></i></button>
     <button class="toolbar-button w-1/5 sm:w-auto" (click)="execCommand('italic')"><i
@@ -18,7 +18,7 @@
     </select>
 
     <!-- Text Color -->
-    <button class="toolbar-button w-1/5 sm:w-auto">
+    <button class="toolbar-button w-1/5 sm:w-auto px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-600 dark:text-gray-200">
       <i class="fa-solid fa-palette"></i>
       <!-- Color Picker Input -->
       <input type="color" class="w-1/5 sm:w-auto p-2 border rounded" [(ngModel)]="textColor"
