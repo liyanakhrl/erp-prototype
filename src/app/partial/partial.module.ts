@@ -59,12 +59,12 @@ import { LogoCloudComponent } from './components/logo-cloud/logo-cloud.component
 import { FaqComponent } from './components/faq/faq.component';
 import { FlyoutMenuComponent } from './components/flyout-menu/flyout-menu.component';
 import { BannerComponent } from './components/banner/banner.component';
-import { FeedComponent } from './components/feed/feed.component'; 
+import { FeedComponent } from './components/feed/feed.component';
 import { MasonryGridComponent } from './components/masonry-grid/masonry-grid.component';
 import { SpeedDialComponent } from './components/speed-dial/speed-dial.component';
 import { PageHeadingComponent } from './components/page-heading/page-heading.component';
-import { CardHeadingComponent } from './components/cards/card-heading/card-heading.component'; 
-import { DataDisplayComponent } from './components/data-display/data-display.component'; 
+import { CardHeadingComponent } from './components/cards/card-heading/card-heading.component';
+import { DataDisplayComponent } from './components/data-display/data-display.component';
 import { SummaryTableComponent } from './components/tables/summary-table/summary-table.component';
 import { CheckboxTableComponent } from './components/tables/checkbox-table/checkbox-table.component';
 import { MultilineTableComponent } from './components/tables/multiline-table/multiline-table.component';
@@ -86,6 +86,8 @@ import { DynamicMasonryComponent } from './components/masonry/dynamic-masonry/dy
 import { StepperFormComponent } from './components/forms/stepper-form/stepper-form.component';
 import { WysiwygComponent } from './components/wysiwyg/wysiwyg.component';
 import { ItineraryComponent } from './components/itinerary/itinerary.component';
+import { TabComponent } from './components/tab/tab.component';
+import { HeatmapComponent } from './components/charts/heatmap/heatmap.component';
 
 // import { HeaderComponent } from './components/header/header.component';
 
@@ -174,9 +176,11 @@ import { ItineraryComponent } from './components/itinerary/itinerary.component';
     DynamicMasonryComponent,
     StepperFormComponent,
     WysiwygComponent,
-    ItineraryComponent
+    ItineraryComponent,
+    TabComponent,
+    HeatmapComponent
   ],
-  imports: [CommonModule, FormsModule ],
+  imports: [CommonModule, FormsModule],
   exports: [
     IconButtonComponent,
     FabComponent,
@@ -236,7 +240,7 @@ import { ItineraryComponent } from './components/itinerary/itinerary.component';
     FaqComponent,
     FooterComponent,
     BannerComponent,
-    FeedComponent, 
+    FeedComponent,
     MasonryGridComponent,
     DynamicMasonryComponent,
     SpeedDialComponent,
@@ -261,7 +265,9 @@ import { ItineraryComponent } from './components/itinerary/itinerary.component';
     OrganizationChartComponent,
     StepperFormComponent,
     WysiwygComponent,
-    ItineraryComponent
+    ItineraryComponent,
+    TabComponent,
+    HeatmapComponent
   ],
 })
-export class PartialModule {}
+export class PartialModule { }

@@ -1,0 +1,20 @@
+<div class="max-w-3xl mt-10">
+  <!-- Tab buttons -->
+  <div class="border-b border-gray-300">
+    <div class="flex space">
+      <button *ngFor="let item of tabNames" (click)="setActiveTab(item.index)"
+        [ngClass]="{'text-blue-500 border-b-2 border-blue-500': activeTab === item.index}"
+        class="tab-button px-6 py-2 text-lg text-gray-700 hover:text-blue-500 focus:outline-none">
+        {{ item.name }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="mt-6">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-2xl font-semibold text-gray-800">Content for Tab {{activeTab}}</h2>
+      <p class="mt-2 text-gray-600">{{content}}</p>
+    </div>
+  </div>
+</div>

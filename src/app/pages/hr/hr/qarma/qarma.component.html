@@ -1,0 +1,96 @@
+<div class="max-w-4xl p-8 bg-white rounded-lg shadow-2xl">
+  <div class="text-center mb-8">
+    <h2 class="text-3xl font-extrabold text-gray-900">Employee Recognition</h2>
+    <p class="text-lg text-gray-600">We value the hard work and dedication of our team members!</p>
+  </div>
+
+  <!-- Employee Recognition Details -->
+  <div class="grid grid-cols-1 gap-2 mb-8 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="p-3 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+      <h3 class="text-xl font-semibold">Recognition</h3>
+      <p class="mt-2">Employee of the Month</p>
+    </div>
+
+    <div class="p-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+      <h3 class="text-xl font-semibold">Redemption</h3>
+      <p class="mt-2">Redeemed Points: 150</p>
+    </div>
+
+    <div class="p-3 bg-gradient-to-r from-purple-400 to-pink-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+      <h3 class="text-xl font-semibold">Current Balance</h3>
+      <p class="mt-2">500 points</p>
+    </div>
+  </div>
+
+  <!-- Recognition Notes -->
+  <div class="p-6 bg-white rounded-lg shadow-lg">
+    <h3 class="text-xl font-semibold text-gray-900">Recognition Notes</h3>
+    <p>{{ recognitionForm.value.recognitionNotes }}</p>
+  </div>
+
+  <!-- Action Buttons at the Bottom -->
+  <div class="mt-8 text-center space-x-4">
+    <button type="button" (click)="showRecognitionNotesPanel()" class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg">
+      View More Details
+    </button>
+    <button type="button" (click)="showRecognitionModal()" class="px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg">
+      Recognize Someone
+    </button>
+  </div>
+</div>
+
+<!-- Sliding Recognition Notes Panel -->
+<div *ngIf="isRecognitionNotesVisible" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-end transform translate-x-0 transition-transform duration-500">
+  <div class="w-96 bg-white p-8 rounded-l-lg shadow-lg">
+    <h3 class="text-2xl font-semibold text-gray-800">Recognition Notes</h3>
+    <p>{{ recognitionNotes }}</p>
+    
+    <button (click)="closeRecognitionNotesPanel()" class="mt-6 px-6 py-3 bg-red-600 text-white rounded-lg">
+      Close
+    </button>
+  </div>
+</div>
+
+<!-- Recognize Someone Modal (Sliding Panel) -->
+<div *ngIf="isRecognitionModalVisible" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-end transform translate-x-0 transition-transform duration-500">
+  <div class="w-96 bg-white p-8 rounded-r-lg shadow-lg">
+    <h3 class="text-2xl font-semibold text-gray-900">Recognize Employee</h3>
+
+    <form [formGroup]="recognitionForm" (ngSubmit)="submitRecognition()">
+      <div class="mt-4">
+        <label for="person" class="block text-sm text-gray-700">Select Person</label>
+        <select formControlName="selectedPerson" id="person" class="w-full mt-2 p-3 border border-gray-300 rounded-md">
+          <option value="john">John Doe</option>
+          <option value="jane">Jane Smith</option>
+        </select>
+      </div>
+
+      <div class="mt-4">
+        <label for="department" class="block text-sm text-gray-700">Select Department</label>
+        <select formControlName="selectedDepartment" id="department" class="w-full mt-2 p-3 border border-gray-300 rounded-md">
+          <option value="hr">HR</option>
+          <option value="sales">Sales</option>
+        </select>
+      </div>
+
+      <div class="mt-4">
+        <label for="notes" class="block text-sm text-gray-700">Recognition Notes</label>
+        <textarea formControlName="recognitionNotes" id="notes" class="w-full mt-2 p-3 border border-gray-300 rounded-md" rows="3"></textarea>
+      </div>
+
+      <div class="mt-4">
+        <label for="attribute" class="block text-sm text-gray-700">Select Attribute</label>
+        <select formControlName="selectedAttribute" id="attribute" class="w-full mt-2 p-3 border border-gray-300 rounded-md">
+          <option value="leadership">Leadership</option>
+          <option value="creativity">Creativity</option>
+          <option value="teamwork">Teamwork</option>
+        </select>
+      </div>
+
+      <div class="mt-6 flex justify-end space-x-4">
+        <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg">Submit Recognition</button>
+        <button type="button" (click)="closeRecognitionModal()" class="px-6 py-3 bg-red-600 text-white rounded-lg">Close</button>
+      </div>
+    </form>
+  </div>
+</div>

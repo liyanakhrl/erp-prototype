@@ -12,25 +12,29 @@
     <!-- Grid Layout -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- KPI Card 1 -->
-        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+        <div
+            class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
             <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Total Users</h2>
             <p class="text-3xl font-bold text-indigo-500">1,240</p>
         </div>
 
         <!-- KPI Card 2 -->
-        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+        <div
+            class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
             <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Active Users</h2>
             <p class="text-3xl font-bold text-green-500">940</p>
         </div>
 
         <!-- KPI Card 3 -->
-        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+        <div
+            class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
             <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Pending Tasks</h2>
             <p class="text-3xl font-bold text-yellow-500">35</p>
         </div>
 
         <!-- Chart Card -->
-        <div class="col-span-1 md:col-span-2 lg:col-span-3 p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+        <div
+            class="col-span-1 md:col-span-2 lg:col-span-3 p-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
             <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Performance Overview</h2>
             <!-- Placeholder for Chart -->
             <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center dark:bg-gray-900 dark:text-white">
@@ -39,10 +43,30 @@
         </div>
     </div>
 
-    <div class="flex flex-col md:flex-row gap-4 my-3 dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
-        <div class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
+    <!-- Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <!-- KPI Card 1 -->
+        <div
+            class="pt-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+            <h2 class="text-xl font-semibold text-gray-800 text-center dark:text-white">Qarma Points</h2>
+            <app-qarma></app-qarma>
+        </div>
+
+        <!-- KPI Card 2 -->
+        <div
+            class="pt-6 bg-white rounded-lg shadow hover:shadow-lg transition dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+            <h2 class="text-xl font-semibold text-gray-800 text-center dark:text-white">Innovation Box</h2>
+
+        </div>
+    </div>
+
+    <div
+        class="flex flex-col md:flex-row gap-4 my-3 dark:bg-gray-900 text-black dark:text-gray-300 dark:border-gray-300 dark:border-2">
+        <div
+            class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
             <!-- Recent Activity -->
-            <div class="flex-1 p-4 bg-white rounded-lg shadow hover:shadow-lg transition mb-2 dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
+            <div
+                class="flex-1 p-4 bg-white rounded-lg shadow hover:shadow-lg transition mb-2 dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Recent Peer Activities</h2>
                 <ul class="divide-y divide-gray-200">
                     <li class="py-4 flex items-center justify-between dark:text-white">
@@ -61,9 +85,10 @@
             </div>
             <app-feed></app-feed>
         </div>
-        <div class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
+        <div
+            class="flex-1 p-4 rounded-lg shadow hover:shadow-lg transition bg-white dark:bg-gray-900 text-black dark:text-white dark:border-gray-300 dark:border-2">
             <app-transaction-table></app-transaction-table>
         </div>
     </div>
-   <app-wysiwyg></app-wysiwyg>
+   <app-heatmap></app-heatmap>
 </div>
