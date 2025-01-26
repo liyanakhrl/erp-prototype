@@ -15,7 +15,7 @@
           <a [routerLink]="item.path" routerLinkActive="text-blue-500 dark:bg-blue-500"
             class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 rounded-md dark:hover:text-black">
             <i [class]="item.icon"></i>
-            <span class="ml-2 lg:block text-sm hidden dark:text-black dark:hover:text-black" [class.active]="activeItem === item.path">{{ item.label }}</span>
+            <span class="ml-2 lg:block text-sm hidden dark:text-white dark:hover:text-black" [class.active]="activeItem === item.path">{{ item.label }}</span>
           </a>
         </li>
       </ul>
@@ -29,7 +29,7 @@
     <!-- Header -->
     <header class="flex flex-col">
       <div
-        class="flex items-center justify-between h-16 px-6 bg-white border-b dark:border-0 shadow dark:bg-gray-900 text-black dark:text-white">
+        class="flex items-center justify-between h-16 px-6 bg-white border-b dark:border-0 shadow dark:bg-gray-900 text-black dark:text-white sm:text-black dark:sm:text-white">
         <button class="lg:hidden p-2" (click)="toggleSidebar()">
           <i class="fas fa-bars text-gray-700 dark:text-white"></i>
         </button>

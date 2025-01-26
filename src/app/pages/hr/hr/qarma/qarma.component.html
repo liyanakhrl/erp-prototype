@@ -1,14 +1,14 @@
-<div class="max-w-4xl p-8 bg-white rounded-lg shadow-2xl">
+<div class="max-w-4xl p-8 bg-white rounded-lg dark:border-0 dark:bg-gray-900">
   <div class="text-center mb-8">
-    <h2 class="text-3xl font-extrabold text-gray-900">Employee Recognition</h2>
-    <p class="text-lg text-gray-600">We value the hard work and dedication of our team members!</p>
+    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white">Employee Recognition</h2>
+    <p class="text-lg text-gray-600 dark:text-green-50">We value the hard work and dedication of our team members!</p>
   </div>
 
   <!-- Employee Recognition Details -->
   <div class="grid grid-cols-1 gap-2 mb-8 sm:grid-cols-2 lg:grid-cols-3">
     <div class="p-3 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
       <h3 class="text-xl font-semibold">Recognition</h3>
-      <p class="mt-2">Employee of the Month</p>
+      <p class="mt-2 font-semibold text-lg">30<span class="text-lg"> points</span></p>
     </div>
 
     <div class="p-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
@@ -23,8 +23,8 @@
   </div>
 
   <!-- Recognition Notes -->
-  <div class="p-6 bg-white rounded-lg shadow-lg">
-    <h3 class="text-xl font-semibold text-gray-900">Recognition Notes</h3>
+  <div class="p-6 bg-white rounded-lg shadow-lg dark:border-0 dark:bg-gray-900">
+    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-300 dark:border-4 dark:border-indigo-200 dark:border-t-indigo-500 dark:mt-3">Recognition Notes</h3>
     <p>{{ recognitionForm.value.recognitionNotes }}</p>
   </div>
 
@@ -43,8 +43,7 @@
 <div *ngIf="isRecognitionNotesVisible" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-end transform translate-x-0 transition-transform duration-500">
   <div class="w-96 bg-white p-8 rounded-l-lg shadow-lg">
     <h3 class="text-2xl font-semibold text-gray-800">Recognition Notes</h3>
-    <p>{{ recognitionNotes }}</p>
-    
+    <p>{{ recognitionNotes }}</p> 
     <button (click)="closeRecognitionNotesPanel()" class="mt-6 px-6 py-3 bg-red-600 text-white rounded-lg">
       Close
     </button>
